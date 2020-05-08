@@ -1,0 +1,44 @@
+body {
+	background-color: #eee;
+	font-size: 20px;
+}
+header {
+	margin:0px 15px 0px 15px;
+	
+}
+
+h1 {
+	font-family: 'Playfair Display', serif;
+}
+.row {
+	background-color:  #ddddf1;
+}
+#topo {
+	height: 35px;
+	background-color: #000000;
+}
+#title {
+	background-color: #6fd0ff;
+}
+.face {
+	width: 30px;
+	height: 30px;
+}
+.logo {
+	height: 200px;
+}
+.direita {
+	margin-top: 20px;
+	border: 3px solid #fff;
+			
+}
+.navbar {
+	font-size: 18px;
+			
+}
+#acess {
+	margin-top: 30px;
+	font-size: 15px;
+}
+
+		
