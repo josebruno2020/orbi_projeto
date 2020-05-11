@@ -40,8 +40,6 @@ class HomeController extends Controller {
         }
 
         $this->redirect('/');
-
-        
     }
 
     public function radar() {
