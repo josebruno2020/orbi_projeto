@@ -7,6 +7,10 @@ header {
 	
 }
 
+.header-icon:hover {
+	filter: invert(55%);
+}
+
 h1 {
 	font-family: 'Playfair Display', serif;
 }
@@ -18,7 +22,7 @@ h1 {
 	background-color: #000000;
 }
 #title {
-	background-color: #6fd0ff;
+	background-color: deepskyblue;
 }
 .face {
 	width: 30px;
@@ -36,9 +40,26 @@ h1 {
 	font-size: 18px;
 			
 }
-#acess {
-	margin-top: 30px;
+.icon-img {
+	width: 30px;
+	height: 30px;
+	
+}
+.icon-name {
+	padding: 0px 5px 0px 5px;
+	font-size: 25px;
+	color: burlywood;
+
+}
+.icon-name:hover {
+	text-decoration: underline;
+}
+footer {
+	margin-top: auto;
+	padding:10px;
 	font-size: 15px;
+	border: 1px solid #eee;
+	background-color: #ccc;
 }
 
 		

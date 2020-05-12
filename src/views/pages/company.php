@@ -29,7 +29,7 @@
 		</div>
         <br>
         <?php if(!empty($flash)): ?>
-            <div class="flash"><?=$flash;?></div>
+            <button class="btn btn-info"><?=$flash;?></button>
         <?php  endif; ?>
         <button class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#contato">Não deixe de nos mandar uma Mensagem!</button>
         

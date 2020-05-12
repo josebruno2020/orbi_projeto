@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col align-items-center">
             <?php if(!empty($flash)): ?>
-                <?=$flash;?>
+                <button class="btn btn-info"><?=$flash;?>
             <?php endif; ?>
             <form method="POST" action="<?=$base;?>/login">
                 <div  class="form-group">
@@ -30,7 +30,6 @@
                 
             </form>
         </div>
-        <p><a href="<?=$base;?>/cadastro">Ainda não tem cadastro? Cadastre-se!</a></p>
     </div>
 </div>
 

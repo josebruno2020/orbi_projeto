@@ -15,16 +15,16 @@
 
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="algodao1.jpg" class="w-100">
+						<img src="<?=$base;?>/assets/images/slide1.png" class="w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="algodao2.jpg" class="w-100">
+						<img src="<?=$base;?>/assets/images/slide2.png" class="w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="algodao3.jpg" class="w-100">
+						<img src="<?=$base;?>/assets/images/slide3.png" class="w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="algodao4.jpg" class="w-100">
+						<img src="<?=$base;?>/assets/images/slide4.png" class="w-100">
 					</div>
 					
 				</div>
@@ -77,8 +77,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<h5>ORBI Corretora de Mercadorias</h5>
-					<h6>Apresetação</h6>
+					<p>Apresetação</p>
 					A ORBI está no mercado de algodão desde 1998, atuando na intermediações de negócios de algodão para o mercado interno brasileiro e para o mercado externo (exportação e importação). Seu diretor gerente, <strong>João Celso dos Santos*</strong>, atua no mercado algodoeiro desde 1981.
 
 					Apresentando a nossos clientes oportunidades de bons negócios, queremos contribuir para que a cadeia textil brasileira seja cada vez mais competitiva.
@@ -101,13 +100,13 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col">
-					<img src="https://sites.google.com/a/orbibrasil.com.br/orbi/_/rsrc/1334146469346/corretora/Cottons.png?height=210&width=320" class="img-fluid direita img-thumbnail">
+					<img src="<?=$base;?>/assets/images/cottons.png" class="img-fluid direita img-thumbnail">
 				</div>
 				<div class="col">
-					<img src="https://sites.google.com/a/orbibrasil.com.br/orbi/_/rsrc/1334146513476/corretora/Algod%C3%A3o%20colhido.png?height=221&width=320" class="img-fluid direita img-thumbnail">
+					<img src="<?=$base;?>/assets/images/cottons2.png" class="img-fluid direita img-thumbnail">
 				</div>
 				<div class="col">
-					<img src="https://sites.google.com/a/orbibrasil.com.br/orbi/_/rsrc/1334146621548/corretora/Tecelagem%20paquistanesa.jpg?height=236&width=320" class="img-fluid direita img-thumbnail">
+					<img src="<?=$base;?>/assets/images/tecelagem.png" class="img-fluid direita img-thumbnail">
 				</div>
 
 				
@@ -117,7 +116,7 @@
 
         <br><br>
         <?php if(!empty($flash)): ?>
-            <div class="flash"><?=$flash;?></div>
+            <button class="btn btn-info"><?=$flash;?></button>
         <?php  endif; ?>
 		<button class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#contato">Entre em contato conosco!</button>
 		

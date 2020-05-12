@@ -1,5 +1,5 @@
 <?=$render('headerPage', [
-    'activeMenu' => 'system-config',
+    'activeMenu' => 'config',
     'loggedUser' => $loggedUser
 ]);?>
 
@@ -7,41 +7,58 @@
     <div class="row">
         <div class="col-sm">
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
-            <a href="<?=$base;?>/system-config" class="btn btn-info">Voltar</a>
             <p class="text-center">
-                <h2>Cadastro</h2>
+                <h2>Configurações</h2>
             </p>
         </div>
         
     </div>
     <div class="row">
+        
         <div class="col align-items-center">
             <?php if(!empty($flash)): ?>
-                <button class="btn btn-info"><?=$flash;?></button>
+                <button class="btn btn-info"><?=$flash;?><button>
             <?php endif;?>
-            <form method="POST" action="<?=$base;?>/system-config/cadastrar">
+
+            <form method="POST" action="<?=$base;?>/config" enctype="multipart/form-data">
                 <div  class="form-group">
-                    <input id="name" type="text" name="name" class="form-control" placeholder="Digite seu Nome">
+                    <label for="avatar">Avatar:</label></br>
+                    <input id="avatar" type="file" name="avatar" class="" >
+                </div>
+
+                <div  class="form-group">
+                    <label for="name">Nome:</label>
+                    <input id="name" type="text" name="name" class="form-control" placeholder="Digite seu Nome" value="<?=$user->name;?>">
                 </div>
                 <div  class="form-group">
-                    <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail">
+                    <label for="email">E-mail:</label>
+                    <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail" value="<?=$user->email;?>" readonly>
+                </div>
+
+                <div  class="form-group">
+                    <label for="tel">Telefone:</label>
+                    <input id="tel" type="text" name="tel" class="form-control" placeholder="(99)99999-9999" value="<?=$user->tel;?>">
                 </div>
                 
                 <div  class="form-group">
+                    <label for="password1">Nova Senha:</label>
                     <input type="password" class="form-control" name="password1" placeholder="Digite sua Senha"></input>
                 </div>
 
                 <div  class="form-group">
+                    <label for="password2">Confirme a Nova Senha:</label>
                     <input type="password" class="form-control" name="password2" placeholder="Confirme sua senha"></input>
                 </div>
 
                 <div  class="form-group">
-                    <input type="text" class="form-control" name="city" placeholder="Digite sua Cidade"></input>
+                    <label for="city">Cidade:</label>
+                    <input type="text" class="form-control" name="city" placeholder="Digite sua Cidade" value="<?=$user->city;?>"></input>
                 </div>
 
                 <div  class="form-group">
-                    <select class="form-control" name="state">
-                        <option value="">Selecione o Estado</option>
+                    <label for="state">Estado:</label>
+                    <select class="form-control" name="state" value="<?=$user->state;?>">
+                        <option value="<?=$user->state?>"><?=strtoupper($user->state)?></option>
                         <option value="ac">AC</option>
                         <option value="al">AL</option>
                         <option value="ap">AP</option>
@@ -73,22 +90,10 @@
                 </div>
 
                 <div  class="form-group">
-                    <select class="form-control" name="group">
-                        <option value="">Grupo</option>
-                        <option value="client">Cliente</option>
-                        <option value="employee">Funcionário</option>
-                        <option value="admin">Administrador</option>
-                    </select>
-                </div>
-
-                
-
-                <div  class="form-group">
-                    <input class="form-control btn btn-success btn-block" type="submit" value="Cadastrar">
+                    <input class="form-control btn btn-success btn-block" type="submit" value="Salvar Modificações">
                 </div>
                 
             </form>
-            
         </div>
         
     </div>

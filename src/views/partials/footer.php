@@ -1,7 +1,7 @@
-<footer style="background-color: #ccc; margin-bottom: 0;">
+<footer>
 			
 		<p class="text-center" id="acess">
-            Desenvolvido por <a href="#">ORBI-Acess</a>
+            Desenvolvido por <a href="#">ORBI-Assess</a>
         </p>
 			
 	</footer>

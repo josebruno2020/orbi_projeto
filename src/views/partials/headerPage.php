@@ -36,33 +36,35 @@
 					
 				<div class="navbar-nav">
 					
-                    <a href="<?=$base;?>" class="nav-item nav-link <?=($activeMenu == 'home') ? 'active' : '';?> header-icon" title="Home">
-						<img src="<?=$base;?>/assets/images/home.png" width="30" height="30" class="header-icon">
-                        Home
+                    <a href="<?=$base;?>/my" class="nav-item nav-link <?=($activeMenu == 'my') ? 'active' : '';?> header-icon" title="Minha Página">
+                        <img src="<?=$base;?>/assets/images/my.png" width="30" height="30" class="header-icon">
+                        Minha Página
                     </a>
 					
 					
-                    <a href="<?=$base;?>/radar" class="nav-item nav-link <?=($activeMenu == 'radar') ? 'active' : '';?> header-icon" title="Radar ORBI">
-						<img src="<?=$base;?>/assets/images/radar.png" width="30" height="30" class="header-icon">
-                        Radar ORBI
-                    </a>
+					<a href="<?=$base;?>/contratos" class="nav-item nav-link <?=($activeMenu == 'contratos') ? 'active' : '';?> header-icon" title="Meus Contratos">
+						<img src="<?=$base;?>/assets/images/paper.png" width="30" height="30" class="header-icon">
+						Meus contratos
+					</a>
 					
 					
-                    <a href="<?=$base;?>/empresa"class="nav-item nav-link <?=($activeMenu == 'empresa') ? 'active' : '';?> header-icon"  title="Nossa Empresa">
-						<img src="<?=$base;?>/assets/images/cotton.png" width="30" height="30" class="header-icon">
-                        Nossa Empresa
-                    </a>
 					
+                    <a href="<?=$base;?>/config"class="nav-item nav-link <?=($activeMenu == 'config') ? 'active' : '';?> header-icon"  title="Meus Dados">
+                        <img src="<?=$base;?>/assets/images/config.png" width="30" height="30" class="header-icon">
+                        Meus Dados
+					</a>
 					
-                    <a href="<?=$base;?>/cidade" class="nav-item nav-link <?=($activeMenu == 'cidade') ? 'active' : '';?> header-icon" title="Nossa Cidade">
-						<img src="<?=$base;?>/assets/images/building.png" width="30" height="30" class="header-icon">
-                        Nossa Cidade
-                    </a>
+					<?php if($loggedUser->group == 'admin'): ?>
+						<a href="<?=$base;?>/system-config"class="nav-item nav-link <?=($activeMenu == 'system-config') ? 'active' : '';?> header-icon"  title="Configurações do Site">
+							<img src="<?=$base;?>/assets/images/system-config.png" width="30" height="30" class="header-icon">
+							Configurações do Site
+						</a>
+					<?php endif; ?>
 
-                    <a href="<?=$base;?>/login" class="nav-item nav-link <?=($activeMenu == 'login') ? 'active' : '';?> header-icon" title="Clientes">
-						<img src="<?=$base;?>/assets/images/client.png" width="30" height="30" class="header-icon">
-                        Clientes
-                    </a>
+                    <a href="<?=$base;?>/sair" class="nav-item nav-link header-icon" title="Sair">
+                        <img src="<?=$base;?>/assets/images/exit.png" width="30" height="30" class="header-icon">
+                        Sair
+					</a>
 					
 				</div>
 			</div>

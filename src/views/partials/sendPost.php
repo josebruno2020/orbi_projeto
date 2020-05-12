@@ -2,8 +2,8 @@
             
     <form method="POST">
         <div  class="form-group">
-            <label for="nome">Nome:</label>
-            <input id="nome"type="text" name="name" class="form-control" placeholder="Digite seu Nome" title="Nome">
+            <label for="name">Nome:</label>
+            <input id="name"type="text" name="name" class="form-control" placeholder="Digite seu Nome" title="Nome">
         </div>
         <div  class="form-group">
             <label for="email">E-mail:</label>
