@@ -15,8 +15,13 @@
             <p><a href="<?=$base;?>/system-config/cadastrar">Adicionar Usuário</a></p>
         </div>
         <div class="row">
-            <p><a href="<?=$base;?>/system-config/historic">Histórico de Acessos</a></p>
+            <p><a href="<?=$base;?>/system-config/adicionar-contrato">Adicionar Contrato</a></p>
         </div>
+        <?php if($loggedUser->group == 'admin'): ?>
+            <div class="row">
+                <p><a href="<?=$base;?>/system-config/historic">Histórico de Acessos</a></p>
+            </div>
+        <?php endif; ?>
             
             
        

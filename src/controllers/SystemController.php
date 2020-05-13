@@ -4,6 +4,7 @@ namespace src\controllers;
 use \core\Controller;
 use \src\helpers\UserHelpers;
 use \src\helpers\ContractHelpers;
+use \src\helpers\HistoricHelpers;
 
 class SystemController extends Controller {
 
@@ -32,8 +33,14 @@ class SystemController extends Controller {
 
     public function contracts() {
 
+        $order = filter_input(INPUT_GET, 'order');
+
+        $contracts = ContractHelpers::getAll($order);
+
         $this->render('contracts',[
-            'loggedUser' => $this->loggedUser
+            'loggedUser' => $this->loggedUser,
+            'contracts' => $contracts,
+            'order' => $order
         ]);
     }
 
@@ -63,6 +70,8 @@ class SystemController extends Controller {
         $city = filter_input(INPUT_POST, 'city');
         $state = filter_input(INPUT_POST, 'state');
         $avatar = filter_input(INPUT_POST, 'avatar');
+        //Como essa função é acessada pelo grupo cliente, vamos colocar o valor de 'client' como padrão;
+        $group = 'client';
 
         //Verificando se as duas senhas foram corretas;
         if($password1 != $password2) {
@@ -70,7 +79,7 @@ class SystemController extends Controller {
             $this->redirect('/config');
         }
 
-        UserHelpers::updateUser($this->loggedUser->id, $name, $tel, $password1, $city, $state);
+        UserHelpers::updateUser($this->loggedUser->id, $name, $tel, $password1, $city, $state, $group);
 
         //Procedimento para mudar a foto do avatar;
         /*
@@ -94,7 +103,6 @@ class SystemController extends Controller {
     }
 
     public function adminConfig() {
-
         //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
         if($this->loggedUser->group == 'client') {
             $this->redirect('/my');
@@ -107,6 +115,11 @@ class SystemController extends Controller {
 
     //Página de cadastro(apenas disponível para o admin);
     public function signup() {
+        //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
+        if($this->loggedUser->group == 'client') {
+            $this->redirect('/my');
+        }
+
         $flash = '';
         if(!empty($_SESSION['flash'])) {
             $flash = $_SESSION['flash'];
@@ -137,10 +150,9 @@ class SystemController extends Controller {
         if(UserHelpers::emailExistis($email) == false) {
 
             if($name && $email && $password1 && $city && $state && $group) {
-                $token = UserHelpers::addUser($this->$loggedUser->id, $name, $email, $password1, $city, $state, $group);
+                UserHelpers::addUser( $name, $email, $password1, $city, $state, $group);
                 //Após adicionar o usuário, ele é armazenado na sessão, com o seu token;
-                $_SESSION['token'] = $token;
-                $this->redirect('/system-config');
+                $this->redirect('/system-config/user-list');
 
             } else {
 
@@ -161,12 +173,16 @@ class SystemController extends Controller {
         if($this->loggedUser->group == 'client') {
             $this->redirect('/my');
         }
+        //Recebendo os dados para ordenar;
+        $order = filter_input(INPUT_GET, 'order');
+        
 
-        $userList = UserHelpers::getAll();
+        $userList = UserHelpers::getAll($order);
 
         $this->render('userList', [
             'loggedUser' => $this->loggedUser,
-            'userList' => $userList
+            'userList' => $userList,
+            'order' => $order
             ]);
     }
 
@@ -202,8 +218,9 @@ class SystemController extends Controller {
             $this->redirect('/config');
         }
 
+        
         UserHelpers::updateUser($id, $name, $tel, $password1, $city, $state, $group);
-        $_SESSION['flash'] = 'Alterações salvas com sucesso!';
+        
         $this->redirect('/system-config/user-list');
     }
 
@@ -217,8 +234,33 @@ class SystemController extends Controller {
         $this->redirect('/system-config/user-list');
     }
 
+    public function historic() {
+        //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
+        if($this->loggedUser->group == 'client') {
+            $this->redirect('/my');
+        }
+
+        $order = filter_input(INPUT_GET, 'order');
+        $hist = HistoricHelpers::getAll($order);
+        $this->render('historic', [
+            'loggedUser' => $this->loggedUser,
+            'hist' => $hist,
+            'order' => $order
+        ]);
+    }
+
+    public function dellHistoric($id) {
+        //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
+        if($this->loggedUser->group == 'client') {
+            $this->redirect('/my');
+        }
+
+        HistoricHelpers::dellHistoric($id);
+        $this->redirect('/system-config/historic');
+    }
+
     public function logout() {
-        UserHelpers::exitHistory($this->loggedUser->email);
+        HistoricHelpers::exitHistory($this->loggedUser->email);
         $_SESSION['token'] = '';
         $this->redirect('/');   
     }

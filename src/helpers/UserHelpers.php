@@ -55,7 +55,7 @@ class UserHelpers {
         return $user ? true : false;
     }
 
-    public static function addUser($id, $name, $email, $password1, $city, $state, $group) {
+    public static function addUser($name, $email, $password1, $city, $state, $group) {
         $hash = password_hash($password1, PASSWORD_DEFAULT);
         $token =  md5(time().rand(0,9999).time());
         //Inserindo um novo usuário no Banco de Dados;
@@ -66,12 +66,11 @@ class UserHelpers {
             'password' => $hash,
             'city' => $city,
             'state' => $state,
-            'token' => $token,
-            'group' => $group,
+            'group' => $group
         ])
         ->execute();
 
-        return $token;
+        
     }
 
     public static function getUser($id) {
@@ -95,27 +94,7 @@ class UserHelpers {
             return false;
         }
     }
-
-    //Função auxiliar para registrar o horário que o usuário logou no sistema;
-    public static function entryHistory($email) {
-        Time::insert([
-            'email_user' => $email,
-            'type' => 0,
-            'date' => date('Y-m-d H:i:s')
-        ])
-        ->execute();
-    }
-
-    //Função para registrar a hora de saida do usuário do sistema;
-    public static function exitHistory($email) {
-        Time::insert([
-            'email_user' => $email,
-            'type' => 1,
-            'date' => date('Y-m-d H:i:s')
-        ])
-        ->execute();
-    }
-
+    
     public static function updateUser($id, $name, $tel, $password1, $city, $state, $group) {
         $hash = password_hash($password1, PASSWORD_DEFAULT);
 
@@ -166,15 +145,25 @@ class UserHelpers {
         ->execute();
     }
 
-    public static function getAll() {
-        $data = User::select()->get();
+    //Função auxiliar para selecionar todos os usuários do Banco de Dados, e colocando a ordem respectiva;
+    public static function getAll($order) {
 
-        if(count($data) > 0) {
-            return $data;
+        if($order) {
+            $data = User::select()->orderBy($order, 'asc')->get();
+            if(count($data) > 0) {
+                return $data;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            $data = User::select()->get();
+            if(count($data) > 0) {
+                return $data;
+            } else {
+                return false;
+            }
+
         }
-        
     }
 
     public static function delUser($id) {

@@ -40,7 +40,7 @@
                     <label for="tel">Telefone:</label>
                     <input id="tel" type="text" name="tel" class="form-control" placeholder="(99)99999-9999" value="<?=$user->tel;?>">
                 </div>
-                
+
                 <div  class="form-group">
                     <label for="password1">Nova Senha:</label>
                     <input type="password" class="form-control" name="password1" placeholder="Digite sua Senha"></input>
@@ -50,7 +50,7 @@
                     <label for="password2">Confirme a Nova Senha:</label>
                     <input type="password" class="form-control" name="password2" placeholder="Confirme sua senha"></input>
                 </div>
-
+                
                 <div  class="form-group">
                     <label for="city">Cidade:</label>
                     <input type="text" class="form-control" name="city" placeholder="Digite sua Cidade" value="<?=$user->city;?>"></input>
@@ -93,7 +93,7 @@
                 <div  class="form-group">
                     <label for="state">Grupo:</label>
                     <select class="form-control" name="group">
-                        <option value=""><?=ucfirst($user->group);?></option>
+                        <option value="<?=$user->group;?>"><?=ucfirst($user->group);?></option>
                         <option value="client">Cliente</option>
                         <option value="employee">Funcionário</option>
                         <option value="admin">Administrador</option>

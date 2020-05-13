@@ -3,6 +3,7 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\helpers\UserHelpers;
+use \src\helpers\HistoricHelpers;
 
 
 class LoginController extends Controller {
@@ -29,7 +30,7 @@ class LoginController extends Controller {
             //Se o token existir, armazenamos na sessão;
             if($token) {
                 //Função auxiliar para registrar o horário que o usuário logou no sistema através do e-mail;
-                UserHelpers::entryHistory($email);
+                HistoricHelpers::entryHistory($email);
 
                 $_SESSION['token'] = $token;
                 $this->redirect('/my');

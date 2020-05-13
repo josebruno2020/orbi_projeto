@@ -35,9 +35,11 @@ $router->get('/system-config/excluir/{id}', 'SystemController@dellUser');
 //Rota de configuração de um usuário específico, acessado APENAS pelo admin;
 $router->get('/system-config/config/{id}', 'SystemController@userConfig');
 $router->post('/system-config/config/{id}', 'SystemController@userConfigAction');
-
-//system-config/historic
-
+//Rota para excluir um histórico;
+$router->get('/system-config/historic/{id}/excluir', 'SystemController@dellHistoric');
+///system-config/historic/<?=$item['id'];/excluir
+$router->get('/system-config/historic', 'SystemController@historic');
+///system-config/adicionar-contrato
 $router->get('/sair', 'SystemController@logout');
 
 //$router->get('/pesquisar');

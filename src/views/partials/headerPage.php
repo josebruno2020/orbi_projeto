@@ -54,7 +54,7 @@
                         Meus Dados
 					</a>
 					
-					<?php if($loggedUser->group == 'admin'): ?>
+					<?php if($loggedUser->group != 'client'): ?>
 						<a href="<?=$base;?>/system-config"class="nav-item nav-link <?=($activeMenu == 'system-config') ? 'active' : '';?> header-icon"  title="Configurações do Site">
 							<img src="<?=$base;?>/assets/images/system-config.png" width="30" height="30" class="header-icon">
 							Configurações do Site
