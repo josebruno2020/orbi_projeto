@@ -23,6 +23,7 @@ $router->post('/login', 'LoginController@signinAction');
 $router->get('/my', 'SystemController@index');
 
 $router->get('/contratos', 'SystemController@contracts');
+
 $router->get('/config', 'SystemController@config');
 $router->post('/config', 'SystemController@configAction');
 
@@ -30,6 +31,11 @@ $router->get('/system-config', 'SystemController@adminConfig');
 $router->get('/system-config/cadastrar', 'SystemController@signup');
 $router->post('/system-config/cadastrar', 'SystemController@signupAction');
 $router->get('/system-config/user-list', 'SystemController@userList');
+$router->get('/system-config/excluir/{id}', 'SystemController@dellUser');
+//Rota de configuração de um usuário específico, acessado APENAS pelo admin;
+$router->get('/system-config/config/{id}', 'SystemController@userConfig');
+$router->post('/system-config/config/{id}', 'SystemController@userConfigAction');
+
 //system-config/historic
 
 $router->get('/sair', 'SystemController@logout');

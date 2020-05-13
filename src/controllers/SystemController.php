@@ -162,7 +162,59 @@ class SystemController extends Controller {
             $this->redirect('/my');
         }
 
-        $this->render('', ['loggedUser' => $this->loggedUser]);
+        $userList = UserHelpers::getAll();
+
+        $this->render('userList', [
+            'loggedUser' => $this->loggedUser,
+            'userList' => $userList
+            ]);
+    }
+
+    public function userConfig($id) {
+        //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
+        if($this->loggedUser->group == 'client') {
+            $this->redirect('/my');
+        }
+
+        $user = UserHelpers::getUser($id);
+
+        $this->render('userConfig', [
+            'loggedUser' => $this->loggedUser,
+            'user' => $user
+        ]);
+    }
+
+    public function userConfigAction($id) {
+        //Pegando as informações do usuário;
+        //O id já veio pela url;
+        $name = filter_input(INPUT_POST, 'name');
+        $tel = filter_input(INPUT_POST, 'tel');
+        $password1 = filter_input(INPUT_POST, 'password1');
+        $password2 = filter_input(INPUT_POST, 'password2');
+        $city = filter_input(INPUT_POST, 'city');
+        $state = filter_input(INPUT_POST, 'state');
+        $avatar = filter_input(INPUT_POST, 'avatar');
+        $group = filter_input(INPUT_POST, 'group');
+
+        //Verificando se as duas senhas foram corretas;
+        if($password1 != $password2) {
+            $_SESSOIN['flash'] = 'Confirmação de Senha incorreta!';
+            $this->redirect('/config');
+        }
+
+        UserHelpers::updateUser($id, $name, $tel, $password1, $city, $state, $group);
+        $_SESSION['flash'] = 'Alterações salvas com sucesso!';
+        $this->redirect('/system-config/user-list');
+    }
+
+    public function dellUser($id) {
+        //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
+        if($this->loggedUser->group == 'client') {
+            $this->redirect('/my');
+        }
+
+        $delUser = UserHelpers::delUser($id);
+        $this->redirect('/system-config/user-list');
     }
 
     public function logout() {

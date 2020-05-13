@@ -116,9 +116,30 @@ class UserHelpers {
         ->execute();
     }
 
-    public static function updateUser($id, $name, $tel, $password1, $city, $state) {
+    public static function updateUser($id, $name, $tel, $password1, $city, $state, $group) {
         $hash = password_hash($password1, PASSWORD_DEFAULT);
 
+
+        User::update()
+            ->set('name', $name)
+            ->set('tel', $tel)
+            ->set('city', $city)
+            ->set('state', $state)
+            ->set('group', $group)
+            ->where('id', $id)
+        ->execute();
+
+        if(!empty($password1)) {
+
+            User::update()
+                ->set('password', $hash)
+                ->where('id', $id)
+            ->execute();
+        }
+    }
+
+    public static function updateUserId($id, $name, $tel, $password1, $city, $state) {
+        $hash = password_hash($password1, PASSWORD_DEFAULT);
 
         User::update()
             ->set('name', $name)
@@ -143,5 +164,20 @@ class UserHelpers {
             ->set('avatar', $avatarName)
             ->where('id', $id)
         ->execute();
+    }
+
+    public static function getAll() {
+        $data = User::select()->get();
+
+        if(count($data) > 0) {
+            return $data;
+        } else {
+            return false;
+        }
+        
+    }
+
+    public static function delUser($id) {
+        User::delete()->where('id', $id)->execute();
     }
 }      
