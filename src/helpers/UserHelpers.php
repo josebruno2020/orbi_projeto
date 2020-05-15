@@ -86,6 +86,7 @@ class UserHelpers {
             $user->city = $data['city'];
             $user->state = $data['state'];
             $user->group = $data['group'];
+            $user->avatar = $data['avatar'];
 
             return $user;
 
@@ -97,14 +98,12 @@ class UserHelpers {
     
     public static function updateUser($id, $name, $tel, $password1, $city, $state, $group) {
         $hash = password_hash($password1, PASSWORD_DEFAULT);
-
-
+        
         User::update()
             ->set('name', $name)
             ->set('tel', $tel)
             ->set('city', $city)
             ->set('state', $state)
-            ->set('group', $group)
             ->where('id', $id)
         ->execute();
 
@@ -114,6 +113,14 @@ class UserHelpers {
                 ->set('password', $hash)
                 ->where('id', $id)
             ->execute();
+        }
+
+        if(!empty($group)) {
+            User::update()
+                ->set('group', $group)
+                ->where('id', $id)
+            ->execute();
+
         }
     }
 
@@ -137,7 +144,7 @@ class UserHelpers {
         }
     }
 
-    public static function updateAvatar($id, $avatar, $avatarName) {
+    public static function updateAvatar($id, $avatarName) {
 
         User::update()
             ->set('avatar', $avatarName)

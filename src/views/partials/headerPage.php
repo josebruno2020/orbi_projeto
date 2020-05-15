@@ -42,9 +42,9 @@
                     </a>
 					
 					
-					<a href="<?=$base;?>/contratos" class="nav-item nav-link <?=($activeMenu == 'contratos') ? 'active' : '';?> header-icon" title="Meus Contratos">
+					<a href="<?=$base;?>/contratos" class="nav-item nav-link <?=($activeMenu == 'contratos') ? 'active' : '';?> header-icon" title="Meus arquivos">
 						<img src="<?=$base;?>/assets/images/paper.png" width="30" height="30" class="header-icon">
-						Meus contratos
+						Meus arquivos
 					</a>
 					
 					

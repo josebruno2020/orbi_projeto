@@ -22,7 +22,10 @@ $router->post('/login', 'LoginController@signinAction');
 
 $router->get('/my', 'SystemController@index');
 
-$router->get('/contratos', 'SystemController@contracts');
+$router->get('/contratos', 'ContractController@index');
+//Rota para entrar na pasta de cada contrato, de acordo com o seu id;
+$router->get('/contratos/{id}', 'ContractController@contractsId');
+$router->get('/contratos/{id}/excluir', 'ContractController@delContract');
 
 $router->get('/config', 'SystemController@config');
 $router->post('/config', 'SystemController@configAction');
@@ -37,9 +40,17 @@ $router->get('/system-config/config/{id}', 'SystemController@userConfig');
 $router->post('/system-config/config/{id}', 'SystemController@userConfigAction');
 //Rota para excluir um histórico;
 $router->get('/system-config/historic/{id}/excluir', 'SystemController@dellHistoric');
-///system-config/historic/<?=$item['id'];/excluir
+
 $router->get('/system-config/historic', 'SystemController@historic');
-///system-config/adicionar-contrato
+
+
+//Página para adicionar um novo documento(apneas pelo admin ou employee)
+$router->get('/system-config/adicionar-documento', 'ContractController@addContract');
+$router->post('/system-config/adicionar-documento', 'ContractController@addContractAction');
+$router->get('/system-config/hvi', 'SystemController@hvi');
 $router->get('/sair', 'SystemController@logout');
 
 //$router->get('/pesquisar');
+
+
+//Adicionar contato;

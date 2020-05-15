@@ -17,9 +17,18 @@
         <div class="row">
             <p><a href="<?=$base;?>/system-config/adicionar-contrato">Adicionar Contrato</a></p>
         </div>
+        <div class="row">
+            <p><a href="<?=$base;?>/system-config/adicionar-documento">Adicionar Documento para um contrato</a></p>
+        </div>
         <?php if($loggedUser->group == 'admin'): ?>
             <div class="row">
                 <p><a href="<?=$base;?>/system-config/historic">Histórico de Acessos</a></p>
+            </div>
+        <?php endif; ?>
+
+        <?php if($loggedUser->group == 'admin'): ?>
+            <div class="row">
+                <p><a href="<?=$base;?>/system-config/hvi">Análise de HVI</a></p>
             </div>
         <?php endif; ?>
             

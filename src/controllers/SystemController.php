@@ -2,8 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
-use \src\helpers\UserHelpers;
-use \src\helpers\ContractHelpers;
+
 use \src\helpers\HistoricHelpers;
 
 class SystemController extends Controller {
@@ -28,19 +27,6 @@ class SystemController extends Controller {
 
         $this->render('inicialPage', [
             'loggedUser' => $this->loggedUser
-        ]);
-    }
-
-    public function contracts() {
-
-        $order = filter_input(INPUT_GET, 'order');
-
-        $contracts = ContractHelpers::getAll($order);
-
-        $this->render('contracts',[
-            'loggedUser' => $this->loggedUser,
-            'contracts' => $contracts,
-            'order' => $order
         ]);
     }
 
@@ -69,7 +55,13 @@ class SystemController extends Controller {
         $password2 = filter_input(INPUT_POST, 'password2');
         $city = filter_input(INPUT_POST, 'city');
         $state = filter_input(INPUT_POST, 'state');
-        $avatar = filter_input(INPUT_POST, 'avatar');
+        $group = filter_input(INPUT_POST, 'group');
+
+        $avatar = $_FILES['avatar'];
+        //Extensões permitidas para avatar;
+        $permitidos = array('image/jpg', 'image/png');
+        //Extensão do arquivo;
+        $extension = strtolower(substr($_FILES['avatar']['name'], -4));
         //Como essa função é acessada pelo grupo cliente, vamos colocar o valor de 'client' como padrão;
         $group = 'client';
 
@@ -79,25 +71,28 @@ class SystemController extends Controller {
             $this->redirect('/config');
         }
 
-        UserHelpers::updateUser($this->loggedUser->id, $name, $tel, $password1, $city, $state, $group);
-
         //Procedimento para mudar a foto do avatar;
-        /*
-        if(!empty($avatar)) {
+        if($avatar) {
 
-            if(in_array($_FILES['avatar']['type'], array('image/jpeg', 'image/jpg', 'image/png'))) {
+            if(in_array($_FILES['avatar']['type'], $permitidos)) {
 
-                $avatarName = md5(time().rand(0,999)).'.png';
+                $avatarName = md5(time().rand(0,999)).$extension;
 
-                move_uploaded_file($_FILES['avatar']['tmp_name'], $base.'/src/media/avatars/'.$avatarName);
+                //Movendo o arquivo para a pasta de avatar já com o novo nome;
+                move_uploaded_file($_FILES['avatar']['tmp_name'], 'media/avatars/'.$avatarName);
 
-                UserHelpers::updateAvatar($this->$loggedUser->id, $avatar, $avatarName);
+                UserHelpers::updateAvatar($this->loggedUser->id, $avatarName);
 
             } else {
 
-                $_SESSION['flash'] = 'Arquivo não permitido!';
+                $_SESSION['flash'] = 'Apenas permitido arquivos em "png" ou "jpg"!';
+                $this->redirect('/config');
             }
-        }*/
+        }
+
+        UserHelpers::updateUser($this->loggedUser->id, $name, $tel, $password1, $city, $state, $group);
+
+
         $_SESSION['flash'] = 'Alterações salvas com sucesso!';
         $this->redirect('/config');
     }
@@ -239,13 +234,19 @@ class SystemController extends Controller {
         if($this->loggedUser->group == 'client') {
             $this->redirect('/my');
         }
-
+        $filter = filter_input(INPUT_GET, 'filter');
+        if($filter) {
+            HistoricHelpers::getByFilter($filter);
+        }
         $order = filter_input(INPUT_GET, 'order');
+        
+        
         $hist = HistoricHelpers::getAll($order);
         $this->render('historic', [
             'loggedUser' => $this->loggedUser,
             'hist' => $hist,
-            'order' => $order
+            'order' => $order,
+            'filter' => $filter
         ]);
     }
 
@@ -257,6 +258,12 @@ class SystemController extends Controller {
 
         HistoricHelpers::dellHistoric($id);
         $this->redirect('/system-config/historic');
+    }
+
+    public function hvi() {
+        $this->render('hvi', [
+            'loggedUser' => $this->loggedUser
+        ]);
     }
 
     public function logout() {

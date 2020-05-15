@@ -16,18 +16,24 @@
     </div>
     <div class="row">
         <div class="col align-items-center">
-            <form method="GET" class="form-inline">
+            <form method="GET" class="form-inline" id="form">
                 <div  class="form-group">
-                    <label for="state">Ordenar por:</label>
+                    
+                    <label for="order">Ordenar por:</label>
                     <select class="form-control" name="order" onchange="this.form.submit()">
                         <option value="type" <?= ($order == 'type')?'selected':''; ?>>Tipo</option>
                         <option value="email_user" <?= ($order == 'email_user')?'selected':''; ?>>E-mail</option>
                         <option value="date" <?= ($order == 'date')?'selected':''; ?>>Data</option>
                         <option value="time" <?= ($order == 'time')?'selected':''; ?>>Hora</option>
                     </select>
+                    
+                    <label for="filter">Filtro:</label>
+                    <input class="form-control" id="filter" name="filter" type="text">
+                        
+                    
                 </div>
             </form>
-            <table class="table table-dark table-striped table-bordered" >
+            <table class="table table-dark table-striped table-bordered" id="historic">
                 <thead>
                     <tr>
                         <th scope="col">Tipo</th>
@@ -58,7 +64,6 @@
                     <?php endforeach;?>
                 <tbody>
             </table>
-            
         </div>
         
     </div>

@@ -3,7 +3,7 @@
     'loggedUser' => $loggedUser
 ]);?>
 
-<div class="container">
+<div class="container-sm">
     <div class="row">
         <div class="col-sm">
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
@@ -16,12 +16,15 @@
     <div class="row">
         
         <div class="col align-items-center">
-            <?php if(!empty($flash)): ?>
-                <button class="btn btn-info"><?=$flash;?><button>
-            <?php endif;?>
+            <div class="row" >
+                <?php if(!empty($flash)): ?>
+                    <button class="btn btn-danger"><?=$flash;?><button>
+                <?php endif;?>
+            </div>
 
             <form method="POST" action="<?=$base;?>/config" enctype="multipart/form-data">
                 <div  class="form-group">
+                    <img src="<?=$base;?>/media/avatars/<?=$user->avatar;?>" width="100" height="100" style="margin: 10px;">
                     <label for="avatar">Avatar:</label></br>
                     <input id="avatar" type="file" name="avatar" class="" >
                 </div>
@@ -88,6 +91,18 @@
                         <option value="to">TO</option>
                     </select>
                 </div>
+                
+                <?php if($loggedUser->group == 'admin'): ?>
+                    <div  class="form-group">
+                        <label for="state">Grupo:</label>
+                        <select class="form-control" name="group">
+                            <option value="<?=$loggedUser->group;?>"><?=ucfirst($loggedUser->group);?></option>
+                            <option value="client">Cliente</option>
+                            <option value="employee">Funcionário</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+                <?php endif;?>
 
                 <div  class="form-group">
                     <input class="form-control btn btn-success btn-block" type="submit" value="Salvar Modificações">

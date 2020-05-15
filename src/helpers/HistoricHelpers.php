@@ -29,16 +29,22 @@ class HistoricHelpers {
     }
 
     //Função para selecionar todos os campos do Banco de Dados;
-    public function getAll($order) {
+    public static function getAll($order) {
+        
+
         if($order) {
-            $data = Time::select()->orderBy($order, 'asc')->get();
+            $data = Time::select()
+                ->orderBy($order, 'desc')
+            ->get();
+
             if(count($data) > 0) {
                 return $data;
             } else {
                 return false;
             }
-        } else {
+        }else {
             $data = Time::select()->get();
+
             if(count($data) > 0) {
                 return $data;
             } else {
@@ -50,7 +56,18 @@ class HistoricHelpers {
 
     }
 
-    public function dellHistoric($id) {
+    public static function getByFilter($filter) {
+        $data = Time::select()->where('email_user', 'like', '%'.$filter.'%')->get();
+
+        if(count($data) > 0) {
+            return $data;
+
+        } else {
+            return false;
+        }
+    }
+
+    public static function dellHistoric($id) {
         Time::delete()->where('id', $id)->execute();
     }
     
