@@ -3,7 +3,7 @@
     'loggedUser' => $loggedUser
 ]);?>
 	
-	<div class="container">
+	<div class="container-sm">
         <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
         <div class="row">
             <form method="GET" class="form-inline">
@@ -23,39 +23,114 @@
             <table class="table table-dark table-striped table-bordered" >
                 <thead>
                     <tr>
-                        <th scope="col">Data</th>
-                        <th scope="col">Contrato nº</th>
+                        <th scope="col" width="25%">Data</th>
+                        <th scope="col" width="50%">Documento</th>
                         <?php if($loggedUser->group == 'admin'): ?>
-                            <th scope="col">Ações</th>
+                            <th scope="col" width="25%">Ações</th>
                         <?php endif;?>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($data as $item): ?>
-                            <tr>
-                                <td><?=date('d/m/Y', strtotime($item['date']));?></td>
-                                <td>
-                                    <a href="<?=$item['link'];?>"><?=$item['name'];?>
-                                    </a>
-                                </td>
-                                <?php if($loggedUser->group == 'admin'): ?>
-                                    <td>
-                                        <a href="<?=$base;?>/system-config/config/<?=$item['id'];?>" >
-                                            <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
-                                        </a>
-                                        <a href="<?=$base;?>/contratos/<?=$item['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
-                                            <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
+                        <?php foreach($data as $item): ?>
+                            <?php if(md5($item['id_contract']) === $id['id']): ?>
+                                <tr>
+                                    <td><?=date('d/m/Y', strtotime($item['date']));?></td>
+                                    <td >
+                                        <a href="<?=$item['link'];?>" target="_blank"><?=$item['name'];?>
                                         </a>
                                     </td>
-                                <?php endif;?>
-                            </tr>
-                    <?php endforeach;?>
+                                    <?php if($loggedUser->group == 'admin'): ?>
+                                        <td>
+                                            <a href="<?=$base;?>/system-config/config/<?=$item['id'];?>" >
+                                                <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
+                                            </a>
+                                            <a href="<?=$base;?>/contratos/<?=$item['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                                <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
+                                            </a>
+                                        </td>
+                                    <?php endif;?>
+                                </tr>
+                            <?php endif;?>
+                        <?php endforeach;?>
+                    
                 <tbody>
             </table>
         </div>
         <div class="row">
             <h2>HVI</h2>
+            <table class="table table-dark table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" width="25%">Data</th>
+                        <th scope="col" width="50%">HVI</th>
+                        <?php if($loggedUser->group == 'admin'): ?>
+                            <th scope="col" width="25%">Ações</th>
+                        <?php endif;?>
+                    </tr>                        
+                </thead>
+                <tbody>
+                    <?php foreach($hvi as $file): ?>
+                        <?php if(md5($file['id_contract']) === $id['id']): ?>
+                            <tr>
+                                <td  width="25%"><?=date('d/m/Y', strtotime($file['date']));?></td>
+                                <td width="50%">
+                                    <a href="<?=$file['link'];?>" target="_blank"><?=$file['name'];?>
+                                    </a>
+                                </td>
+                                <?php if($loggedUser->group == 'admin'): ?>
+                                    <td width="25%">
+                                        <a href="<?=$base;?>/system-config/config/<?=$file['id'];?>" >
+                                            <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
+                                        </a>
+                                        <a href="<?=$base;?>/contratos/<?=$file['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                            <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
+                                        </a>
+                                    </td>
+                                <?php endif;?>
+                            </tr>
+                        <?php endif;?>
+                    <?php endforeach;?>    
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h2>NFs</h2>
+            <table class="table table-dark table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" width="25%">Data</th>
+                        <th scope="col" width="50%">NF</th>
+                        <?php if($loggedUser->group == 'admin'): ?>
+                            <th scope="col" width="25%">Ações</th>
+                        <?php endif;?>
+                    </tr>                        
+                </thead>
+                <tbody>
+                    <?php foreach($nfs as $nf): ?>
+                        <?php if(md5($nf['id_contract']) === $id['id']): ?>
+                            <tr>
+                                <td  width="25%"><?=date('d/m/Y', strtotime($nf['date']));?></td>
+                                <td width="50%">
+                                    <a href="<?=$nf['link'];?>" target="_blank"><?=$nf['name'];?>
+                                    </a>
+                                </td>
+                                <?php if($loggedUser->group == 'admin'): ?>
+                                    <td width="25%">
+                                        <a href="<?=$base;?>/system-config/config/<?=$nf['id'];?>" >
+                                            <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
+                                        </a>
+                                        <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                            <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
+                                        </a>
+                                    </td>
+                                <?php endif;?>
+                            </tr>
+                        <?php endif;?>
+                    <?php endforeach;?>    
+                </tbody>
+            </table>
+
         </div>
     </div>
     

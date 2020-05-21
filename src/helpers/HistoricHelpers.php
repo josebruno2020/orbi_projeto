@@ -8,22 +8,28 @@ class HistoricHelpers {
 
     //Função auxiliar para registrar o horário que o usuário logou no sistema;
     public static function entryHistory($email) {
+        $ip = $_SERVER['REMOTE_ADDR'];
+        
         Time::insert([
             'email_user' => $email,
             'type' => 'Entrada',
             'date' => date('Y-m-d'),
-            'time' => date('H:i:s')
+            'time' => date('H:i:s'),
+            'ip' => $ip
         ])
         ->execute();
     }
 
     //Função para registrar a hora de saida do usuário do sistema;
     public static function exitHistory($email) {
+        $ip = $_SERVER['REMOTE_ADDR'];
+
         Time::insert([
             'email_user' => $email,
             'type' => 'Saida',
             'date' => date('Y-m-d H:i:s'),
-            'time' => date('H:i:s')
+            'time' => date('H:i:s'),
+            'ip' => $ip
         ])
         ->execute();
     }

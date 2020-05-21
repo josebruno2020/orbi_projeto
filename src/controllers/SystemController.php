@@ -3,6 +3,7 @@ namespace src\controllers;
 
 use \core\Controller;
 
+use \src\helpers\UserHelpers;
 use \src\helpers\HistoricHelpers;
 
 class SystemController extends Controller {
@@ -260,7 +261,7 @@ class SystemController extends Controller {
         $this->redirect('/system-config/historic');
     }
 
-    public function hvi() {
+    public function hviController() {
         $this->render('hvi', [
             'loggedUser' => $this->loggedUser
         ]);

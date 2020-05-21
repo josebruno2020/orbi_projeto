@@ -29,12 +29,12 @@
             <table class="table table-dark table-striped table-bordered" >
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Classe</th>
+                        <th scope="col" width="10%">Id</th>
+                        <th scope="col" width="30%">Nome</th>
+                        <th scope="col" width="30%">E-mail</th>
+                        <th scope="col" width="20%">Classe</th>
                         <?php if($loggedUser->group == 'admin'): ?>
-                            <th scope="col">Ações</th>
+                            <th scope="col" width="10%">Ações</th>
                         <?php endif;?>
                         
                     </tr>

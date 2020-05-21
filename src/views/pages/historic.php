@@ -43,6 +43,7 @@
                         <?php if($loggedUser->group == 'admin'): ?>
                             <th scope="col">Ações</th>
                         <?php endif;?>
+                        <th scope="col">IP</th>
                         
                     </tr>
                 </thead>
@@ -59,6 +60,7 @@
                                         <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
                                     </a>
                                 </td>
+                            <td><?=$item['ip'];?></td>
                             <?php endif;?>
                         </tr>
                     <?php endforeach;?>

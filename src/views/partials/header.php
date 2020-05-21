@@ -20,10 +20,10 @@
 		</div>
 		<div class="row" id="title">
 			<div class="media">
-				<a href="<?=$base;?>"><img src="<?=$base;?>/assets/images/orbi.jpg" class="mr-3 logo"></a>
+				<a href="<?=$base;?>"><img src="<?=$base;?>/assets/images/orbi.jpg" class=" logo img-fluid"></a>
 					
 				<div class="media-body align-items-center">
-					<p class="text-center"><h1>ORBI Corretora de Mercadorias</h1></p>
+					<p class="text-center img-fluid"><h2 class="h2. Bootstrap heading">ORBI Corretora de Mercadorias</h2></p>
 				</div>
 			</div>
 		</div>

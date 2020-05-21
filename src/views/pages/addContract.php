@@ -9,7 +9,7 @@
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
             <a href="<?=$base;?>/system-config" class="btn btn-info">Voltar</a>
             <p class="text-center">
-                <h2>Adicionar Documento</h2>
+                <h2>Adicionar Contrato</h2>
             </p>
         </div>
         
@@ -24,12 +24,7 @@
             <form method="POST" action="<?=$base;?>/system-config/adicionar-contrato" enctype="multipart/form-data">
 
                 <div  class="form-group">
-                    <label for="avatar">Documento:</label></br>
-                    <input id="avatar" type="file" name="contract" required class="" >
-                </div>
-
-                <div  class="form-group">
-                    <label for="city">Nº do Contrato:</label>
+                    <label for="city">Nome da Pasta:</label>
                     <input type="text" class="form-control" name="name"></input>
                 </div>
 
@@ -57,6 +52,21 @@
             
         </div>
         
+    </div>
+    <div class="row" style="margin-top:15px;">
+        <div class="col-sm">
+            <a href="<?=$base;?>/system-config/adicionar-documento">Adicionar Documento para Contrato</a>
+        </div>
+        <div class="col-sm">
+            <a href="<?=$base;?>/system-config/adicionar-hvi">Adicionar HVI para Contrato</a>
+        </div>
+        
+        
+    </div>
+    <div class="row" style="margin-top:15px;">
+        <div class="col-sm">
+            <a href="<?=$base;?>/system-config/adicionar-nf">Adicionar NF para Contrato</a>
+        </div>
     </div>
 </div>
 

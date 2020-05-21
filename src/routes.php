@@ -26,6 +26,7 @@ $router->get('/contratos', 'ContractController@index');
 //Rota para entrar na pasta de cada contrato, de acordo com o seu id;
 $router->get('/contratos/{id}', 'ContractController@contractsId');
 $router->get('/contratos/{id}/excluir', 'ContractController@delContract');
+$router->get('/contratos/{id}/del', 'ContractController@delFolder');
 
 $router->get('/config', 'SystemController@config');
 $router->post('/config', 'SystemController@configAction');
@@ -43,14 +44,23 @@ $router->get('/system-config/historic/{id}/excluir', 'SystemController@dellHisto
 
 $router->get('/system-config/historic', 'SystemController@historic');
 
-
-//Página para adicionar um novo documento(apneas pelo admin ou employee)
-$router->get('/system-config/adicionar-documento', 'ContractController@addContract');
-$router->post('/system-config/adicionar-documento', 'ContractController@addContractAction');
-$router->get('/system-config/hvi', 'SystemController@hvi');
+//Rota para cadastrar um novo contrato;
+$router->get('/system-config/adicionar-contrato', 'ContractController@addContract');
+$router->post('/system-config/adicionar-contrato', 'ContractController@addContractAction');
+//Página para adicionar um novo documento em um contrato(apneas pelo admin ou employee)
+$router->get('/system-config/adicionar-documento', 'ContractController@addContractFile');
+$router->post('/system-config/adicionar-documento', 'ContractController@addContractFileAction');
+//Rota para adicionar um hvi em um contrato (apenas administrador ou employee);
+$router->get('/system-config/adicionar-hvi', 'ContractController@addHviFile');
+$router->post('/system-config/adicionar-hvi', 'ContractController@addHviFileAction');
+//Rota para adicionar uma Nota Fiscal em um contrato;
+$router->get('/system-config/adicionar-nf', 'ContractController@addNf');
+$router->post('/system-config/adicionar-nf', 'ContractController@addNfAction');
+//Rota para a análise de HVI(apneas admin);
+$router->get('/system-config/hvi', 'SystemController@hviController');
 $router->get('/sair', 'SystemController@logout');
 
 //$router->get('/pesquisar');
 
 
-//Adicionar contato;
+
