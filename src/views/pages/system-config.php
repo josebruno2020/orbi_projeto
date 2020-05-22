@@ -15,13 +15,16 @@
             <p><a href="<?=$base;?>/system-config/cadastrar">Adicionar Usuário</a></p>
         </div>
         <div class="row">
-            <p><a href="<?=$base;?>/system-config/adicionar-contrato">Adicionar uma pasta de Contrato</a></p>
+            <p><a href="<?=$base;?>/system-config/adicionar-contrato">Adicionar Pasta de Contrato</a></p>
+        </div>
+        <div class="row">
+            <p><a href="<?=$base;?>/system-config/adicionar-proposta">Adicionar Pasta de Proposta</a></p>
         </div>
         <div class="row">
             <p><a href="<?=$base;?>/system-config/adicionar-documento">Adicionar Documento para um contrato</a></p>
         </div>
         <div class="row">
-            <p><a href="<?=$base;?>/system-config/adicionar-hvi">Adicionar HVI para contrato</a></p>
+            <p><a href="<?=$base;?>/system-config/adicionar-hvi">Adicionar HVI</a></p>
         </div>
         <div class="row">
             <p><a href="<?=$base;?>/system-config/adicionar-nf">Adicionar NF para contrato</a></p>

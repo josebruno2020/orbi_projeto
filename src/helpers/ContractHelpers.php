@@ -6,6 +6,7 @@ use \src\models\ContractFile;
 use \src\models\Contract;
 use \src\models\HviFile;
 use \src\models\NfFile;
+use \src\models\Tender;
 
 class ContractHelpers {
 
@@ -44,6 +45,8 @@ class ContractHelpers {
 
     }
 
+    
+
     //Função auxiliar para adicionar um contrato no banco de dados;
     public static function addContract($name, $date, $idUser, $email) {
         
@@ -53,6 +56,16 @@ class ContractHelpers {
             'date' => $date,
             'email_user' => $email
         ])
+        ->execute();
+    }
+
+    public function editFolder($id, $name, $date, $idUser, $email) {
+        Contract::update()
+            ->set('name', $name)
+            ->set('id_user', $idUser)
+            ->set('date', $date)
+            ->set('email_user', $email)
+            ->where('id', $id)
         ->execute();
     }
 
@@ -69,34 +82,104 @@ class ContractHelpers {
         ->execute();
     }
 
+    public static function documentEdit($id, $name, $date) {
+
+        ContractFile::update()
+            ->set('name', $name)
+            ->set('date', $date)
+            ->where('id', $id)
+        ->execute();
+    }
+    //Função que retorna todas as informações da tabela dos contratos;
+    public static function getOne($id) {
+        $data = Contract::select()->where('id', $id)->one();
+
+        $file = new Contract();
+        $file->id = $data['id'];
+        $file->name = $data['name'];
+        $file->id_user = $data['id_user'];
+        $file->email_user = $data['email_user'];
+        $file->date = $data['date'];
+
+        return $file;
+    }
+    //Função que retorna o nome do contrato de acordo com o id recebido (retorna como objeto);
     public static function getById($id) {
         $data = ContractFile::select()->where('id', $id)->one();
 
-        $file_name = new ContractFile();
-        $file_name->name = $data['name_server'];
-        $file_name->id_contract = $data['id_contract'];
+        $file = new ContractFile();
+        $file->id = $data['id'];
+        $file->name_server = $data['name_server'];
+        $file->id_contract = $data['id_contract'];
+        $file->name = $data['name'];
+        $file->date = $data['date'];
 
-        return $file_name;
+        return $file;
+    }
+    //Função que retorna o nome da NF de acordo com o id recebido (retorna como objeto);
+    public static function nfById($id) {
+        $data = NfFile::select()->where('id', $id)->one();
+
+        $file = new NfFile();
+        $file->id = $data['id'];
+        $file->name = $data['name'];
+        $file->name_server = $data['name_server'];
+        $file->id_contract = $data['id_contract'];
+        $file->date = $data['date'];
+
+        return $file;
+    }
+
+    public static function hviById($id) {
+        $data = HviFile::select()->where('id', $id)->one();
+
+        $file = new HviFile();
+        $file->id = $data['id'];
+        $file->name = $data['name'];
+        $file->name_server = $data['name_server'];
+        $file->id_contract = $data['id_contract'];
+        $file->id_tender = $data['id_tender'];
+        $file->date = $data['date'];
+
+        return $file;
     }
 
     public static function delContract($id) {
         ContractFile::delete()->where('id', $id)->execute();
     }
 
+    public static function delHvi($id) {
+        HviFile::delete()->where('id', $id)->execute();
+    }
+
+    public static function delNf($id) {
+        NfFile::delete()->where('id', $id)->execute();
+    }
+
     public static function delFolder($id) {
         Contract::delete()->where('id', $id)->execute();
     }
 
-    public static function addHviFile($name, $id_contract, $date, $new_name, $link) {
+    public static function addHviFile($name, $id_contract, $id_tender, $date, $new_name, $link) {
         $link = 'http://localhost/orbi_projeto/public/'.$link.$new_name;
 
         HviFile::insert([
             'name' => $name,
-            'id_contract' => $id_contract,
             'name_server' => $new_name,
             'link' => $link,
+            'id_contract' => $id_contract,
+            'id_tender' => $id_tender,
             'date' => $date
         ])
+        ->execute();
+    }
+
+    public static function hviedit($id, $name, $date) {
+
+        HviFile::update()
+            ->set('name', $name)
+            ->set('date', $date)
+            ->where('id', $id)
         ->execute();
     }
 
@@ -110,6 +193,15 @@ class ContractHelpers {
             'link' => $link,
             'date' => $date
         ])
+        ->execute();
+    }
+
+    public static function nfEdit($id, $name, $date) {
+        
+        NfFile::update()
+            ->set('name', $name)
+            ->set('date', $date)
+            ->where('id', $id)
         ->execute();
     }
 

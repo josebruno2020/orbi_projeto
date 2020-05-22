@@ -4,6 +4,7 @@ namespace src\controllers;
 use \core\Controller;
 use \src\helpers\UserHelpers;
 use \src\helpers\ContractHelpers;
+use \src\helpers\TenderHelpers;
 
 class ContractController extends Controller {
 
@@ -27,9 +28,12 @@ class ContractController extends Controller {
 
         $contracts = ContractHelpers::getAll($order);
 
+        $tenders = TenderHelpers::getAll($order);
+
         $this->render('contracts',[
             'loggedUser' => $this->loggedUser,
             'contracts' => $contracts,
+            'tenders' => $tenders,
             'order' => $order
         ]);
     }
@@ -51,6 +55,19 @@ class ContractController extends Controller {
         ]);
     }
 
+    public function tenderId($id) {
+        $order = filter_input(INPUT_GET, 'order');
+        $hvi = ContractHelpers::getAllHvi($order);
+
+        $this->render('tenderId', [
+            'loggedUser' => $this->loggedUser,
+            'id' => $id,
+            'order' => $order,
+            'hvi' => $hvi
+
+        ]);
+    }
+
     //Função pública para deletar pastas de contrato;
     public function delFolder($id) {
         $folder = ContractHelpers::nameById($id);
@@ -60,17 +77,58 @@ class ContractController extends Controller {
         $this->redirect('/contratos');
     }
 
+    public function delTender($id) {
+        $folder = TenderHelpers::nameById($id);
+
+        rmdir('media/tenders/'.$folder->name);
+        TenderHelpers::delFolder($id);
+        $this->redirect('/contratos');
+    }
+
     public function delContract($id) {
         //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
         if($this->loggedUser->group == 'client') {
             $this->redirect('/my');
         }
+        //Função para deletar documento de contrato;
         $file_name = ContractHelpers::getById($id);
         $folder_name = ContractHelpers::nameById($file_name->id_contract);
 
-        unlink('media/contracts/'.$folder_name->name.'/'.$file_name->name);
+        unlink('media/contracts/'.$folder_name->name.'/'.$file_name->name_server);
 
         ContractHelpers::delContract($id);
+        $this->redirect('/contratos');
+        
+    }
+
+    public function delHvi($id) {
+        //Deletar o HVI que está na Pasta dos Contratos!!
+        $file_name = ContractHelpers::hviById($id);
+        $folder_name = ContractHelpers::nameById($file_name->id_contract);
+        unlink('media/contracts/'.$folder_name->name.'/'.$file_name->name_server);
+
+        ContractHelpers::delHvi($id);
+        $this->redirect('/contratos');
+    }
+
+    public function delHviTender($id) {
+        //Função para deletar HVI que está na pasta de Tenders;
+        $file_name = ContractHelpers::hviById($id);
+        $folder_name = TenderHelpers::tenderById($file_name->id_tender);
+        unlink('media/tenders/'.$folder_name->name.'/'.$file_name->name);
+        ContractHelpers::delHvi($id);
+        $this->redirect('/contratos');
+    }
+
+    public function delNf($id) {
+        //Função para deletar NF
+        $file_name = ContractHelpers::nfById($id);
+        $folder_name = ContractHelpers::nameById($file_name->id_contract);
+
+        unlink('media/contracts/'.$folder_name->name.'/'.$file_name->name_server);
+
+        ContractHelpers::delNf($id);
+        $this->redirect('/contratos');
         
     }
 
@@ -116,6 +174,128 @@ class ContractController extends Controller {
 
             $_SESSION['flash'] = 'Insira todos os dados!';
             $this->redirect('/system-config/adicionar-contrato');
+        }
+    }
+
+    public function contractsEdit($id) {
+        $cont = ContractHelpers::getOne($id);
+        $user = UserHelpers::getAll($order = '');
+
+        $flash = '';
+        if(!empty($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+        
+        $this->render('editContract', [
+            'loggedUser' => $this->loggedUser,
+            'cont' => $cont,
+            'user' => $user,
+            'flash' => $flash
+        ]);
+
+    }
+    //Página que fará as alterações nos dados do contrato;
+    public function contractsEditAction($id){
+        //Recebendo os dados do contrato
+        $name = filter_input(INPUT_POST, 'name');
+        $date = filter_input(INPUT_POST, 'date');
+        $idUser = filter_input(INPUT_POST, 'id');
+
+        $user = UserHelpers::getUser($idUser);
+        $cont = ContractHelpers::getOne($id);
+
+        if($name && $date && $idUser) {
+            rename('media/contracts/'.$cont->name, 'media/contracts/'.$name);
+            ContractHelpers::editFolder($id, $name, $date, $idUser, $user->email);
+            $this->redirect('/contratos');
+        } else {
+            $_SESSION['flash'] = 'Preencha todos os campos!';
+            $this->redirect('/contratos/'.$id['id'].'/editar');
+        }
+    }
+
+    public function addTender() {
+        //Proteção contra o acesso de clientes;
+        if($this->loggedUser->group == 'client') {
+            $this->redirect('/my');
+        }
+
+        $flash = '';
+        if(!empty($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+
+        $user = UserHelpers::getAll($order = '');
+
+        $this->render('addTender', [
+            'loggedUser' => $this->loggedUser,
+            'user' => $user,
+            'flahs' => $flash
+        ]);
+    }
+
+    
+    public function addTenderAction() {
+        //Recebendo os dados do contrato;
+        $name = filter_input(INPUT_POST, 'name');
+        $date = filter_input(INPUT_POST, 'date');
+        $idUser = filter_input(INPUT_POST, 'id');
+
+        $user = UserHelpers::getUser($idUser);
+
+        
+        if($name && $date && $idUser) {
+            //Se recebe todos os dados, ele vai criar uma pasta com o nome do contrato, logo em seguida salvar no banco de dados;
+            mkdir('media/tenders/'.$name, 0777);
+
+            TenderHelpers::addTender($name, $date, $idUser, $user->email);
+            $_SESSION['flash'] = 'Pasta de contrato adicionada com sucesso! Agora adicione documentos para ela!';
+            $this->redirect('/system-config/adicionar-contrato');
+
+        } else {
+
+            $_SESSION['flash'] = 'Insira todos os dados!';
+            $this->redirect('/system-config/adicionar-contrato');
+        }
+    }
+
+    public function tenderEdit($id) {
+
+        $tender = TenderHelpers::tenderById($id);
+        $user = UserHelpers::getAll($order = '');
+
+        $flash = '';
+        if(!empty($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+
+        $this->render('editTender', [
+            'loggedUser' => $this->loggedUser,
+            'tender' => $tender,
+            'user' => $user,
+            'flash' => $flash
+        ]);
+    }
+
+    public function tenderEditAction($id) {
+        //Recebendo os novos dados da proposta;
+        $name = filter_input(INPUT_POST, 'name');
+        $date = filter_input(INPUT_POST, 'date');
+        $idUser = filter_input(INPUT_POST, 'id');
+
+        $user = UserHelpers::getUser($idUser);
+        $tender = TenderHelpers::tenderById($id);
+
+        if($name && $date && $idUser) {
+            rename('media/tenders/'.$tender->name, 'media/tenders/'.$name);
+            TenderHelpers::editTender($id, $name, $date, $idUser, $user->email);
+            $this->redirect('/contratos');
+        } else {
+            $_SESSION['flash'] = 'Preencha todos os campos!';
+            $this->redirect('/propostas/'.$id['id'].'/editar');
         }
     }
 
@@ -175,6 +355,44 @@ class ContractController extends Controller {
         
     }
 
+    public function documentEdit($id) {
+
+        $doc = ContractHelpers::getById($id);
+
+        $flash = '';
+        if(!empty($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+
+        $this->render('editDocument', [
+            'loggedUser' => $this->loggedUser,
+            'doc' => $doc,
+            'flash' => $flash
+        ]);
+    }
+    
+    public function documentEditAction($id) {
+        //Recebendo os novos dados do usuário;
+        $name = filter_input(INPUT_POST, 'name');
+        $date = filter_input(INPUT_POST, 'date');
+
+        if($name && $date) {
+
+            ContractHelpers::documentEdit($id, $name, $date);
+            $_SESSION['flash'] = 'Alterações salvas no Documento';
+            $this->redirect('/contratos/'.$id['id'].'/edit-document');
+
+        } else {
+
+            $_SESSION['flash'] = 'Preencha todos os campos!';
+            $this->redirect('/contratos/'.$id['id'].'/edit-document');
+        }
+
+    }
+
+    
+
     public function addHviFile() {
         //Proteção contra o acesso de clientes;
         if($this->loggedUser->group == 'client') {
@@ -187,10 +405,12 @@ class ContractController extends Controller {
             $_SESSION['flash'] = '';
         }
         $cont = ContractHelpers::getAll($order = '');
+        $tender = TenderHelpers::getAll($order = '');
 
         $this->render('addHvi', [
             'loggedUser' => $this->loggedUser,
             'cont' => $cont,
+            'tender' => $tender,
             'flash' => $flash
         ]);
     }
@@ -201,12 +421,21 @@ class ContractController extends Controller {
         $name = filter_input(INPUT_POST, 'name');
         $id_contract = filter_input(INPUT_POST, 'id');
         $date = filter_input(INPUT_POST, 'date');
+        $id_tender = filter_input(INPUT_POST, 'id_tender');
 
-        //Selecionando o nome da a pasta(contrato) que tenha o mesmo valor que o id_contrato para guardar nela;
-        $folder_name = ContractHelpers::nameById($id_contract);
+        
+        if($id_contract) {
+            //Selecionando o nome da a pasta que tenha o mesmo valor que o id_contrato para guardar nela;
+            $folder_name = ContractHelpers::nameById($id_contract);
 
-        $link = 'media/contracts/'.$folder_name->name.'/';
-        $new_name = md5($hvi['name']).'.pdf';
+            $link = 'media/contracts/'.$folder_name->name.'/';
+        } else {
+
+            $folder_name = TenderHelpers::nameId($id_tender);
+            $link = 'media/tenders/'.$folder_name->name.'/';
+        }
+        
+        $new_name = md5($hvi['name'].time()).'.pdf';
         $permitido = 'application/pdf';
 
         if($hvi['type'] != $permitido) {
@@ -215,9 +444,15 @@ class ContractController extends Controller {
         }
 
         //Se receber todos os dados, será salvo o arquivo na pasta do servidor e adicionado no banco de dados;
-        if($name && $id_contract && $date && $link && $new_name) {
+        if($id_tender || $id_contract) {
             move_uploaded_file($_FILES['hvi']['tmp_name'], $link.$new_name);
-            ContractHelpers::addHviFile($name, $id_contract, $date, $new_name, $link);
+            if($id_tender) {
+                $id_contract = '0';
+            } else {
+                $id_tender = '0';
+            }
+            
+            ContractHelpers::addHviFile($name, $id_contract, $id_tender, $date, $new_name, $link);
             $_SESSION['flash'] = 'HVI salvo com sucesso!';
             $this->redirect('/system-config/adicionar-hvi');
 
@@ -225,6 +460,42 @@ class ContractController extends Controller {
 
             $_SESSION['flash'] = 'Preencha todos os campos!';
             $this->redirect('/system-config/adicionar-hvi');
+        }
+    }
+
+
+    public function hviEdit($id) {
+
+        $hvi = ContractHelpers::hviById($id);
+
+        $flash = '';
+        if(!empty($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+
+        $this->render('editHvi', [
+            'loggedUser' => $this->loggedUser,
+            'hvi' => $hvi,
+            'flash' => $flash
+        ]);
+    }
+
+    public function hviEditAction($id) {
+        //Recebendo os dados novos do HVI;
+        $name = filter_input(INPUT_POST, 'name');
+        $date = filter_input(INPUT_POST,'date');
+
+        if($name && $date) {
+
+            ContractHelpers::hviedit($id, $name, $date);
+            $_SESSION['flash'] = 'Alterações salvas no HVI!';
+            $this->redirect('/contratos/'.$id['id'].'/edit-hvi');
+
+        } else {
+
+            $_SESSION['flash'] = 'Preencha todos os dados!';
+            $this->redirect('/contratos/'.$id['id'].'/edit-hvi');
         }
     }
 
@@ -280,5 +551,44 @@ class ContractController extends Controller {
             $this->redirect('/system-config/adicionar-nf');
         }
     }
+
+    public function nfEdit($id) {
+        $nf = ContractHelpers::nfById($id);
+
+        $flash = '';
+        if(!empty($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+
+        $this->render('editNf', [
+            'loggedUser' => $this->loggedUser,
+            'nf' => $nf,
+            'flash' => $flash
+        ]);
+    }
+
+    public function nfEditAction($id) {
+        //Recebendo os dados novos do HVI;
+        $name = filter_input(INPUT_POST, 'name');
+        $date = filter_input(INPUT_POST,'date');
+
+        if($name && $date) {
+
+            ContractHelpers::nfEdit($id, $name, $date);
+            $_SESSION['flash'] = 'Alterações salvas na NF!';
+            $this->redirect('/contratos/'.$id['id'].'/edit-nf');
+
+        } else {
+
+            $_SESSION['flash'] = 'Preencha todos os dados!';
+            $this->redirect('/contratos/'.$id['id'].'/edit-nf');
+        }
+    }
+
+    
+
+    
+
 
 }

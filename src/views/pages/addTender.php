@@ -9,7 +9,7 @@
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
             <a href="<?=$base;?>/system-config" class="btn btn-info">Voltar</a>
             <p class="text-center">
-                <h2>Adicionar HVI</h2>
+                <h2>Adicionar Proposta</h2>
             </p>
         </div>
         
@@ -21,35 +21,19 @@
             <?php endif;?>
 
 
-            <form method="POST" action="<?=$base;?>/system-config/adicionar-hvi" enctype="multipart/form-data">
+            <form method="POST" action="<?=$base;?>/system-config/adicionar-proposta" >
 
                 <div  class="form-group">
-                    <label for="avatar">HVI:</label></br>
-                    <input id="avatar" type="file" multiple="multiple" name="hvi" required class="" >
+                    <label for="city">Nome da Pasta:</label>
+                    <input type="text" class="form-control" name="name"></input>
                 </div>
 
                 <div  class="form-group">
-                    <label for="city">Nome do HVI:</label>
-                    <input type="text" class="form-control" name="name" placeholder="O nome que aparecerá para o cliente"></input>
-                </div>
-
-                <div  class="form-group">
-                    <label for="name">Pasta do Contrato:</label>
+                    <label for="name">Usuário:</label>
                     
                     <select class="form-control" name="id" value="">
                         <option value=""></option>
-                        <?php foreach($cont as $item): ?>
-                            <option value="<?=$item['id'];?>"><?=$item['name'];?></option>
-                        <?php endforeach;?>
-                    </select>
-                </div>
-
-                <div  class="form-group">
-                    <label for="name">Pasta da Proposta:</label>
-                    
-                    <select class="form-control" name="id_tender" value="">
-                        <option value=""></option>
-                        <?php foreach($tender as $item): ?>
+                        <?php foreach($user as $item): ?>
                             <option value="<?=$item['id'];?>"><?=$item['name'];?></option>
                         <?php endforeach;?>
                     </select>
@@ -57,7 +41,7 @@
 
                 <div  class="form-group">
                     <label for="city">Data:</label>
-                    <input type="date" class="form-control" name="date"></input>
+                    <input type="date" class="form-control" name="date" placeholder="Digite sua Cidade"></input>
                 </div>
 
                 <div  class="form-group">
@@ -69,6 +53,7 @@
         </div>
         
     </div>
+    
 </div>
 
 

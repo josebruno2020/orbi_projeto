@@ -95,6 +95,8 @@ class UserHelpers {
             return false;
         }
     }
+
+    
     
     public static function updateUser($id, $name, $tel, $password1, $city, $state, $group) {
         $hash = password_hash($password1, PASSWORD_DEFAULT);

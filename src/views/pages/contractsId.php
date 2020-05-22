@@ -5,6 +5,7 @@
 	
 	<div class="container-sm">
         <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
+        
         <div class="row">
             <form method="GET" class="form-inline">
                 <div  class="form-group">
@@ -42,7 +43,7 @@
                                     </td>
                                     <?php if($loggedUser->group == 'admin'): ?>
                                         <td>
-                                            <a href="<?=$base;?>/system-config/config/<?=$item['id'];?>" >
+                                            <a href="<?=$base;?>/contratos/<?=$item['id'];?>/edit-document" >
                                                 <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
                                             </a>
                                             <a href="<?=$base;?>/contratos/<?=$item['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
@@ -80,10 +81,10 @@
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>
                                     <td width="25%">
-                                        <a href="<?=$base;?>/system-config/config/<?=$file['id'];?>" >
+                                        <a href="<?=$base;?>/contratos/<?=$file['id'];?>/edit-hvi" >
                                             <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
                                         </a>
-                                        <a href="<?=$base;?>/contratos/<?=$file['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                        <a href="<?=$base;?>/contratos/<?=$file['id'];?>/del-hvi" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
                                             <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
                                         </a>
                                     </td>
@@ -117,10 +118,10 @@
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>
                                     <td width="25%">
-                                        <a href="<?=$base;?>/system-config/config/<?=$nf['id'];?>" >
+                                        <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/edit-nf" >
                                             <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
                                         </a>
-                                        <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                        <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/del-nf" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
                                             <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
                                         </a>
                                     </td>

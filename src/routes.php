@@ -14,19 +14,29 @@ $router->get('/empresa', 'HomeController@company');
 $router->post('/empresa', 'HomeController@companyAction');
 
 $router->get('/cidade', 'HomeController@city');
-
-
 $router->get('/login', 'LoginController@index');
 $router->post('/login', 'LoginController@signinAction');
-
-
 $router->get('/my', 'SystemController@index');
-
 $router->get('/contratos', 'ContractController@index');
 //Rota para entrar na pasta de cada contrato, de acordo com o seu id;
 $router->get('/contratos/{id}', 'ContractController@contractsId');
+$router->get('/contratos/{id}/editar', 'ContractController@contractsEdit');
+$router->post('/contratos/{id}/editar', 'ContractController@contractsEditAction');
+$router->get('/propostas/{id}', 'ContractController@tenderId');
+$router->get('/propostas/{id}/editar', 'ContractController@tenderEdit');
+$router->get('/contratos/{id}/edit-document', 'ContractController@documentEdit');
+$router->post('/contratos/{id}/edit-document', 'ContractController@documentEditAction');
+$router->get('/contratos/{id}/edit-hvi', 'ContractController@hviEdit');
+$router->post('/contratos/{id}/edit-hvi', 'ContractController@hviEditAction');
+$router->get('/contratos/{id}/edit-nf', 'ContractController@nfEdit');
+$router->post('/contratos/{id}/edit-nf', 'ContractController@nfEditAction');
+$router->post('/propostas/{id}/editar', 'ContractController@tenderEditAction');
+$router->get('/contratos/{id}/del-hvi-tender', 'ContractController@delHviTender');
 $router->get('/contratos/{id}/excluir', 'ContractController@delContract');
+$router->get('/contratos/{id}/del-hvi', 'ContractController@delHvi');
+$router->get('/contratos/{id}/del-nf', 'ContractController@delNf');
 $router->get('/contratos/{id}/del', 'ContractController@delFolder');
+$router->get('/contratos/{id}/prodel', 'ContractController@delTender');
 
 $router->get('/config', 'SystemController@config');
 $router->post('/config', 'SystemController@configAction');
@@ -53,9 +63,12 @@ $router->post('/system-config/adicionar-documento', 'ContractController@addContr
 //Rota para adicionar um hvi em um contrato (apenas administrador ou employee);
 $router->get('/system-config/adicionar-hvi', 'ContractController@addHviFile');
 $router->post('/system-config/adicionar-hvi', 'ContractController@addHviFileAction');
+
 //Rota para adicionar uma Nota Fiscal em um contrato;
 $router->get('/system-config/adicionar-nf', 'ContractController@addNf');
 $router->post('/system-config/adicionar-nf', 'ContractController@addNfAction');
+$router->get('/system-config/adicionar-proposta', 'ContractController@addTender');
+$router->post('/system-config/adicionar-proposta', 'ContractController@addTenderAction');
 //Rota para a análise de HVI(apneas admin);
 $router->get('/system-config/hvi', 'SystemController@hviController');
 $router->get('/sair', 'SystemController@logout');
