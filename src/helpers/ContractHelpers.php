@@ -92,16 +92,28 @@ class ContractHelpers {
     }
     //Função que retorna todas as informações da tabela dos contratos;
     public static function getOne($id) {
-        $data = Contract::select()->where('id', $id)->one();
 
-        $file = new Contract();
-        $file->id = $data['id'];
-        $file->name = $data['name'];
-        $file->id_user = $data['id_user'];
-        $file->email_user = $data['email_user'];
-        $file->date = $data['date'];
+        if($id != '0') {
 
-        return $file;
+            $data = Contract::select()->where('id', $id)->one();
+
+            $file = new Contract();
+            $file->id = $data['id'];
+            $file->name = $data['name'];
+            $file->id_user = $data['id_user'];
+            $file->email_user = $data['email_user'];
+            $file->date = $data['date'];
+
+            return $file;
+
+        } else {
+            return false;
+        }
+        
+    
+        
+        
+        
     }
     //Função que retorna o nome do contrato de acordo com o id recebido (retorna como objeto);
     public static function getById($id) {
@@ -197,7 +209,7 @@ class ContractHelpers {
     }
 
     public static function nfEdit($id, $name, $date) {
-        
+
         NfFile::update()
             ->set('name', $name)
             ->set('date', $date)

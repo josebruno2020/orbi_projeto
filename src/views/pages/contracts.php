@@ -5,6 +5,13 @@
 	
 	<div class="container-sm">
         <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
+        <div class="row" >
+            <ul class="list-inline">
+                <a href="<?=$base;?>/contratos" >
+                    <li class="list-inline-item" >> Meus Contratos</li>
+                </a>
+            </ul>
+        </div>
         <div class="row">
             <h2>Meus Contratos<h2>
         </div>
@@ -40,7 +47,7 @@
                             <tr>
                                 <td><?=date('d/m/Y', strtotime($contract['date']));?></td>
                                 <td>
-                                    <a href="<?=$base;?>/contratos/<?=md5($contract['id']);?>"><?=$contract['name'];?>
+                                    <a href="<?=$base;?>/contratos/<?=$contract['id'];?>"><?=$contract['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group != 'client'): ?>
@@ -97,7 +104,7 @@
                             <tr>
                                 <td ><?=date('d/m/Y', strtotime($item['date']));?></td>
                                 <td>
-                                    <a href="<?=$base;?>/propostas/<?=md5($item['id']);?>"><?=$item['name'];?>
+                                    <a href="<?=$base;?>/propostas/<?=$item['id'];?>"><?=$item['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group != 'client'): ?>

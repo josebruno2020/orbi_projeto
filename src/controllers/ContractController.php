@@ -41,29 +41,35 @@ class ContractController extends Controller {
     public function contractsId($id) {
         $order = filter_input(INPUT_GET, 'order');
 
+        $file = ContractHelpers::getOne($id);
+
         $data = ContractHelpers::getAllContracts($order);
         $hvi = ContractHelpers::getAllHvi($order);
         $nfs = ContractHelpers::getAllNf($order);
         
         $this->render('contractsId', [
             'loggedUser' => $this->loggedUser,
+            'file' => $file,
             'order' => $order,
             'data' => $data,
             'hvi' => $hvi,
             'nfs' => $nfs,
             'id' => $id
+            
         ]);
     }
 
     public function tenderId($id) {
         $order = filter_input(INPUT_GET, 'order');
+        $file = TenderHelpers::tenderById($id);
         $hvi = ContractHelpers::getAllHvi($order);
 
         $this->render('tenderId', [
             'loggedUser' => $this->loggedUser,
             'id' => $id,
             'order' => $order,
-            'hvi' => $hvi
+            'hvi' => $hvi,
+            'file' => $file
 
         ]);
     }
@@ -358,7 +364,7 @@ class ContractController extends Controller {
     public function documentEdit($id) {
 
         $doc = ContractHelpers::getById($id);
-
+        $file = ContractHelpers::getOne($doc->id_contract);
         $flash = '';
         if(!empty($_SESSION['flash'])) {
             $flash = $_SESSION['flash'];
@@ -368,7 +374,8 @@ class ContractController extends Controller {
         $this->render('editDocument', [
             'loggedUser' => $this->loggedUser,
             'doc' => $doc,
-            'flash' => $flash
+            'flash' => $flash,
+            'file' => $file
         ]);
     }
     
@@ -467,17 +474,21 @@ class ContractController extends Controller {
     public function hviEdit($id) {
 
         $hvi = ContractHelpers::hviById($id);
+        $file = ContractHelpers::getOne($hvi->id_contract);
+        $tender = TenderHelpers::tenderById($hvi->id_tender);
 
         $flash = '';
         if(!empty($_SESSION['flash'])) {
             $flash = $_SESSION['flash'];
             $_SESSION['flash'] = '';
         }
-
+        
         $this->render('editHvi', [
             'loggedUser' => $this->loggedUser,
             'hvi' => $hvi,
-            'flash' => $flash
+            'flash' => $flash,
+            'file' => $file,
+            'tender' => $tender
         ]);
     }
 
@@ -554,6 +565,7 @@ class ContractController extends Controller {
 
     public function nfEdit($id) {
         $nf = ContractHelpers::nfById($id);
+        $file = ContractHelpers::getOne($nf->id_contract);
 
         $flash = '';
         if(!empty($_SESSION['flash'])) {
@@ -564,7 +576,8 @@ class ContractController extends Controller {
         $this->render('editNf', [
             'loggedUser' => $this->loggedUser,
             'nf' => $nf,
-            'flash' => $flash
+            'flash' => $flash,
+            'file' => $file
         ]);
     }
 

@@ -7,6 +7,21 @@
     <div class="row">
         <div class="col-sm">
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
+            <div class="row" >
+                <ul class="list-inline">
+                    <a href="<?=$base;?>/contratos" >
+                        <li class="list-inline-item" >> Meus Contratos</li>
+                    </a>
+                    <a href="<?=$base;?>/contratos/<?=$file->id;?>" >
+                        <li class="list-inline-item" >> <?=$file->name;?></li>
+                    </a>
+                    <a href="<?=$base;?>/contratos/<?=$nf->id;?>/edit-nf" >
+                        <li class="list-inline-item" >> <?=$nf->name;?></li>
+                    </a>
+                    
+
+                </ul>
+            </div>
             
             <p class="text-center">
                 <h2>Editar NF '<?=$nf->name;?>'</h2>

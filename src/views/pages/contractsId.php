@@ -5,7 +5,18 @@
 	
 	<div class="container-sm">
         <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
-        
+        <div class="row" >
+            <ul class="list-inline">
+                <a href="<?=$base;?>/contratos" >
+                    <li class="list-inline-item" >> Meus Contratos</li>
+                </a>
+                <a href="<?=$base;?>/contratos/<?=$file->id;?>" >
+                    <li class="list-inline-item" >> <?=$file->name;?></li>
+                </a>
+                
+
+            </ul>
+        </div>
         <div class="row">
             <form method="GET" class="form-inline">
                 <div  class="form-group">
@@ -34,7 +45,7 @@
                 </thead>
                 <tbody>
                         <?php foreach($data as $item): ?>
-                            <?php if(md5($item['id_contract']) === $id['id']): ?>
+                            <?php if($item['id_contract'] === $id['id']): ?>
                                 <tr>
                                     <td><?=date('d/m/Y', strtotime($item['date']));?></td>
                                     <td >
@@ -72,7 +83,7 @@
                 </thead>
                 <tbody>
                     <?php foreach($hvi as $file): ?>
-                        <?php if(md5($file['id_contract']) === $id['id']): ?>
+                        <?php if($file['id_contract'] === $id['id']): ?>
                             <tr>
                                 <td  width="25%"><?=date('d/m/Y', strtotime($file['date']));?></td>
                                 <td width="50%">
@@ -109,7 +120,7 @@
                 </thead>
                 <tbody>
                     <?php foreach($nfs as $nf): ?>
-                        <?php if(md5($nf['id_contract']) === $id['id']): ?>
+                        <?php if($nf['id_contract'] === $id['id']): ?>
                             <tr>
                                 <td  width="25%"><?=date('d/m/Y', strtotime($nf['date']));?></td>
                                 <td width="50%">

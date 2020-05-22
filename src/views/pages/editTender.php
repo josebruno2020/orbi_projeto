@@ -7,7 +7,20 @@
     <div class="row">
         <div class="col-sm">
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
-            <a href="<?=$base;?>/system-config" class="btn btn-info">Voltar</a>
+            
+            <div class="row" >
+                <ul class="list-inline">
+                    <a href="<?=$base;?>/contratos" >
+                        <li class="list-inline-item" >> Meus Contratos</li>
+                    </a>
+                    <a href="<?=$base;?>/contratos/<?=$tender->id;?>" >
+                        <li class="list-inline-item" >> <?=$tender->name;?></li>
+                    </a>
+                    
+                    
+
+                </ul>
+            </div>
             <p class="text-center">
                 <h2>Editar Proposta <?=$tender->name;?></h2>
             </p>

@@ -64,16 +64,22 @@ class TenderHelpers {
     }
 
     public static function tenderById($id) {
-        $data = Tender::select()->where('id', $id)->one();
 
-        $folder = new Tender();
-        $folder->id = $data['id'];
-        $folder->name = $data['name'];
-        $folder->id_user = $data['id_user'];
-        $folder->email_user = $data['email_user'];
-        $folder->date = $data['date'];
+        if($id != '0') {
+            $data = Tender::select()->where('id', $id)->one();
 
-        return $folder;
+            $folder = new Tender();
+            $folder->id = $data['id'];
+            $folder->name = $data['name'];
+            $folder->id_user = $data['id_user'];
+            $folder->email_user = $data['email_user'];
+            $folder->date = $data['date'];
+
+            return $folder;
+        } else {
+            return false;
+        }
+        
 
     }
 

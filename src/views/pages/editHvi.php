@@ -7,9 +7,32 @@
     <div class="row">
         <div class="col-sm">
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
+            <div class="row" >
+                <ul class="list-inline">
+                    <a href="<?=$base;?>/contratos" >
+                        <li class="list-inline-item" >> Meus Contratos</li>
+                    </a>
+                    <?php if($hvi->id_tender == '0'): ?>
+                        <a href="<?=$base;?>/contratos/<?=$file->id;?>" >
+                            <li class="list-inline-item" >> <?=$file->name;?></li>
+                        </a>
+                    <?php endif;?>
+                    <?php if($hvi->id_contract == '0'): ?>
+                        <a href="<?=$base;?>/propostas/<?=$tender->id;?>" >
+                            <li class="list-inline-item" >> <?=$tender->name;?></li>
+                        </a>
+                    <?php endif;?>
+
+                    <a href="<?=$base;?>/contratos/<?=$hvi->id;?>/edit-hvi" >
+                        <li class="list-inline-item" >> <?=$hvi->name;?></li>
+                    </a>
+                    
+
+                </ul>
+            </div>
             
             <p class="text-center">
-                <h2>Editar Documento '<?=$hvi->name;?>'</h2>
+                <h2>Editar HVI '<?=$hvi->name;?>'</h2>
             </p>
         </div>
         
