@@ -26,7 +26,7 @@
                 <div  class="form-group">
                     <img src="<?=$base;?>/media/avatars/<?=$user->avatar;?>" width="100" height="100" style="margin: 10px;">
                     <label for="avatar">Avatar:</label></br>
-                    <input id="avatar" type="file" name="avatar" class="" >
+                    <input id="avatar" type="file" name="avatar" class="form-control-file" >
                 </div>
 
                 <div  class="form-group">

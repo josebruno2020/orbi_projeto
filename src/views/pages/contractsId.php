@@ -32,7 +32,7 @@
             <h2>Contrato</h2>
         </div>
         <div class="row">
-            <table class="table table-dark table-striped table-bordered" >
+            <table class="table table-dark table-striped table-bordered table-responsive-lg" >
                 <thead>
                     <tr>
                         <th scope="col" width="25%">Data</th>
@@ -71,7 +71,7 @@
         </div>
         <div class="row">
             <h2>HVI</h2>
-            <table class="table table-dark table-striped table-bordered">
+            <table class="table table-dark table-striped table-bordered table-responsive-lg">
                 <thead>
                     <tr>
                         <th scope="col" width="25%">Data</th>
@@ -108,7 +108,7 @@
         </div>
         <div class="row">
             <h2>NFs</h2>
-            <table class="table table-dark table-striped table-bordered">
+            <table class="table table-dark table-striped table-bordered table-responsive-lg">
                 <thead>
                     <tr>
                         <th scope="col" width="25%">Data</th>

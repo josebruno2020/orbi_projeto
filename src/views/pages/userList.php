@@ -3,7 +3,7 @@
     'loggedUser' => $loggedUser
 ]);?>
 
-<div class="container-sm">
+<div class="container">
     <div class="row">
         <div class="col-sm">
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
@@ -26,7 +26,7 @@
                     </select>
                 </div>
             </form>
-            <table class="table table-dark table-striped table-bordered" >
+            <table class="table table-dark table-striped table-bordered table-responsive" >
                 <thead>
                     <tr>
                         <th scope="col" width="10%">Id</th>
@@ -56,7 +56,7 @@
                                     <a href="<?=$base;?>/system-config/config/<?=$user['id'];?>" >
                                         <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
                                     </a>
-                                    <a href="<?=$base;?>/system-config/excluir/<?=$user['id'];?>" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                    <a href="<?=$base;?>/system-config/excluir/<?=$user['id'];?>" onclick=" return confirm('Tem certeza que deseja excluir este usuário permanentemente?')"  >
                                         <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
                                     </a>
                                 </td>

@@ -25,7 +25,7 @@
 
                 <div  class="form-group">
                     <label for="avatar">HVI:</label></br>
-                    <input id="avatar" type="file" multiple="multiple" name="hvi" required class="" >
+                    <input id="avatar" type="file" name="hvi" required class="form-control-file" >
                 </div>
 
                 <div  class="form-group">

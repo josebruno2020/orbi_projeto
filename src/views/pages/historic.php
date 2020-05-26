@@ -33,7 +33,7 @@
                     
                 </div>
             </form>
-            <table class="table table-dark table-striped table-bordered" id="historic">
+            <table class="table table-dark table-striped table-bordered table-responsive" id="historic">
                 <thead>
                     <tr>
                         <th scope="col">Tipo</th>

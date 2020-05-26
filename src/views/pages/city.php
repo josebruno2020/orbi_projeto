@@ -21,10 +21,10 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col">
+			<div class="col-sm">
 				<img src="<?=$base;?>/assets/images/maringa1.jpg" class="img-fluid img-thumbnail">
 			</div>
-			<div class="col">
+			<div class="col-sm">
 				<img src="<?=$base;?>/assets/images/maringa2.jpg" class="img-fluid img-thumbnail">
 			</div>
 		</div>

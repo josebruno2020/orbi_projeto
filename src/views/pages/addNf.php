@@ -25,7 +25,7 @@
 
                 <div  class="form-group">
                     <label for="avatar">NF:</label></br>
-                    <input id="avatar" type="file" name="nf" required class="" >
+                    <input id="avatar" type="file" name="nf" required class="form-control-file" >
                 </div>
 
                 <div  class="form-group">

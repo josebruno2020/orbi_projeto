@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="<?=$base;?>/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=$base;?>/assets/css/style.css">
 	<title>ORBI Corretora de Mercadorias</title>
+	<link rel="shortcut icon" href="<?=$base;?>/assets/images/orbi.png">
 </head>
 <body>
 	<header>
@@ -19,13 +20,14 @@
 				
 		</div>
 		<div class="row" id="title">
-			<div class="media">
+			<div class="col-sm align-self-center">
 				<a href="<?=$base;?>"><img src="<?=$base;?>/assets/images/orbi.jpg" class=" logo img-fluid"></a>
-					
-				<div class="media-body align-items-center">
-					<p class="text-center img-fluid"><h2 class="h2. Bootstrap heading">ORBI Corretora de Mercadorias</h2></p>
-				</div>
 			</div>
+			<div class="col-sm">
+				<h1 class="h1. Bootstrap heading">ORBI Corretora de Mercadorias</h1>
+			</div>
+				
+			
 		</div>
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -66,8 +68,6 @@
 					
 				</div>
 			</div>
-			<form method="POST" class="form-inline">
-				<input type="text" name="pesquisa" class="form-control" placeholder="Pesquisar...">
-			</form>
+			
 		</nav>
 	</header>

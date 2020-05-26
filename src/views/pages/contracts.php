@@ -3,7 +3,7 @@
     'loggedUser' => $loggedUser
 ]);?>
 	
-	<div class="container-sm">
+	<div class="container">
         <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
         <div class="row" >
             <ul class="list-inline">
@@ -15,7 +15,7 @@
         <div class="row">
             <h2>Meus Contratos<h2>
         </div>
-        <div class="row">
+        <div class="row ">
             <form method="GET" class="form-inline">
                 <div  class="form-group">
                     <label for="state">Ordenar por:</label>
@@ -27,7 +27,7 @@
                     </select>
                 </div>
             </form>
-            <table class="table table-dark table-striped table-bordered" >
+            <table class="table table-dark table-striped table-bordered table-responsive-lg" >
                 <thead>
                     <tr>
                         <th scope="col"  width="25%">Data</th>
@@ -84,7 +84,7 @@
                     </select>
                 </div>
             </form>
-            <table class="table table-dark table-striped table-bordered" >
+            <table class="table table-dark table-striped table-bordered table-responsive-lg" >
                 <thead>
                     <tr>
                         <th scope="col" width="25%">Data</th>

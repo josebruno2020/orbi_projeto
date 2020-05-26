@@ -55,6 +55,23 @@ class UserHelpers {
         return $user ? true : false;
     }
 
+    public static function tokenExistis($token) {
+        $token = User::select()->where('token', $token)->one();
+
+        return $token ? true : false;
+    }
+
+    public static function getByToken($token) {
+        $data = User::select()->where('token', $token)->one();
+
+        $user = new User();
+        $user->id = $data['id'];
+        $user->name = $data['name'];
+        
+
+        return $user;
+    }
+
     public static function addUser($name, $email, $password1, $city, $state, $group) {
         $hash = password_hash($password1, PASSWORD_DEFAULT);
         $token =  md5(time().rand(0,9999).time());
@@ -94,6 +111,19 @@ class UserHelpers {
 
             return false;
         }
+    }
+
+    public static function getPassword($email) {
+        
+        $data = User::select()->where('email', $email)->one();
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->token = $data['token'];
+
+        return $user;
+
+        
     }
 
     
@@ -150,6 +180,15 @@ class UserHelpers {
 
         User::update()
             ->set('avatar', $avatarName)
+            ->where('id', $id)
+        ->execute();
+    }
+
+    public static function updatePassword($id, $pass) {
+        $hash = password_hash($pass, PASSWORD_DEFAULT);
+
+        User::update()
+            ->set('password', $hash)
             ->where('id', $id)
         ->execute();
     }

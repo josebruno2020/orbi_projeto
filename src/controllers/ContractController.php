@@ -598,10 +598,4 @@ class ContractController extends Controller {
             $this->redirect('/contratos/'.$id['id'].'/edit-nf');
         }
     }
-
-    
-
-    
-
-
 }

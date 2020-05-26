@@ -25,7 +25,7 @@
 
                 <div  class="form-group">
                     <label for="avatar">Documento:</label></br>
-                    <input id="avatar" type="file" name="contract" required class="" >
+                    <input id="avatar" type="file" name="contract" required class="form-control-file" >
                 </div>
 
                 <div  class="form-group">
@@ -45,8 +45,8 @@
                 </div>
 
                 <div  class="form-group">
-                    <label for="city">Data:</label>
-                    <input type="date" class="form-control" name="date" placeholder="Digite sua Cidade"></input>
+                    <label for="date">Data:</label>
+                    <input type="date" class="form-control" name="date" ></input>
                 </div>
 
                 <div  class="form-group">

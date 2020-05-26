@@ -99,13 +99,13 @@
 				
 			</div>
 			<div class="row justify-content-center">
-				<div class="col">
+				<div class="col-sm">
 					<img src="<?=$base;?>/assets/images/cottons.png" class="img-fluid direita img-thumbnail">
 				</div>
-				<div class="col">
+				<div class="col-sm">
 					<img src="<?=$base;?>/assets/images/cottons2.png" class="img-fluid direita img-thumbnail">
 				</div>
-				<div class="col">
+				<div class="col-sm">
 					<img src="<?=$base;?>/assets/images/tecelagem.png" class="img-fluid direita img-thumbnail">
 				</div>
 
