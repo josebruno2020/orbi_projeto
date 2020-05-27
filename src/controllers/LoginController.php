@@ -71,7 +71,7 @@ class LoginController extends Controller {
                 $data = UserHelpers::getPassword($email);
                 
                 $link = 'http://localhost/orbi_projeto/public/nova-senha/'.$data->token;
-                echo $link;
+                
 
                 $subject = 'Esqueci Minha Senha';
                 $message = 'Requerimento para a recuperação de senha.'.'\r\n'.
@@ -81,7 +81,7 @@ class LoginController extends Controller {
                 
                 mail($email, $subject, $message, $headers);
                 $_SESSION['flash'] = 'Foi enviado um E-mail informando o link para redefinir uma nova senha!';
-                // $this->redirect('/login');
+                $this->redirect('/login');
                 
             } else {
 

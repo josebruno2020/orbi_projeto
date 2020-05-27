@@ -3,7 +3,7 @@ body {
 	font-size: 20px;
 }
 header {
-	margin:0px 15px 0px 15px;
+	margin:0px 0px 0px 0px;
 	
 }
 
@@ -18,10 +18,12 @@ h1 {
 	background-color:  #eee;
 }
 #topo {
+	margin:0px 0px 0px 0px;
 	height: 35px;
 	background-color: #000000;
 }
 #title {
+	margin: 0px 0px 0px 0px;
 	background-color: #108ecc;
 }
 .face {

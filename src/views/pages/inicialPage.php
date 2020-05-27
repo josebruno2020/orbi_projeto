@@ -5,6 +5,8 @@
 	
 	<div class="container">
         <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
+
+        
 	</div>
 
 	

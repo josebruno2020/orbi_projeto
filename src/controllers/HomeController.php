@@ -3,6 +3,7 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\helpers\PostHelpers;
+use \src\helpers\HistoricHelpers;
 
 class HomeController extends Controller {
 
@@ -12,6 +13,7 @@ class HomeController extends Controller {
             $flash = $_SESSION['flash'];
             $_SESSION['flash'] = '';
         }
+        HistoricHelpers::entry();
 
         $this->render('home', [
             'flash' => $flash

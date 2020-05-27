@@ -24,7 +24,7 @@
             
             <form method="POST" action="<?=$base;?>/esqueci-senha">
                 <div  class="form-group">
-                    <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail">
+                    <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail" autofocus="true">
                 </div>
                 <div  class="form-group">
                     <input id="email" type="email" name="email2" class="form-control" placeholder="Confirme seu E-mail">

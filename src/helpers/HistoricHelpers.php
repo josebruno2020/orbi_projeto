@@ -3,6 +3,7 @@ namespace src\helpers;
 
 use \core\Controller;
 use \src\models\Time;
+use \src\models\View;
 
 class HistoricHelpers {
 
@@ -30,6 +31,18 @@ class HistoricHelpers {
             'date' => date('Y-m-d H:i:s'),
             'time' => date('H:i:s'),
             'ip' => $ip
+        ])
+        ->execute();
+    }
+
+    public static function entry() {
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+
+        View::insert([
+            'ip' => $ip,
+            'date' => date('Y-m-d'),
+            'time' => date('H:i', time())
         ])
         ->execute();
     }
