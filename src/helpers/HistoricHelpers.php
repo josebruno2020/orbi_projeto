@@ -34,19 +34,6 @@ class HistoricHelpers {
         ])
         ->execute();
     }
-
-    public static function entry() {
-        $ip = $_SERVER['REMOTE_ADDR'];
-
-
-        View::insert([
-            'ip' => $ip,
-            'date' => date('Y-m-d'),
-            'time' => date('H:i', time())
-        ])
-        ->execute();
-    }
-
     //Função para selecionar todos os campos do Banco de Dados;
     public static function getAll($order) {
         
@@ -88,6 +75,19 @@ class HistoricHelpers {
 
     public static function dellHistoric($id) {
         Time::delete()->where('id', $id)->execute();
+    }
+
+    //Função 
+    public static function entry() {
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+
+        View::insert([
+            'ip' => $ip,
+            'date' => date('Y-m-d'),
+            'time' => date('H:i', time())
+        ])
+        ->execute();
     }
     
 }

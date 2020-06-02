@@ -54,7 +54,7 @@
 		</div>
         <br>
         <?php if(!empty($flash)): ?>
-            <button class="btn btn-info"><?=$flash;?></button>
+            <div class="alert alert-danger"><?=$flash;?></div>
         <?php  endif; ?>
         <button class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#contato">Não deixe de nos mandar uma Mensagem!</button>
         

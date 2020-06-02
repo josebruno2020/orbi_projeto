@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col align-items-center">
             <?php if(!empty($flash)): ?>
-                <button class="btn btn-danger"><?=$flash;?></button>
+                <div class="alert alert-danger"><?=$flash;?></div>
             <?php endif;?>
 
             <div>

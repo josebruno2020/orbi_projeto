@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col" >
         <?php if(!empty($flash)): ?>
-            <button class="btn btn-danger"><?=$flash;?>
+            <div class="alert alert-danger"><?=$flash;?></div>
         <?php endif; ?>
         </div>
     </div>

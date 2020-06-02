@@ -46,6 +46,10 @@ class ContractController extends Controller {
         $data = ContractHelpers::getAllContracts($order);
         $hvi = ContractHelpers::getAllHvi($order);
         $nfs = ContractHelpers::getAllNf($order);
+
+        if(ContractHelpers::idExistis($id) == false) {
+            $this->redirect('/contratos');
+        }
         
         $this->render('contractsId', [
             'loggedUser' => $this->loggedUser,

@@ -14,7 +14,6 @@
 				
 			<ul class="list-inline">
 				<a href="https://www.facebook.com/OrbiCotton/" target="blank"><img src="<?=$base;?>/assets/images/facebook.png" class="img-fluid face"></li></a>
-				<a href="#" target="blank"><li class="list-inline-item"><img src="<?=$base;?>/assets/images/instagram.png" class="img-fluid face"></li></a>
 				
 			</ul>
 				

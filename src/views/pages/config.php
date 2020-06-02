@@ -18,7 +18,7 @@
         <div class="col align-items-center">
             <div class="row" >
                 <?php if(!empty($flash)): ?>
-                    <button class="btn btn-danger"><?=$flash;?><button>
+                    <div class="alert alert-danger"><?=$flash;?></div>
                 <?php endif;?>
             </div>
 

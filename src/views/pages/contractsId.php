@@ -44,27 +44,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <?php foreach($data as $item): ?>
-                            <?php if($item['id_contract'] === $id['id']): ?>
-                                <tr>
-                                    <td><?=date('d/m/Y', strtotime($item['date']));?></td>
-                                    <td >
-                                        <a href="<?=$item['link'];?>" target="_blank"><?=$item['name'];?>
+                    <?php foreach($data as $item): ?>
+                        <?php if($item['id_contract'] === $id['id']): ?>
+                            <tr>
+                                <td><?=date('d/m/Y', strtotime($item['date']));?></td>
+                                <td >
+                                    <a href="<?=$item['link'];?>" target="_blank"><?=$item['name'];?>
+                                    </a>
+                                </td>
+                                <?php if($loggedUser->group == 'admin'): ?>
+                                    <td>
+                                        <a href="<?=$base;?>/contratos/<?=$item['id'];?>/edit-document" >
+                                            <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
+                                        </a>
+                                        <a href="<?=$base;?>/contratos/<?=$item['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                            <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
                                         </a>
                                     </td>
-                                    <?php if($loggedUser->group == 'admin'): ?>
-                                        <td>
-                                            <a href="<?=$base;?>/contratos/<?=$item['id'];?>/edit-document" >
-                                                <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
-                                            </a>
-                                            <a href="<?=$base;?>/contratos/<?=$item['id'];?>/excluir" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
-                                                <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
-                                            </a>
-                                        </td>
-                                    <?php endif;?>
-                                </tr>
-                            <?php endif;?>
-                        <?php endforeach;?>
+                                <?php endif;?>
+                            </tr>
+                        <?php endif;?>
+                    <?php endforeach;?>
                     
                 <tbody>
             </table>

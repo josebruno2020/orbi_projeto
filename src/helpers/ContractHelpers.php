@@ -90,6 +90,14 @@ class ContractHelpers {
             ->where('id', $id)
         ->execute();
     }
+
+    //Função usada na página de Contratos com id, para verificar se o id mandado no Get está correto;
+    public static function idExistis($id) {
+        $data = Contract::select()->where('id', $id)->one();
+
+        return $data ? true : false;
+    }
+
     //Função que retorna todas as informações da tabela dos contratos;
     public static function getOne($id) {
 

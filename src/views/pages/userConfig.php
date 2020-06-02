@@ -18,7 +18,7 @@
         
         <div class="col align-items-center">
             <?php if(!empty($flash)): ?>
-                <button class="btn btn-info"><?=$flash;?><button>
+                <div class="alert alert-danger"><?=$flash;?></div>
             <?php endif;?>
 
             <form method="POST" action="<?=$base;?>/system-config/config/<?=$user->id;?>" enctype="multipart/form-data">
