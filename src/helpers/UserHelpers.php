@@ -178,6 +178,7 @@ class UserHelpers {
 
     public static function updateAvatar($id, $avatarName) {
 
+        
         User::update()
             ->set('avatar', $avatarName)
             ->where('id', $id)

@@ -58,9 +58,10 @@ class SystemController extends Controller {
         $state = filter_input(INPUT_POST, 'state');
         $group = filter_input(INPUT_POST, 'group');
 
+        
         $avatar = $_FILES['avatar'];
         //Extensões permitidas para avatar;
-        $permitidos = array('image/jpg', 'image/png');
+        $tipo = $avatar['type'];
         //Extensão do arquivo;
         $extension = strtolower(substr($_FILES['avatar']['name'], -4));
         //Como essa função é acessada pelo grupo cliente, vamos colocar o valor de 'client' como padrão;
@@ -72,16 +73,45 @@ class SystemController extends Controller {
             $this->redirect('/config');
         }
 
-        //Procedimento para mudar a foto do avatar;
-        if($avatar) {
+        UserHelpers::updateUser($this->loggedUser->id, $name, $tel, $password1, $city, $state, $group);
 
-            if(in_array($_FILES['avatar']['type'], $permitidos)) {
+
+        
+
+        //Procedimento para mudar a foto do avatar;
+        if(isset($avatar)) {
+
+            echo $avatar['type'];
+            if(in_array($tipo, array('image/jpeg', 'image/png'))) {
 
                 $avatarName = md5(time().rand(0,999)).$extension;
 
                 //Movendo o arquivo para a pasta de avatar já com o novo nome;
                 move_uploaded_file($_FILES['avatar']['tmp_name'], 'media/avatars/'.$avatarName);
+                //Processo de ajustar o tamanho da imagem do usuário;
+                list($width_orig, $height_orig) = getimagesize('/media/avatars/'.$avatarName);
+                $ratio = $width_orig/$height_orig;
 
+                $width = 500;
+                $height = 500;
+
+                if($width/$height > $ratio) {
+                    $width = $height*$ratio;
+                } else {
+                    $height = $width/$ratio;
+                }
+
+                $img = imagecreatetruecolor($width, $height);
+                if($tipo == 'image/jpeg') {
+                    $origi = imagecreatefromjpeg('/media/avatars/'.$avatarName.'jpg');
+                } elseif($tipo == 'image/png') {
+                    $origi = imagecreatefrompng('/media/avatars/'.$avatarName.'png');
+                }
+
+                imagecopyresampled($img, $origi, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+
+                imagejpeg($img, '/media/avatars/'.$avatarName, 80);
+                
                 UserHelpers::updateAvatar($this->loggedUser->id, $avatarName);
 
             } else {
@@ -91,11 +121,10 @@ class SystemController extends Controller {
             }
         }
 
-        UserHelpers::updateUser($this->loggedUser->id, $name, $tel, $password1, $city, $state, $group);
-
-
         $_SESSION['flash'] = 'Alterações salvas com sucesso!';
         $this->redirect('/config');
+
+        
     }
 
     public function adminConfig() {
