@@ -1,7 +1,11 @@
-Projeto Orbi primeira versão!
+Projeto Orbi versão 1.0!
 
 Feito com PHP 7.4, Bootstrap e JQuey no padrão MVC.
 
 Subido no dia 03/06/2020.
 
-Muita coisa ainda será mudada.
+Muitas alterações ainda precisam der mudadas.
+
+BASE_DIR está como:
+
+http://localhost/orbi_projeto/public
