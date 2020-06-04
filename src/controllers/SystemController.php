@@ -64,8 +64,7 @@ class SystemController extends Controller {
         $tipo = $avatar['type'];
         //Extensão do arquivo;
         $extension = strtolower(substr($_FILES['avatar']['name'], -4));
-        //Como essa função é acessada pelo grupo cliente, vamos colocar o valor de 'client' como padrão;
-        $group = 'client';
+        
 
         //Verificando se as duas senhas foram corretas;
         if($password1 != $password2) {
@@ -81,7 +80,7 @@ class SystemController extends Controller {
         //Procedimento para mudar a foto do avatar;
         if(isset($avatar)) {
 
-            echo $avatar['type'];
+           
             if(in_array($tipo, array('image/jpeg', 'image/png'))) {
 
                 $avatarName = md5(time().rand(0,999)).$extension;

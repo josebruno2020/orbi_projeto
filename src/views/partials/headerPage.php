@@ -23,7 +23,7 @@
 				<a href="<?=$base;?>"><img src="<?=$base;?>/assets/images/orbi.jpg" class=" logo img-fluid"></a>
 			</div>
 			<div class="col-sm align-self-center">
-				<h1 class="h1. Bootstrap heading">ORBI Corretora de Mercadorias</h1>
+				<h1 class="h1. Bootstrap heading">Corretora de Mercadorias</h1>
 			</div>
 				
 			
@@ -36,36 +36,54 @@
 			<div class="navbar-collapse collapse" id="navbarMenu">
 					
 				<div class="navbar-nav">
-					
-                    <a href="<?=$base;?>/my" class="nav-item nav-link <?=($activeMenu == 'my') ? 'active' : '';?> header-icon" title="Minha Página">
-                        <img src="<?=$base;?>/assets/images/my.png" width="30" height="30" class="header-icon">
-                        Minha Página
-                    </a>
-					
-					
-					<a href="<?=$base;?>/contratos" class="nav-item nav-link <?=($activeMenu == 'contratos') ? 'active' : '';?> header-icon" title="Meus arquivos">
-						<img src="<?=$base;?>/assets/images/paper.png" width="30" height="30" class="header-icon">
-						Meus arquivos
-					</a>
-					
-					
-					
-                    <a href="<?=$base;?>/config"class="nav-item nav-link <?=($activeMenu == 'config') ? 'active' : '';?> header-icon"  title="Meus Dados">
-                        <img src="<?=$base;?>/assets/images/config.png" width="30" height="30" class="header-icon">
-                        Meus Dados
-					</a>
-					
-					<?php if($loggedUser->group != 'client'): ?>
-						<a href="<?=$base;?>/system-config"class="nav-item nav-link <?=($activeMenu == 'system-config') ? 'active' : '';?> header-icon"  title="Configurações do Site">
-							<img src="<?=$base;?>/assets/images/system-config.png" width="30" height="30" class="header-icon">
-							Configurações do Site
-						</a>
-					<?php endif; ?>
-
-                    <a href="<?=$base;?>/sair" class="nav-item nav-link header-icon" title="Sair">
-                        <img src="<?=$base;?>/assets/images/exit.png" width="30" height="30" class="header-icon">
-                        Sair
-					</a>
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a href="<?=$base;?>/my" class="nav-item nav-link <?=($activeMenu == 'my') ? 'active' : '';?> header-icon" title="Minha Página">
+									<img src="<?=$base;?>/assets/images/my.png" width="30" height="30" class="header-icon">
+									Minha Página
+								</a>
+							</li>
+							
+							<li class="nav-item">
+								<a href="<?=$base;?>/contratos" class="nav-item nav-link <?=($activeMenu == 'contratos') ? 'active' : '';?> header-icon" title="Meus arquivos">
+									<img src="<?=$base;?>/assets/images/paper.png" width="30" height="30" class="header-icon">
+									Meus arquivos
+								</a>
+							</li>
+							
+							
+							<li class="nav-item">
+								<a href="<?=$base;?>/config"class="nav-item nav-link <?=($activeMenu == 'config') ? 'active' : '';?> header-icon"  title="Meus Dados">
+									<img src="<?=$base;?>/assets/images/config.png" width="30" height="30" class="header-icon">
+									Meus Dados
+								</a>
+							</li>
+							
+							<?php if($loggedUser->group != 'client'): ?>
+							<li class="nav-item dropdown">
+								<a href="<?=$base;?>/system-config" class="nav-item dropdown nav-link dropdown-toggle <?=($activeMenu == 'system-config') ? 'active' : '';?> header-icon"  title="Configurações do Site" role="button" data-toggle="dropdown">
+									<img src="<?=$base;?>/assets/images/system-config.png" width="30" height="30" class="header-icon">
+									Configurações do Site
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="<?=$base;?>/system-config/user-list">Listar Usuários</a>
+									<a class="dropdown-item" href="<?=$base;?>/system-config/cadastrar">Adicionar Usuário</a>
+									<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-contrato">Adicionar Pasta de Contrato</a>
+									<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-proposta">Adicionar Pasta de Proposta</a>
+									<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-documento">Adicionar Documento</a>
+									<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-hvi">Adicionar HVI</a>
+									<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-nf">Adicionar NF para contrato</a>
+								</div>
+							</li>
+							<?php endif; ?>
+							<li class="nav-item">
+							<a href="<?=$base;?>/sair" class="nav-item nav-link header-icon" title="Sair">
+								<img src="<?=$base;?>/assets/images/exit.png" width="30" height="30" class="header-icon">
+								Sair
+							</a>
+						</ul>
+					</div>
 					
 				</div>
 			</div>

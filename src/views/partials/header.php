@@ -23,7 +23,7 @@
 				<a href="<?=$base;?>"><img src="<?=$base;?>/assets/images/orbi.jpg" class=" logo img-fluid"></a>
 			</div>
 			<div class="col-sm align-self-center">
-				<h1 class="h1. Bootstrap heading">ORBI Corretora de Mercadorias</h1>
+				<h1 class="h1. Bootstrap heading">Orbi Corretora de Mercadorias</h1>
 			</div>
 				
 			
