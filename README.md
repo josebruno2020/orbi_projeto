@@ -9,3 +9,6 @@ Muitas alterações ainda precisam der mudadas.
 BASE_DIR está como:
 
 http://localhost/orbi_projeto/public
+
+
+Sistema basicamente feito para os clientes acompanharem seus contratos e ofertas(sempre em formato PDF) através de um login e senha para a plataforma.
