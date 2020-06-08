@@ -12,3 +12,6 @@ http://localhost/orbi_projeto/public
 
 
 Sistema basicamente feito para os clientes acompanharem seus contratos e ofertas(sempre em formato PDF) através de um login e senha para a plataforma.
+
+
+NOTA: Todos os pdf que estão tanto nos contratos, quanto nas propostas, são PURAMENTE de TESTE! Para testar as funcionalidades do sistema, tivemos que usar esses documentos.
