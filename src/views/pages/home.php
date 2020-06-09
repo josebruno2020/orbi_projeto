@@ -118,7 +118,7 @@
         <?php if(!empty($flash)): ?>
             <div class="alert alert-danger"><?=$flash;?></div>
         <?php  endif; ?>
-		<button class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#contato">Entre em contato conosco!</button>
+		<button id="btn-contato" class="btn btn-outline-primary btn-block">Entre em contato conosco!</button>
 		
 		<?=$render('sendPost');?>
 		

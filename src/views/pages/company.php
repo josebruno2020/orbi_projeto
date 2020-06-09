@@ -56,7 +56,7 @@
         <?php if(!empty($flash)): ?>
             <div class="alert alert-danger"><?=$flash;?></div>
         <?php  endif; ?>
-        <button class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#contato">Não deixe de nos mandar uma Mensagem!</button>
+        <button id="btn-contato" class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#contato">Não deixe de nos mandar uma Mensagem!</button>
         
 		<?=$render('sendPost');?>
 	</div>

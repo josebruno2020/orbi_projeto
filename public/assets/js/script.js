@@ -1,21 +1,36 @@
+
+// Passando o mouse por cima, o botão cresce de tamanho!
 $(document).ready(function(){
-    $('#filter').keyup(function(){
-        $('form').submit(function(){
-            var dados = $(this).serialize();
-            $.ajax({
-                url: 'http://localhost/orbi_projeto/public/system-config/historic',
-                type: 'GET',
-                dataType: 'html',
-                data: dados,
-                sucess: function(data) {
-                    $('#historic').empty().html(data);
-                }
+    $('#btn-contato').bind('mouseover', function(){
+        $(this).addClass('btn-lg');
+    });
+    $('#btn-contato').bind('mouseout', function(){
+        $(this).removeClass('btn-lg');
+    });
+});
 
+/*
+* Evento para clicando no botão, aparecer o formulário!
+*/
+$(document).ready(function(){
 
-            });
-            return false;
-        });
+    $('#contato').hide();
+    $('#btn-contato').bind('click', function(){
 
-        $('form').trigger('submit');
+        $('#contato').toggle('slow');
+
+    });
+
+});
+
+/*
+* Mensagem de sucesso para o envio de mensagem!
+*/
+$(document).ready(function(){
+    $('#sendPost').bind('submit', function(){
+        
+        var name = $('#name').val();
+        alert(name+", obrigado por entrar em contato conosco! Em breve responderemos sua mensagem!");
+
     });
 });
