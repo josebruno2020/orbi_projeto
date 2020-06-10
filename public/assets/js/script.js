@@ -17,7 +17,7 @@ $(document).ready(function(){
     $('#contato').hide();
     $('#btn-contato').bind('click', function(){
 
-        $('#contato').toggle('slow');
+        $('#contato').slideToggle('slow');
 
     });
 

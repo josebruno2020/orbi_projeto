@@ -10,7 +10,7 @@
                 <a href="<?=$base;?>/contratos" >
                     <li class="list-inline-item" >> Meus Contratos</li>
                 </a>
-                <a href="<?=$base;?>/contratos/<?=$file->id;?>" >
+                <a href="<?=$base;?>/propostas/<?=$file->id;?>" >
                     <li class="list-inline-item" >> <?=$file->name;?></li>
                 </a>
                 
