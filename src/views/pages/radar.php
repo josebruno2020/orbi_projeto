@@ -3,11 +3,11 @@
 ]);?>
 	<div class="container" style="margin-top: 15px;">
 		<div class="row">
-			<div class="col">
+			<div class="col-sm">
 				<img src="<?=$base;?>/assets/images/radar_logo.png" class="img-fluid img-thumbnail">
 			</div>
 			
-			<div class="col">
+			<div class="col-sm">
 				<p class="text-center"><h2>Radar Orbi - Newsletter</h2></p>
 			</div>
 		</div>

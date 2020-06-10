@@ -268,14 +268,15 @@ class SystemController extends Controller {
             HistoricHelpers::getByFilter($filter);
         }
         $order = filter_input(INPUT_GET, 'order');
-        
+        $busca = filter_input(INPUT_GET, 'busca');
         
         $hist = HistoricHelpers::getAll($order);
         $this->render('historic', [
             'loggedUser' => $this->loggedUser,
             'hist' => $hist,
             'order' => $order,
-            'filter' => $filter
+            'filter' => $filter,
+            'busca' => $busca
         ]);
     }
 

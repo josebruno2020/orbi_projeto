@@ -42,6 +42,19 @@ h1 {
 	font-size: 18px;
 			
 }
+
+#menu-up {
+	color: #FF6347;
+
+}
+#menu-up:hover {
+	color: #B22222;
+}
+
+#title-my {
+	color:#FF7F50;
+}
+
 .icon-img {
 	width: 30px;
 	height: 30px;

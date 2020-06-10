@@ -22,7 +22,7 @@ class ContractController extends Controller {
         }
     }
 
-    public function index() {
+    public function index($search = '') {
         
         $order = filter_input(INPUT_GET, 'order');
 
@@ -602,4 +602,5 @@ class ContractController extends Controller {
             $this->redirect('/contratos/'.$id['id'].'/edit-nf');
         }
     }
+    
 }

@@ -41,6 +41,8 @@ $router->get('/contratos/{id}/del-hvi', 'ContractController@delHvi');
 $router->get('/contratos/{id}/del-nf', 'ContractController@delNf');
 $router->get('/contratos/{id}/del', 'ContractController@delFolder');
 $router->get('/contratos/{id}/prodel', 'ContractController@delTender');
+//Rota de busca;
+$router->get('/contratos/pesquisar', 'ContractController@search');
 
 $router->get('/config', 'SystemController@config');
 $router->post('/config', 'SystemController@configAction');
@@ -77,7 +79,7 @@ $router->post('/system-config/adicionar-proposta', 'ContractController@addTender
 $router->get('/system-config/hvi', 'SystemController@hviController');
 $router->get('/sair', 'SystemController@logout');
 
-//$router->get('/pesquisar');
+
 
 
 

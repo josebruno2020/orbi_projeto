@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col align-items-center">
-            <form method="GET" class="form-inline" id="form">
+            <form method="GET" class="form-inline" id="form-historic">
                 <div  class="form-group">
                     
                     <label for="order">Ordenar por:</label>
@@ -27,8 +27,9 @@
                         <option value="time" <?= ($order == 'time')?'selected':''; ?>>Hora</option>
                     </select>
                     
+                    
                     <label for="filter">Filtro:</label>
-                    <input class="form-control" id="filter" name="filter" type="text">
+                    <input class="form-control" id="filter-historic" name="filter" type="text">
                         
                     
                 </div>
@@ -36,14 +37,14 @@
             <table class="table table-dark table-striped table-bordered table-responsive" id="historic">
                 <thead>
                     <tr>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Data</th>
-                        <th scope="col">Hora</th>
+                        <th scope="col" width="20%">Tipo</th>
+                        <th scope="col" width="20%">E-mail</th>
+                        <th scope="col" width="20%">Data</th>
+                        <th scope="col" width="20%">Hora</th>
                         <?php if($loggedUser->group == 'admin'): ?>
-                            <th scope="col">Ações</th>
+                            <th scope="col" width="10%">Ações</th>
                         <?php endif;?>
-                        <th scope="col">IP</th>
+                        <th scope="col" width="10%">IP</th>
                         
                     </tr>
                 </thead>

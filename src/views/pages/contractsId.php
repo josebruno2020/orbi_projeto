@@ -7,11 +7,11 @@
         <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
         <div class="row" >
             <ul class="list-inline">
-                <a href="<?=$base;?>/contratos" >
-                    <li class="list-inline-item" >> Meus Contratos</li>
+                <a href="<?=$base;?>/contratos">
+                    <li class="list-inline-item" id="menu-up">> Meus Contratos</li>
                 </a>
                 <a href="<?=$base;?>/contratos/<?=$file->id;?>" >
-                    <li class="list-inline-item" >> <?=$file->name;?></li>
+                    <li class="list-inline-item"  id="menu-up">> <?=$file->name;?></li>
                 </a>
                 
 

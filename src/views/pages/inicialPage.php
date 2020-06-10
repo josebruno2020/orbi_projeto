@@ -7,11 +7,11 @@
         <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
 
         <div class="row">
-            <h2>Minha Página</h2>
+            <h2 id="title-my">Minha Página</h2>
         </div>
         </br>
         <div class="row" >
-            <h4>Seja bem-vindo ao Sistema da Orbi Corretora, <?=$loggedUser->name;?>!</h4>
+            <h4>Seja bem-vindo ao Sistema da Orbi Corretora, <font color="#4169E1"><?=$loggedUser->name;?></font>!</h4>
             </br>
             <p>-> Aqui você poderá acessar e acompanhar seus contratos e ofertas em tempo real na coluna <a href="<?=$base;?>/contratos">"Meus arquivos".</a></p>
             <p>-> É possível a qualquer momento mudar seus dados, inclusive a senha, na coluna <a href="<?=$base;?>/config">"Meus dados".</a></p></br> 

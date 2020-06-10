@@ -8,10 +8,10 @@
         <div class="row" >
             <ul class="list-inline">
                 <a href="<?=$base;?>/contratos" >
-                    <li class="list-inline-item" >> Meus Contratos</li>
+                    <li class="list-inline-item"  id="menu-up">> Meus Contratos</li>
                 </a>
                 <a href="<?=$base;?>/propostas/<?=$file->id;?>" >
-                    <li class="list-inline-item" >> <?=$file->name;?></li>
+                    <li class="list-inline-item"  id="menu-up">> <?=$file->name;?></li>
                 </a>
                 
 

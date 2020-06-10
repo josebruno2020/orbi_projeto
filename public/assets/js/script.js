@@ -7,13 +7,21 @@ $(document).ready(function(){
     $('#btn-contato').bind('mouseout', function(){
         $(this).removeClass('btn-lg');
     });
-});
 
-/*
-* Evento para clicando no botão, aparecer o formulário!
-*/
-$(document).ready(function(){
+    /*
+    * Mensagem de sucesso para o envio de mensagem!
+    * Da página Home e 'Company'
+    */ 
+    $('#sendPost').bind('submit', function(){
+        
+        var name = $('#name').val();
+        alert(name+", obrigado por entrar em contato conosco! Em breve responderemos sua mensagem!");
 
+    });
+
+    /*
+    * Evento para clicando no botão, aparecer o formulário!
+    */
     $('#contato').hide();
     $('#btn-contato').bind('click', function(){
 
@@ -21,16 +29,19 @@ $(document).ready(function(){
 
     });
 
-});
+    /*
+    * Dropdown do menu interno do sistema
+    */
 
-/*
-* Mensagem de sucesso para o envio de mensagem!
-*/
-$(document).ready(function(){
-    $('#sendPost').bind('submit', function(){
-        
-        var name = $('#name').val();
-        alert(name+", obrigado por entrar em contato conosco! Em breve responderemos sua mensagem!");
-
+    $('#dropdown').hover(function(){
+        $(this).find('#dropdown-menu').slideDown();
+    }, function(){
+        $(this).find('#dropdown-menu').slideUp();
     });
+
+
+
+    
 });
+
+

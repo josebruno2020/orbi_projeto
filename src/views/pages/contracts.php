@@ -8,7 +8,7 @@
         <div class="row" >
             <ul class="list-inline">
                 <a href="<?=$base;?>/contratos" >
-                    <li class="list-inline-item" >> Meus Contratos</li>
+                    <li class="list-inline-item"  id="menu-up">> Meus Contratos</li>
                 </a>
             </ul>
         </div>
