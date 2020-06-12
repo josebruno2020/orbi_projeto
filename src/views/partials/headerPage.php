@@ -20,7 +20,7 @@
 		</div>
 		<div class="row" id="title">
 			<div class="col-sm">
-				<a href="<?=$base;?>"><img src="<?=$base;?>/assets/images/orbi.jpg" class=" logo img-fluid"></a>
+				<a href="<?=$base;?>/my"><img src="<?=$base;?>/assets/images/orbi.jpg" class=" logo img-fluid"></a>
 			</div>
 			<div class="col-sm align-self-center">
 				<h1 class="h1. Bootstrap heading">Corretora de Mercadorias</h1>
@@ -78,7 +78,7 @@
 						</li>
 						<?php endif; ?>
 						<li class="nav-item">
-						<a href="<?=$base;?>/sair" class="nav-item nav-link header-icon" title="Sair">
+						<a href="<?=$base;?>/sair" class="nav-item nav-link header-icon" title="Sair" onclick="return confirm('Tem certeza que deseja sair?');">
 							<img src="<?=$base;?>/assets/images/exit.png" width="30" height="30" class="header-icon">
 							Sair
 						</a>
