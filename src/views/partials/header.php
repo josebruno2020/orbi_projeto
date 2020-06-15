@@ -20,7 +20,7 @@
 		</div>
 		<div class="row" id="title">
 			<div class="col-sm">
-				<a href="<?=$base;?>"><img src="<?=$base;?>/assets/images/orbi.jpg" class=" logo img-fluid"></a>
+				<a href="<?=$base;?>"><img src="<?=$base;?>/assets/images/orbi_logo.png" class=" logo img-fluid"></a>
 			</div>
 			<div class="col-sm align-self-center">
 				<h1 class="h1. Bootstrap heading">Corretora de Mercadorias</h1>
