@@ -260,25 +260,26 @@ class SystemController extends Controller {
 
     public function historic() {
         //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
-        if($this->loggedUser->group == 'client') {
+        if($this->loggedUser->group != 'admin') {
             $this->redirect('/my');
         }
         $filter = filter_input(INPUT_GET, 'filter');
-        if($filter) {
-            HistoricHelpers::getByFilter($filter);
-        }
-        $order = filter_input(INPUT_GET, 'order');
-        $busca = filter_input(INPUT_GET, 'busca');
+        $hist = HistoricHelpers::getByFilter($filter);
         
-        $hist = HistoricHelpers::getAll($order);
+        $order = filter_input(INPUT_GET, 'order');
+        
+        
+        HistoricHelpers::getAll($order);
         $this->render('historic', [
             'loggedUser' => $this->loggedUser,
             'hist' => $hist,
             'order' => $order,
-            'filter' => $filter,
-            'busca' => $busca
+            'filter' => $filter
+            
         ]);
     }
+
+    
 
     public function dellHistoric($id) {
         //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;

@@ -67,9 +67,6 @@ class HistoricHelpers {
 
         if(count($data) > 0) {
             return $data;
-
-        } else {
-            return false;
         }
     }
 

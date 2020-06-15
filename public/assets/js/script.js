@@ -32,16 +32,35 @@ $(document).ready(function(){
     /*
     * Dropdown do menu interno do sistema
     */
-
     $('#dropdown').hover(function(){
-        $(this).find('#dropdown-menu').slideDown();
+        $(this).find('#dropdown-menu').slideToggle('fast');
     }, function(){
-        $(this).find('#dropdown-menu').slideUp();
+        $(this).find('#dropdown-menu').slideToggle('fast');
     });
+/*
+    //Filter para o historico;
+    $('#filter-historic').keyup(function(){
+        $('#form-historic').submit(function(e){
+            e.preventDefault();
+            var txt = $('#filter-historic').val();
 
+            $.ajax({
+                url:'http://localhost/orbi_projeto/public/system-config/historic/filter',
+                type:'post',
+                data:txt,
+                success:function(data){
+                    $('#resultado-historic').empty().html(data);
+                    console.log(txt);
+                },
+                
+            });
+            
+            return false;
 
+        });
+        $('#form-historic').trigger('submit');
 
-    
+    });
+   */ 
 });
-
 

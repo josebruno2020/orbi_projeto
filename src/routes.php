@@ -60,6 +60,7 @@ $router->get('/system-config/historic/{id}/excluir', 'SystemController@dellHisto
 
 $router->get('/system-config/historic', 'SystemController@historic');
 
+
 //Rota para cadastrar um novo contrato;
 $router->get('/system-config/adicionar-contrato', 'ContractController@addContract');
 $router->post('/system-config/adicionar-contrato', 'ContractController@addContractAction');
