@@ -9,19 +9,13 @@
 				<ol class="carousel-indicators">
 					<li data-target="#slideShow" data-slide-to="0" class="active"></li>
 					<li data-target="#slideShow" data-slide-to="1"></li>
-					<li data-target="#slideShow" data-slide-to="2"></li>
-					<li data-target="#slideShow" data-slide-to="3"></li>
+					
 				</ol>
 
 				<div class="carousel-inner">
+					
 					<div class="carousel-item active">
-						<img src="<?=$base;?>/assets/images/slide1.png" class="w-100">
-					</div>
-					<div class="carousel-item">
-						<img src="<?=$base;?>/assets/images/slide2.png" class="w-100">
-					</div>
-					<div class="carousel-item">
-						<img src="<?=$base;?>/assets/images/slide3.png" class="w-100">
+						<img src="<?=$base;?>/assets/images/fundo.jpg" class="w-100">
 					</div>
 					<div class="carousel-item">
 						<img src="<?=$base;?>/assets/images/slide4.png" class="w-100">
@@ -91,7 +85,7 @@
 					- Manter um "back-office" eficiente e comprometido, a partir da premissa de que o serviço é o nosso diferencial.
 					
 					<p>*Currículo disponí­vel em:<br>
-					<a href="../Joao_celso/index.php" target="blank">João Celso dos Santos</a>
+					<a href="https://sites.google.com/a/orbibrasil.com.br/profjoaocelso/home" target="blank">João Celso dos Santos</a>
 					</p>
 					
 				</div>

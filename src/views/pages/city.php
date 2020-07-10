@@ -1,8 +1,10 @@
 <?=$render('header', [
     'activeMenu' => 'cidade'
 ]);?>
-	<div class="container">
-		<div class="row">
+	
+<div id="city" class="container" style="background-image:url(<?=$base;?>/assets/images/fundo-maringa.jpg);">
+	<div >
+		<div class="row" >
 			<div class="col">
 				<img src="<?=$base;?>/assets/images/catedral.jpg" class="img-fluid img-thumbnail">
 			</div>
@@ -30,10 +32,12 @@
 		</div>
 
 	</div>
+	
+</div>
 
 
 
 
 
 
-	<?=$render('footer');?>
+<?=$render('footer');?>

@@ -1,6 +1,32 @@
-
 // Passando o mouse por cima, o botão cresce de tamanho!
 $(document).ready(function(){
+
+    /*
+    * Função para colocar a imagem do tamanho correspondente;
+    */
+    var alturaTela = $(window).height();
+    var larguraFoto = $('#fundo-img').width();
+    var ratio = larguraFoto/alturaTela;
+    if(larguraFoto>500){
+        var alturaFoto = larguraFoto/ratio;
+        if(alturaFoto>500) {
+            alturaFoto = 430;
+        }
+    } else {
+        var alturaFoto = larguraFoto-(alturaTela)/2;
+        if(alturaFoto<100){
+            alturaFoto = 110;
+        }
+    }
+    
+    console.log(larguraFoto);   
+    console.log(alturaFoto);
+    $('#fundo-img').css('height', alturaFoto+'px')
+
+
+
+
+
     $('#btn-contato').bind('mouseover', function(){
         $(this).addClass('btn-lg');
     });

@@ -13,3 +13,4 @@ class Config {
     const ERROR_CONTROLLER = 'ErrorController';
     const DEFAULT_ACTION = 'index';
 }
+//password: campanholi500

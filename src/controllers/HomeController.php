@@ -30,7 +30,17 @@ class HomeController extends Controller {
         if($name && $email && $tel && $body) {
             
             PostHelpers::sendPost($name, $email, $tel, $body);
+            //E-mail enviado para o admin com a mensagem
+            $to = 'josebrunocampanholi@gmail.com';
+            $subject = 'Nova Mensagem na Orbi';
+            $message = 'Mensagem enviada.'.'\r\n'.
+                        $body;
+            $headers = 'From: '.$email.'\r\n'.
+                        'Reply-To: '.$email.'\r\n'.
+                        'X-Mailer: PHP/'.phpversion();
             
+            mail($to, $subject, $message, $headers);
+
             $_SESSION['flash'] = 'Mensagem Enviada com sucesso! Em breve responderemos!';
             
 
@@ -70,7 +80,15 @@ class HomeController extends Controller {
         if($name && $email && $tel && $body) {
             
             PostHelpers::sendPost($name, $email, $tel, $body);
-            
+            //E-mail enviado para o admin com a mensagem
+            $to = 'josebrunocampanholi@gmail.com';
+            $subject = 'Nova Mensagem na Orbi';
+            $message = 'Mensagem enviada.'.'\r\n'.
+                        $body;
+            $headers = 'From: '.$email.'\r\n'.
+                        'Reply-To: '.$email.'\r\n'.
+                        'X-Mailer: PHP/'.phpversion();
+            mail($to, $subject, $message, $headers);
             $_SESSION['flash'] = 'Mensagem Enviada com sucesso! Em breve responderemos!';
             
 

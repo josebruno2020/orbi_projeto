@@ -1,4 +1,4 @@
-<div id="contato"><br>
+<div id="contato" style="background-image:url(<?=$base;?>/assets/images/fundo.jpg);"><br>
             
     <form method="POST" id="sendPost">
         <div  class="form-group">

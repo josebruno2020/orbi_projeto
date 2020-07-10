@@ -18,15 +18,12 @@
 			</ul>
 				
 		</div>
-		<div class="row" id="title">
-			<div class="col-sm">
-				<a href="<?=$base;?>/my"><img src="<?=$base;?>/assets/images/orbi_logo.png" class=" logo img-fluid"></a>
-			</div>
-			<div class="col-sm align-self-center">
-				<h1 class="h1. Bootstrap heading">Corretora de Mercadorias</h1>
-			</div>
+		<div class="container-fluid">
+
+		
+			<div id="fundo-img" class="row"style="background-image:url(<?=$base;?>/assets/images/corretora.png);">
 				
-			
+			</div>
 		</div>
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
