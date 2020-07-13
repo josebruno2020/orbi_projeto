@@ -102,6 +102,17 @@ h1 {
 #login .form-group{
 	width: 350px;
 }
+.form-group{
+	display: flex;
+	flex-direction: row;
+	
+}
+.form-group input, select{
+	margin-right: 15px;
+}
+.table {
+	box-shadow: 0 0 10px #000;
+}
 footer {
 	margin-top: auto;
 	padding:10px;

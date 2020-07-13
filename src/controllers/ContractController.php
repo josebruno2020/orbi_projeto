@@ -29,12 +29,13 @@ class ContractController extends Controller {
         $contracts = ContractHelpers::getAll($order);
 
         $tenders = TenderHelpers::getAll($order);
-
+        $new = new UserHelpers();
         $this->render('contracts',[
             'loggedUser' => $this->loggedUser,
             'contracts' => $contracts,
             'tenders' => $tenders,
-            'order' => $order
+            'order' => $order,
+            'new' => $new
         ]);
     }
 
@@ -442,7 +443,7 @@ class ContractController extends Controller {
             $link = 'media/contracts/'.$folder_name->name.'/';
         } else {
 
-            $folder_name = TenderHelpers::nameId($id_tender);
+            $folder_name = TenderHelpers::nameById($id_tender);
             $link = 'media/tenders/'.$folder_name->name.'/';
         }
         

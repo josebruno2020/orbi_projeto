@@ -55,11 +55,14 @@ $router->get('/system-config/excluir/{id}', 'SystemController@dellUser');
 //Rota de configuração de um usuário específico, acessado APENAS pelo admin;
 $router->get('/system-config/config/{id}', 'SystemController@userConfig');
 $router->post('/system-config/config/{id}', 'SystemController@userConfigAction');
+$router->get('/system-config/radar','SystemController@radar');
+$router->post('/system-config/radarAction', 'SystemController@radarAction');
 //Rota para excluir um histórico;
 $router->get('/system-config/historic/{id}/excluir', 'SystemController@dellHistoric');
 
 $router->get('/system-config/historic', 'SystemController@historic');
-
+//Rota AJAX para o filtro de histórico;
+$router->get('/ajax/filtro', 'AjaxController@filtro');
 
 //Rota para cadastrar um novo contrato;
 $router->get('/system-config/adicionar-contrato', 'ContractController@addContract');

@@ -30,7 +30,7 @@
             </form> */?>
             -->
 
-            <form action="<?=$base;?>/system-config/historic" id="form-historic" method="get" class="form-inline">
+            <form action="<?=$base;?>/ajax/filtro" id="form-historic" method="get" class="form-inline">
                 <label for="filter">Filtro:</label>
                 <input class="form-control" id="filter-historic" name="filter" type="text" placeholder="Filtro pelo e-mail">
                 <input type="submit" value="Buscar">

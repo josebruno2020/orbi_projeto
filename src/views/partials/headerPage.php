@@ -59,7 +59,7 @@
 						
 						<?php if($loggedUser->group != 'client'): ?>
 						<li class="nav-item dropdown" id="dropdown">
-							<a href="<?=$base;?>/system-config" class="nav-item dropdown nav-link dropdown-toggle <?=($activeMenu == 'system-config') ? 'active' : '';?> header-icon"  title="Configurações do Site" role="button" data-toggle="dropdown">
+							<a href="<?=$base;?>/system-config" class="nav-item dropdown nav-link dropdown-toggle <?=($activeMenu == 'system-config') ? 'active' : '';?> header-icon"  title="Configurações do Site">
 								<img src="<?=$base;?>/assets/images/system-config.png" width="30" height="30" class="header-icon">
 								Configurações do Site
 							</a>
@@ -71,6 +71,7 @@
 								<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-documento">Adicionar Documento</a>
 								<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-hvi">Adicionar HVI</a>
 								<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-nf">Adicionar NF para contrato</a>
+								<a class="dropdown-item" href="<?=$base;?>/system-config/radar">Adicionar Radar</a>
 							</div>
 						</li>
 						<?php endif; ?>

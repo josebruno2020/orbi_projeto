@@ -8,9 +8,9 @@
         <div class="col-sm">
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
             <a href="<?=$base;?>/system-config/user-list" class="btn btn-info">Voltar</a>
-            <p class="text-center">
-                <h2>Configurações</h2>
-            </p>
+            
+            <h2>Configurações</h2>
+            
         </div>
         
     </div>
@@ -28,31 +28,24 @@
                 </div>
 
                 <div  class="form-group">
-                    <label for="name">Nome:</label>
+                    
                     <input id="name" type="text" name="name" class="form-control" placeholder="Digite seu Nome" value="<?=$user->name;?>">
-                </div>
-                <div  class="form-group">
-                    <label for="email">E-mail:</label>
+                
+                    
                     <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail" value="<?=$user->email;?>" readonly>
-                </div>
-
-                <div  class="form-group">
-                    <label for="tel">Telefone:</label>
+                
+                    
                     <input id="tel" type="text" name="tel" class="form-control" placeholder="(99)99999-9999" value="<?=$user->tel;?>">
                 </div>
 
                 <div  class="form-group">
-                    <label for="password1">Nova Senha:</label>
-                    <input type="password" class="form-control" name="password1" placeholder="Digite sua Senha"></input>
-                </div>
-
-                <div  class="form-group">
-                    <label for="password2">Confirme a Nova Senha:</label>
-                    <input type="password" class="form-control" name="password2" placeholder="Confirme sua senha"></input>
-                </div>
+                    
+                    <input type="password" class="form-control" name="password1" placeholder="Nova Senha"></input>
                 
-                <div  class="form-group">
-                    <label for="city">Cidade:</label>
+                    
+                    <input type="password" class="form-control" name="password2" placeholder="Confirme sua Nova senha"></input>
+                
+                    
                     <input type="text" class="form-control" name="city" placeholder="Digite sua Cidade" value="<?=$user->city;?>"></input>
                 </div>
 

@@ -63,7 +63,7 @@ class HistoricHelpers {
     }
 
     public static function getByFilter($filter) {
-        $data = Time::select()->where('email_user', 'like', '%'.$filter.'%')->get();
+        $data = Time::select()->orderBy('date', 'desc')->where('email_user', 'like', '%'.$filter.'%')->get();
 
         if(count($data) > 0) {
             return $data;

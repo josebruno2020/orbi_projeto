@@ -16,17 +16,7 @@
             <h2>Meus Contratos<h2>
         </div>
         <div class="row ">
-            <form method="GET" class="form-inline">
-                <div  class="form-group">
-                    <label for="state">Ordenar por:</label>
-                    <select class="form-control" name="order" onchange="this.form.submit()">
-                        <option value="date" <?= ($order == 'date')?'selected':''; ?>>Data</option>
-                        <?php if($loggedUser->group != 'client'): ?>
-                            <option value="email_user" <?= ($order == 'email_user')?'selected':''; ?>>E-mail</option>
-                        <?php endif;?>
-                    </select>
-                </div>
-            </form>
+            
             <table class="table table-dark table-striped table-bordered table-responsive-lg" >
                 <thead>
                     <tr>
@@ -43,7 +33,10 @@
                 </thead>
                 <tbody>
                     <?php foreach($contracts as $contract): ?>
-                        <?php if($contract['id_user'] == $loggedUser->id || $loggedUser->group != 'client'):?>
+                        <?php if($contract['id_user'] == $loggedUser->id 
+                        || $loggedUser->group == 'admin' 
+                        || $loggedUser->group == 'employee'):?>
+
                             <tr>
                                 <td><?=date('d/m/Y', strtotime($contract['date']));?></td>
                                 <td>
@@ -51,7 +44,8 @@
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group != 'client'): ?>
-                                    <td width="35%"><?=$contract['email_user'];?></td>
+                                    
+                                    <td width="35%"><?=$new->getNameByEmail($contract['email_user'])->name;?></td>
                                 <?php endif;?>
                                 <?php if($loggedUser->group == 'admin'): ?>
                                     <td>
@@ -70,20 +64,13 @@
             </table>
         </div>
         <div class="row">
+        <?php if($loggedUser->group == 'client2'):?>
+            
+        <?php else:?>
             <h2>Minhas Ofertas<h2>
         </div>
         <div class="row">
-            <form method="GET" class="form-inline">
-                <div  class="form-group">
-                    <label for="state">Ordenar por:</label>
-                    <select class="form-control" name="order" onchange="this.form.submit()">
-                        <option value="date" <?= ($order == 'date')?'selected':''; ?>>Data</option>
-                        <?php if($loggedUser->group != 'client'): ?>
-                            <option value="email_user" <?= ($order == 'email_user')?'selected':''; ?>>E-mail</option>
-                        <?php endif;?>
-                    </select>
-                </div>
-            </form>
+            
             <table class="table table-dark table-striped table-bordered table-responsive-lg" >
                 <thead>
                     <tr>
@@ -100,7 +87,10 @@
                 </thead>
                 <tbody>
                     <?php foreach($tenders as $item): ?>
-                        <?php if($contract['id_user'] == $loggedUser->id || $loggedUser->group != 'client'):?>
+                        <?php if($contract['id_user'] == $loggedUser->id 
+                        || $loggedUser->group == 'admin' 
+                        || $loggedUser->group == 'employee'):?>
+                            
                             <tr>
                                 <td ><?=date('d/m/Y', strtotime($item['date']));?></td>
                                 <td>
@@ -108,7 +98,7 @@
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group != 'client'): ?>
-                                    <td><?=$item['email_user'];?></td>
+                                    <td><?=$new->getNameByEmail($item['email_user'])->name;?></td>
                                 <?php endif;?>
                                 <?php if($loggedUser->group == 'admin'): ?>
                                     <td>
@@ -125,9 +115,11 @@
                     <?php endforeach;?>
                 <tbody>
             </table>
+            <?php endif;?>
         </div>
+        
     </div>
     
 
 	
-	<?=$render('footer');?>
+<?=$render('footer');?>

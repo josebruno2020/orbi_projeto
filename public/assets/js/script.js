@@ -1,27 +1,21 @@
 // Passando o mouse por cima, o botão cresce de tamanho!
+const BASE_URL = 'http://localhost/orbi_projeto/public/';
+//BASE_URL para projeto publicado;
+//const BASE_URL = '';
 $(document).ready(function(){
 
     /*
     * Função para colocar a imagem do tamanho correspondente;
     */
-    var alturaTela = $(window).height();
-    var larguraFoto = $('#fundo-img').width();
-    var ratio = larguraFoto/alturaTela;
-    if(larguraFoto>500){
-        var alturaFoto = larguraFoto/ratio;
-        if(alturaFoto>500) {
-            alturaFoto = 430;
-        }
+    var larguraTela = $(window).width();
+    if(larguraTela>710){
+        alturaFoto = 350;
     } else {
-        var alturaFoto = larguraFoto-(alturaTela)/2;
-        if(alturaFoto<100){
-            alturaFoto = 110;
-        }
+        alturaFoto = 100;
     }
-    
-    console.log(larguraFoto);   
+   
     console.log(alturaFoto);
-    $('#fundo-img').css('height', alturaFoto+'px')
+    $('#fundo-img').css('height', alturaFoto+'px');
 
 
 
@@ -63,16 +57,16 @@ $(document).ready(function(){
     }, function(){
         $(this).find('#dropdown-menu').slideToggle('fast');
     });
-/*
+
     //Filter para o historico;
     $('#filter-historic').keyup(function(){
         $('#form-historic').submit(function(e){
             e.preventDefault();
-            var txt = $('#filter-historic').val();
+            var txt = $(this).serialize();
 
             $.ajax({
-                url:'http://localhost/orbi_projeto/public/system-config/historic/filter',
-                type:'post',
+                url:BASE_URL+'ajax/filtro',
+                type:'get',
                 data:txt,
                 success:function(data){
                     $('#resultado-historic').empty().html(data);
@@ -87,6 +81,6 @@ $(document).ready(function(){
         $('#form-historic').trigger('submit');
 
     });
-   */ 
+   
 });
 

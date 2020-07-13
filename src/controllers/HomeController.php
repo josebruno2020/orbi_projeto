@@ -4,6 +4,7 @@ namespace src\controllers;
 use \core\Controller;
 use \src\helpers\PostHelpers;
 use \src\helpers\HistoricHelpers;
+use \src\helpers\RadarHelpers;
 
 class HomeController extends Controller {
 
@@ -55,7 +56,11 @@ class HomeController extends Controller {
     }
 
     public function radar() {
-        $this->render('radar');
+        $radar = RadarHelpers::getLast();
+
+        $this->render('radar', [
+            'radar' => $radar
+        ]);
     }
 
     public function company() {

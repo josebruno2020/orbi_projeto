@@ -2,22 +2,9 @@
 namespace src\helpers;
 
 use \core\Controller;
-use \src\models\ContractFile;
-use \src\models\Contract;
 use \src\models\Tender;
 
 class TenderHelpers {
-
-    public static function addTender($name, $date, $idUser, $email) {
-        Tender::insert([
-            'name' => $name,
-            'id_user' => $idUser,
-            'email_user' => $email,
-            'date' => $date,
-            'status' => '1'
-        ])
-        ->execute();
-    }
 
     public static function getAll($order) {
 
@@ -39,6 +26,7 @@ class TenderHelpers {
         }
     }
 
+    //Função pública que retorna o nome do 'tender' em forma de objeto;
     public static function nameById($id) {
         $data = Tender::select()->where('id', $id)->one();
 
@@ -47,22 +35,6 @@ class TenderHelpers {
 
         return $tender;
     }
-
-    public static function delFolder($id) {
-
-        Tender::delete()->where('id', $id)->execute();
-    }
-
-    public static function nameId($id) {
-
-        $data = Tender::select()->where('id', $id)->one();
-
-        $folder = new Tender();
-        $folder->name = $data['name'];
-
-        return $folder;
-    }
-
     public static function tenderById($id) {
 
         if($id != '0') {
@@ -82,6 +54,17 @@ class TenderHelpers {
         
 
     }
+    
+    public static function addTender($name, $date, $idUser, $email) {
+        Tender::insert([
+            'name' => $name,
+            'id_user' => $idUser,
+            'email_user' => $email,
+            'date' => $date,
+            'status' => '1'
+        ])
+        ->execute();
+    }
 
     public function editTender($id, $name, $date, $idUser, $email) {
 
@@ -92,6 +75,11 @@ class TenderHelpers {
             ->set('date', $date)
             ->where('id', $id)
         ->execute();
+    }
+
+    public static function delFolder($id) {
+
+        Tender::delete()->where('id', $id)->execute();
     }
     
 }

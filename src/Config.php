@@ -14,3 +14,12 @@ class Config {
     const DEFAULT_ACTION = 'index';
 }
 //password: campanholi500
+/*
+PARA PUBLICAR:
+1. Mudar as configurações do Banco de Dados;
+2. Mudar a URL base;
+3. ContractHelpers - BASE_URL;
+4. BASE_URL em script.js
+5. BASE_URL em LoginController;
+
+*/

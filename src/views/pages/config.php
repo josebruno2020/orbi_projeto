@@ -32,28 +32,21 @@
                 <div  class="form-group">
                     <label for="name">Nome:</label>
                     <input id="name" type="text" name="name" class="form-control" placeholder="Digite seu Nome" value="<?=$user->name;?>">
-                </div>
-                <div  class="form-group">
+                
                     <label for="email">E-mail:</label>
                     <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail" value="<?=$user->email;?>" readonly>
-                </div>
-
-                <div  class="form-group">
+                
                     <label for="tel">Telefone:</label>
                     <input id="tel" type="text" name="tel" class="form-control" placeholder="(99)99999-9999" value="<?=$user->tel;?>">
                 </div>
                 
                 <div  class="form-group">
                     <label for="password1">Nova Senha:</label>
-                    <input type="password" class="form-control" name="password1" placeholder="Digite sua Senha"></input>
-                </div>
-
-                <div  class="form-group">
+                    <input type="password" class="form-control" name="password1" placeholder="Digite sua Nova Senha"></input>
+                
                     <label for="password2">Confirme a Nova Senha:</label>
-                    <input type="password" class="form-control" name="password2" placeholder="Confirme sua senha"></input>
-                </div>
-
-                <div  class="form-group">
+                    <input type="password" class="form-control" name="password2" placeholder="Confirme sua Nova senha"></input>
+                
                     <label for="city">Cidade:</label>
                     <input type="text" class="form-control" name="city" placeholder="Digite sua Cidade" value="<?=$user->city;?>"></input>
                 </div>

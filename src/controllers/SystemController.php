@@ -5,6 +5,7 @@ use \core\Controller;
 
 use \src\helpers\UserHelpers;
 use \src\helpers\HistoricHelpers;
+use \src\helpers\RadarHelpers;
 
 class SystemController extends Controller {
 
@@ -24,7 +25,6 @@ class SystemController extends Controller {
     }
 
     public function index() {
-        
 
         $this->render('inicialPage', [
             'loggedUser' => $this->loggedUser
@@ -211,6 +211,12 @@ class SystemController extends Controller {
     }
 
     public function userConfig($id) {
+        //Verificação se o id existe;
+        if(UserHelpers::idExistis($id) == false){
+
+            $this->redirect('/system-config/user-list');
+
+        }
         //Caso o usuário seja do grupo de clientes, ele será redirecionado para a página a sua página de início;
         if($this->loggedUser->group == 'client') {
             $this->redirect('/my');
@@ -263,8 +269,7 @@ class SystemController extends Controller {
         if($this->loggedUser->group != 'admin') {
             $this->redirect('/my');
         }
-        $filter = filter_input(INPUT_GET, 'filter');
-        $hist = HistoricHelpers::getByFilter($filter);
+        $hist = HistoricHelpers::getByFilter($filter = '');
         
         $order = filter_input(INPUT_GET, 'order');
         
@@ -273,9 +278,7 @@ class SystemController extends Controller {
         $this->render('historic', [
             'loggedUser' => $this->loggedUser,
             'hist' => $hist,
-            'order' => $order,
-            'filter' => $filter
-            
+            'order' => $order
         ]);
     }
 
@@ -295,6 +298,36 @@ class SystemController extends Controller {
         $this->render('hvi', [
             'loggedUser' => $this->loggedUser
         ]);
+    }
+
+    public function radar(){
+        $flash = '';
+        if(!empty($_SESSION['flash'])) {
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+
+        $this->render('radar-config', [
+            'loggedUser' => $this->loggedUser,
+            'flash' =>$flash
+        ]);
+    }
+
+    public function radarAction(){
+        //Recebendo os dados do radar;
+        $radar = $_FILES['radar'];
+        $name = filter_input(INPUT_POST, 'name');
+        $date = filter_input(INPUT_POST, 'date');
+        $name_server = md5(time().rand(0,999)).'.pdf';
+        if($radar['type'] != 'application/pdf'){
+            $_SESSION['flash'] = 'Arquivo deve estar em PDF!';
+            $this->redirect('/system-config/radar');
+        }
+        move_uploaded_file($radar['tmp_name'], 'media/radar/'.$name_server);
+        
+        RadarHelpers::insert($name, $name_server, $date);
+        $_SESSION['flash'] = 'Arquivo Adicionado com sucesso!';
+        $this->redirect('/system-config/radar');
     }
 
     public function logout() {

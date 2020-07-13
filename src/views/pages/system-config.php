@@ -82,6 +82,14 @@
                             Mostra uma tabela com os acessos dos usuários, identificando cada um com o seu e-mail(que não pode ser mudado).
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <a href="<?=$base;?>/system-config/radar">Adicionar Radar</a>
+                        </td>
+                        <td>
+                            Adicionar o arquivo Radar que vai aparecer no site.
+                        </td>
+                    </tr>
                     <?php endif; ?>
                     <?php if($loggedUser->group == 'admin'): ?>
                     <tr>

@@ -4,7 +4,8 @@ namespace src\controllers;
 use \core\Controller;
 use \src\helpers\UserHelpers;
 use \src\helpers\HistoricHelpers;
-
+define("BASE_URL", "http://localhost/orbi_projeto/public/");
+//define("BASE_URL", "");
 
 class LoginController extends Controller {
 
@@ -70,9 +71,9 @@ class LoginController extends Controller {
 
                 $data = UserHelpers::getPassword($email);
                 
-                $link = 'http://localhost/orbi_projeto/public/nova-senha/'.$data->token;
+                $link = BASE_URL.'nova-senha/'.$data->token;
                 
-
+                
                 $subject = 'Esqueci Minha Senha';
                 $message = 'Requerimento para a recuperação de senha.'.'\r\n'.
                             'Por favor, acesse o link para redefinir a sua senha: '.$link;

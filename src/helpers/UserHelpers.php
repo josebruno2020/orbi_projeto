@@ -31,6 +31,67 @@ class UserHelpers {
         return false;
     }
 
+    //Função auxiliar para selecionar todos os usuários do Banco de Dados, e colocando a ordem respectiva;
+    public static function getAll($order) {
+
+        if($order) {
+            $data = User::select()->orderBy($order, 'asc')->get();
+            if(count($data) > 0) {
+                return $data;
+            } else {
+                return false;
+            }
+        } else {
+            $data = User::select()->get();
+            if(count($data) > 0) {
+                return $data;
+            } else {
+                return false;
+            }
+
+        }
+    }
+
+    public static function getUser($id) {
+        //Procurando o usuário de acordo com o seu id;
+        $data = User::select()->where('id', $id)->one();
+
+        if(count($data) > 0) {
+            $user = new User();
+            $user->id = $data['id'];
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->tel = $data['tel'];
+            $user->city = $data['city'];
+            $user->state = $data['state'];
+            $user->group = $data['group'];
+            $user->avatar = $data['avatar'];
+
+            return $user;
+
+        } else {
+
+            return false;
+        }
+    }
+    public static function idExistis($id) {
+        $data = User::select()->where('id', $id)->one();
+
+        return $data ? true : false;
+    }
+
+    //Função que retorna o nome do usuário de acordo com o e-mail;
+    public static function getNameByEmail($email){
+        $data = User::select()->where('email', $email)->one();
+        //Se encontrou algum registro;
+        if(count($data) > 0){
+            $name = new User();
+            $name->name = $data['name'];
+        }
+
+        return $name;
+    }
+
     public static function verifyLogin($email, $password) {
         //Verificamos se existe no banco de dados com o email enviado;
         $user = User::select()->where('email', $email)->one();
@@ -88,29 +149,6 @@ class UserHelpers {
         ->execute();
 
         
-    }
-
-    public static function getUser($id) {
-        //Procurando o usuário de acordo com o seu id;
-        $data = User::select()->where('id', $id)->one();
-
-        if(count($data) > 0) {
-            $user = new User();
-            $user->id = $data['id'];
-            $user->name = $data['name'];
-            $user->email = $data['email'];
-            $user->tel = $data['tel'];
-            $user->city = $data['city'];
-            $user->state = $data['state'];
-            $user->group = $data['group'];
-            $user->avatar = $data['avatar'];
-
-            return $user;
-
-        } else {
-
-            return false;
-        }
     }
 
     public static function getPassword($email) {
@@ -194,26 +232,7 @@ class UserHelpers {
         ->execute();
     }
 
-    //Função auxiliar para selecionar todos os usuários do Banco de Dados, e colocando a ordem respectiva;
-    public static function getAll($order) {
-
-        if($order) {
-            $data = User::select()->orderBy($order, 'asc')->get();
-            if(count($data) > 0) {
-                return $data;
-            } else {
-                return false;
-            }
-        } else {
-            $data = User::select()->get();
-            if(count($data) > 0) {
-                return $data;
-            } else {
-                return false;
-            }
-
-        }
-    }
+    
 
     public static function delUser($id) {
         User::delete()->where('id', $id)->execute();

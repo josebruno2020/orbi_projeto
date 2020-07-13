@@ -20,8 +20,15 @@
 				</p>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col">
+				<p><strong>Último Radar para ser baixado! Confira!</strong> </p>
+				<a href="<?=$base;?>/media/radar/<?=$radar->name_server;?>" download><?=$radar->name;?></a>
+			</div>
+			
+		</div>
 		
-
+	
 	</div>
 
 

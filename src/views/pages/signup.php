@@ -22,16 +22,11 @@
             <form method="POST" action="<?=$base;?>/system-config/cadastrar">
                 <div  class="form-group">
                     <input id="name" type="text" name="name" class="form-control" placeholder="Digite seu Nome">
-                </div>
-                <div  class="form-group">
-                    <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail">
-                </div>
                 
-                <div  class="form-group">
+                    <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail">
+                
                     <input type="password" class="form-control" name="password1" placeholder="Digite sua Senha"></input>
-                </div>
-
-                <div  class="form-group">
+                
                     <input type="password" class="form-control" name="password2" placeholder="Confirme sua senha"></input>
                 </div>
 
@@ -75,7 +70,8 @@
                 <div  class="form-group">
                     <select class="form-control" name="group">
                         <option value="">Grupo</option>
-                        <option value="client">Cliente</option>
+                        <option value="client">Cliente Master</option>
+                        <option value="client2">Cliente Menor</option>
                         <option value="employee">Funcionário</option>
                         <option value="admin">Administrador</option>
                     </select>

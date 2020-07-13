@@ -22,7 +22,7 @@
                     <select class="form-control" name="order" onchange="this.form.submit()">
                         <option value="id" <?= ($order == 'id')?'selected':''; ?>>Id</option>
                         <option value="email" <?= ($order == 'email')?'selected':''; ?>>E-mail</option>
-                        <option value="group" <?= ($order == 'group')?'selected':''; ?>>Classe</option>
+                        <option value="group" <?= ($order == 'group')?'selected':''; ?>>Grupo</option>
                     </select>
                 </div>
             </form>
@@ -32,7 +32,7 @@
                         <th scope="col" width="10%">Id</th>
                         <th scope="col" width="30%">Nome</th>
                         <th scope="col" width="30%">E-mail</th>
-                        <th scope="col" width="20%">Classe</th>
+                        <th scope="col" width="20%">Grupo</th>
                         <?php if($loggedUser->group == 'admin'): ?>
                             <th scope="col" width="10%">Ações</th>
                         <?php endif;?>
