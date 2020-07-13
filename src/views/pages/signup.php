@@ -19,19 +19,19 @@
             <?php if(!empty($flash)): ?>
                 <div class="alert alert-danger"><?=$flash;?></div>
             <?php endif;?>
-            <form method="POST" action="<?=$base;?>/system-config/cadastrar">
+            <form method="POST" action="<?=$base;?>/system-config/cadastrar" id="userConfig">
                 <div  class="form-group">
-                    <input id="name" type="text" name="name" class="form-control" placeholder="Digite seu Nome">
+                    <input id="name" type="text" name="name" class="form-control" placeholder="Nome">
                 
-                    <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu E-mail">
+                    <input id="email" type="email" name="email" class="form-control" placeholder="E-mail">
                 
-                    <input type="password" class="form-control" name="password1" placeholder="Digite sua Senha"></input>
+                    <input type="password" class="form-control" name="password1" placeholder="Senha"></input>
                 
-                    <input type="password" class="form-control" name="password2" placeholder="Confirme sua senha"></input>
+                    <input type="password" class="form-control" name="password2" placeholder="Confirme senha"></input>
                 </div>
 
                 <div  class="form-group">
-                    <input type="text" class="form-control" name="city" placeholder="Digite sua Cidade"></input>
+                    <input type="text" class="form-control" name="city" placeholder="Cidade"></input>
                 </div>
 
                 <div  class="form-group">

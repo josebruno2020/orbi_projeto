@@ -20,10 +20,10 @@
 		</div>
 		<div class="container-fluid">
 
-		
-			<div id="fundo-img" class="row"style="background-image:url(<?=$base;?>/assets/images/corretora.png);">
-				
-			</div>
+			<a href="<?=$base;?>/">
+				<div id="fundo-img" class="row"style="background-image:url(<?=$base;?>/assets/images/corretora.png);">
+				</div>				
+			</a>
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">

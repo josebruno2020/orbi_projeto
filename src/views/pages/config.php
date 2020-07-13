@@ -22,7 +22,7 @@
                 <?php endif;?>
             </div>
 
-            <form method="POST" action="<?=$base;?>/config" enctype="multipart/form-data">
+            <form method="POST" action="<?=$base;?>/config" enctype="multipart/form-data" id="userConfig">
                 <div  class="form-group">
                     <img src="<?=$base;?>/media/avatars/<?=$user->avatar;?>" width="100" height="100" style="margin: 10px;">
                     <label for="avatar">Avatar:</label></br>

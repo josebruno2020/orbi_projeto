@@ -56,7 +56,7 @@
                                     <a href="<?=$base;?>/system-config/config/<?=$user['id'];?>" >
                                         <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
                                     </a>
-                                    <a href="<?=$base;?>/system-config/excluir/<?=$user['id'];?>" onclick=" return confirm('Tem certeza que deseja excluir este usuário permanentemente?')"  >
+                                    <a href="<?=$base;?>/system-config/excluir/<?=$user['id'];?>" onclick=" return confirm('Tem certeza que deseja excluir este usuário PERMANENTEMENTE?')"  >
                                         <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
                                     </a>
                                 </td>

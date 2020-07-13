@@ -3,7 +3,7 @@
 ]);?>
 	
 	<div class="container">
-
+		<div class="row">
 			<div id="slideShow" class="slide carousel">
 
 				<ol class="carousel-indicators">
@@ -18,7 +18,7 @@
 						<img src="<?=$base;?>/assets/images/fundo.jpg" class="w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="<?=$base;?>/assets/images/slide4.png" class="w-100">
+						<img src="<?=$base;?>/assets/images/slide4.png" class="w-100 ">
 					</div>
 					
 				</div>
@@ -29,8 +29,10 @@
 				<a class="carousel-control-next" href="#slideShow" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
-				
+
 			</div>
+		</div>
+			
 
 			
 		
@@ -94,13 +96,19 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-sm">
-					<img src="<?=$base;?>/assets/images/cottons.png" class="img-fluid direita img-thumbnail">
+					<a href="<?=$base;?>/assets/images/cottons.png" target="_blank">
+						<img src="<?=$base;?>/assets/images/cottons.png" class="img-fluid direita img-thumbnail">
+					</a>
 				</div>
 				<div class="col-sm">
-					<img src="<?=$base;?>/assets/images/cottons2.png" class="img-fluid direita img-thumbnail">
+					<a href="<?=$base;?>/assets/images/cottons2.png" target="_blank">
+						<img src="<?=$base;?>/assets/images/cottons2.png" class="img-fluid direita img-thumbnail">
+					</a>
 				</div>
 				<div class="col-sm">
-					<img src="<?=$base;?>/assets/images/tecelagem.png" class="img-fluid direita img-thumbnail">
+					<a href="<?=$base;?>/assets/images/tecelagem.png" target="_blank">
+						<img src="<?=$base;?>/assets/images/tecelagem.png" class="img-fluid direita img-thumbnail">
+					</a>
 				</div>
 
 				

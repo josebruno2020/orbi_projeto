@@ -18,12 +18,11 @@
 			</ul>
 				
 		</div>
-		<div class="container-fluid">
-
-		
-			<div id="fundo-img" class="row"style="background-image:url(<?=$base;?>/assets/images/corretora.png);">
-				
-			</div>
+		<div class="container-fluid">		
+			<a href="<?=$base;?>/my">
+				<div id="fundo-img" class="row"style="background-image:url(<?=$base;?>/assets/images/corretora.png);">
+				</div>				
+			</a>
 		</div>
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -57,7 +56,8 @@
 							</a>
 						</li>
 						
-						<?php if($loggedUser->group != 'client'): ?>
+						<?php if($loggedUser->group == 'admin'
+								||$loggedUser->group == 'employee'): ?>
 						<li class="nav-item dropdown" id="dropdown">
 							<a href="<?=$base;?>/system-config" class="nav-item dropdown nav-link dropdown-toggle <?=($activeMenu == 'system-config') ? 'active' : '';?> header-icon"  title="Configurações do Site">
 								<img src="<?=$base;?>/assets/images/system-config.png" width="30" height="30" class="header-icon">

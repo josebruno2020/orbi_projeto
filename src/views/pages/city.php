@@ -6,7 +6,9 @@
 	<div >
 		<div class="row" >
 			<div class="col">
+				<a href="<?=$base;?>/assets/images/catedral.jpg" target="_blank" rel="noopener noreferrer">
 				<img src="<?=$base;?>/assets/images/catedral.jpg" class="img-fluid img-thumbnail">
+				</a>
 			</div>
 			
 			<div class="col">
@@ -24,10 +26,14 @@
 		</div>
 		<div class="row">
 			<div class="col-sm">
-				<img src="<?=$base;?>/assets/images/maringa1.jpg" class="img-fluid img-thumbnail">
+				<a href="<?=$base;?>/assets/images/maringa1.jpg" target="_blank" rel="noopener noreferrer">
+					<img src="<?=$base;?>/assets/images/maringa1.jpg" class="img-fluid img-thumbnail">
+				</a>
 			</div>
 			<div class="col-sm">
-				<img src="<?=$base;?>/assets/images/maringa2.jpg" class="img-fluid img-thumbnail">
+				<a href="<?=$base;?>/assets/images/maringa2.jpg" target="_blank" rel="noopener noreferrer">
+					<img src="<?=$base;?>/assets/images/maringa2.jpg" class="img-fluid img-thumbnail">
+				</a>
 			</div>
 		</div>
 

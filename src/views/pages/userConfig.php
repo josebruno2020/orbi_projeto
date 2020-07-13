@@ -21,7 +21,7 @@
                 <div class="alert alert-danger"><?=$flash;?></div>
             <?php endif;?>
 
-            <form method="POST" action="<?=$base;?>/system-config/config/<?=$user->id;?>" enctype="multipart/form-data">
+            <form method="POST" action="<?=$base;?>/system-config/config/<?=$user->id;?>" enctype="multipart/form-data" id="userConfig">
                 <div  class="form-group">
                     <label for="avatar">Avatar:</label></br>
                     <input id="avatar" type="file" name="avatar" class="form-control-file" >

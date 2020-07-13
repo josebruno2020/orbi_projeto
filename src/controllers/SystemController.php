@@ -259,7 +259,8 @@ class SystemController extends Controller {
         if($this->loggedUser->group == 'client') {
             $this->redirect('/my');
         }
-
+        $user = UserHelpers::getUser($id);
+        unlink('media/avatars/'.$user->avatar);
         $delUser = UserHelpers::delUser($id);
         $this->redirect('/system-config/user-list');
     }

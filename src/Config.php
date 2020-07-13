@@ -21,5 +21,6 @@ PARA PUBLICAR:
 3. ContractHelpers - BASE_URL;
 4. BASE_URL em script.js
 5. BASE_URL em LoginController;
+5. htaccess (importantíssimo!)
 
 */
