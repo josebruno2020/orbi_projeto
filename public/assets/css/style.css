@@ -13,11 +13,9 @@ header {
 	background-repeat: no-repeat;
 	
 }
-
 .header-icon:hover {
 	filter: invert(55%);
 }
-
 h1 {
 	font-family: 'Prompt', sans-serif;;
 }
@@ -91,6 +89,17 @@ h1 {
 #city{
 	background-size: 100%;
 	background-repeat: no-repeat;
+}
+
+#form-radar{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+#form-radar input[type=email]{
+	width: 350px;
+	margin:5px;	
 }
 
 #login{

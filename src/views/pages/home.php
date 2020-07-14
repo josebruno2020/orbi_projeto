@@ -18,7 +18,7 @@
 						<img src="<?=$base;?>/assets/images/fundo.jpg" class="w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="<?=$base;?>/assets/images/slide4.png" class="w-100 ">
+						<img src="<?=$base;?>/assets/images/slide4.png" class="w-100">
 					</div>
 					
 				</div>

@@ -12,6 +12,7 @@ $(document).ready(function(){
         alturaFoto = 350;
     } else {
         alturaFoto = 100;
+        $('#fundo-img').css('background-attachment', 'scroll');
     }
    
     console.log(alturaFoto);

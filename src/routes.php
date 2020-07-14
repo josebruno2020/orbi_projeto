@@ -9,11 +9,13 @@ $router->get('/', 'HomeController@index');
 $router->post('/', 'HomeController@postAction');
 
 $router->get('/radar', 'HomeController@radar');
-
+$router->post('/radarAction', 'HomeController@radarAction');
 $router->get('/empresa', 'HomeController@company');
 $router->post('/empresa', 'HomeController@companyAction');
-
 $router->get('/cidade', 'HomeController@city');
+
+
+
 $router->get('/login', 'LoginController@index');
 $router->post('/login', 'LoginController@signinAction');
 $router->get('/esqueci-senha', 'LoginController@password');
