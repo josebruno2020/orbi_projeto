@@ -9,7 +9,7 @@
             <?=$render('userIcon', ['loggedUser' => $loggedUser]);?>
             <a href="<?=$base;?>/system-config" class="btn btn-info">Voltar</a>
             <p class="text-center">
-                <h2>Adicionar Nota Fiscal</h2>
+                <h2>Adicionar Planilha</h2>
             </p>
         </div>
         
@@ -21,7 +21,7 @@
             <?php endif;?>
 
 
-            <form method="POST" action="<?=$base;?>/system-config/adicionar-nf" enctype="multipart/form-data">
+            <form method="POST" action="<?=$base;?>/system-config/adicionar-planilha" enctype="multipart/form-data">
 
                 <div  class="form-group">
                     <label for="avatar">NF:</label></br>
@@ -29,7 +29,7 @@
                 </div>
 
                 <div  class="form-group">
-                    <label for="city">Nome da NF:</label>
+                    <label for="city">Nome da Planilha:</label>
                     <input type="text" class="form-control" name="name" placeholder="O nome que aparecerá para o cliente"></input>
                 </div>
 

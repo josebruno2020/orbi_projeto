@@ -70,7 +70,7 @@
 								<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-proposta">Adicionar Pasta de Proposta</a>
 								<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-documento">Adicionar Documento</a>
 								<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-hvi">Adicionar HVI</a>
-								<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-nf">Adicionar NF para contrato</a>
+								<a class="dropdown-item" href="<?=$base;?>/system-config/adicionar-planilha">Adicionar Planilha para contrato</a>
 								<a class="dropdown-item" href="<?=$base;?>/system-config/radar">Adicionar Radar</a>
 							</div>
 						</li>

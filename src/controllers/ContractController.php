@@ -47,7 +47,7 @@ class ContractController extends Controller {
         $data = ContractHelpers::getAllContracts($order);
         $hvi = ContractHelpers::getAllHvi($order);
         $nfs = ContractHelpers::getAllNf($order);
-
+        $new = new ContractHelpers();
         if(ContractHelpers::idExistis($id) == false) {
             $this->redirect('/contratos');
         }
@@ -55,6 +55,7 @@ class ContractController extends Controller {
         $this->render('contractsId', [
             'loggedUser' => $this->loggedUser,
             'file' => $file,
+            'new' => $new,
             'order' => $order,
             'data' => $data,
             'hvi' => $hvi,
@@ -68,13 +69,17 @@ class ContractController extends Controller {
         $order = filter_input(INPUT_GET, 'order');
         $file = TenderHelpers::tenderById($id);
         $hvi = ContractHelpers::getAllHvi($order);
-
+        $new = new TenderHelpers();
+        if(TenderHelpers::idExistis($id) == false) {
+            $this->redirect('/contratos');
+        }
         $this->render('tenderId', [
             'loggedUser' => $this->loggedUser,
             'id' => $id,
             'order' => $order,
             'hvi' => $hvi,
-            'file' => $file
+            'file' => $file,
+            'new' => $new
 
         ]);
     }
@@ -125,10 +130,10 @@ class ContractController extends Controller {
     public function delHviTender($id) {
         //Função para deletar HVI que está na pasta de Tenders;
         $file_name = ContractHelpers::hviById($id);
-        $folder_name = TenderHelpers::tenderById($file_name->id_tender);
-        unlink('media/tenders/'.$folder_name->name.'/'.$file_name->name);
+        $folder_name = TenderHelpers::nameById($file_name->id_tender);
+        unlink('media/tenders/'.$folder_name->name.'/'.$file_name->name_server);
         ContractHelpers::delHvi($id);
-        $this->redirect('/contratos');
+        $this->redirect('/propostas/'.$file_name->id_tender);
     }
 
     public function delNf($id) {
@@ -176,7 +181,6 @@ class ContractController extends Controller {
         if($name && $date && $idUser) {
             //Se recebe todos os dados, ele vai criar uma pasta com o nome do contrato, logo em seguida salvar no banco de dados;
             mkdir('media/contracts/'.$name, 0777);
-
             ContractHelpers::addContract($name, $date, $idUser, $user->email);
             $_SESSION['flash'] = 'Pasta de contrato adicionada com sucesso! Agora adicione documentos para ela!';
             $this->redirect('/system-config/adicionar-contrato');
@@ -341,7 +345,7 @@ class ContractController extends Controller {
         //Selecionando o nome da a pasta(contrato) que tenha o mesmo valor que o id_contrato para guardar nela;
         $folder_name = ContractHelpers::nameById($id_contract);
 
-        $link = 'media/contracts/'.$folder_name->name.'/';
+        $link = 'media/contracts/';
         $new_name = md5($contract['name']).'.pdf';
         $permitido = 'application/pdf';
 
@@ -353,7 +357,7 @@ class ContractController extends Controller {
 
         //Se receber todos os dados, será salvo o arquivo na pasta do servidor e adicionado no banco de dados;
         if($name && $id_contract && $date && $link && $new_name) {
-            move_uploaded_file($_FILES['contract']['tmp_name'], $link.$new_name);
+            move_uploaded_file($_FILES['contract']['tmp_name'],  $link.$folder_name->name.'/'.$new_name);
             ContractHelpers::addContractFile($name, $id_contract, $date, $new_name, $link);
             $_SESSION['flash'] = 'Documento salvo com sucesso!';
             $this->redirect('/system-config/adicionar-documento');
@@ -430,49 +434,65 @@ class ContractController extends Controller {
     public function addHviFileAction() {
         //Recebendo os dados do formulário;
         $hvi = $_FILES['hvi'];
-        $name = filter_input(INPUT_POST, 'name');
         $id_contract = filter_input(INPUT_POST, 'id');
         $date = filter_input(INPUT_POST, 'date');
         $id_tender = filter_input(INPUT_POST, 'id_tender');
 
-        
-        if($id_contract) {
-            //Selecionando o nome da a pasta que tenha o mesmo valor que o id_contrato para guardar nela;
-            $folder_name = ContractHelpers::nameById($id_contract);
-
-            $link = 'media/contracts/'.$folder_name->name.'/';
-        } else {
-
-            $folder_name = TenderHelpers::nameById($id_tender);
-            $link = 'media/tenders/'.$folder_name->name.'/';
-        }
-        
-        $new_name = md5($hvi['name'].time()).'.pdf';
-        $permitido = 'application/pdf';
-
-        if($hvi['type'] != $permitido) {
-            $_SESSION['flash'] = 'O arquivo deve ser em formato PDF!!';
-            $this->redirect('/system-config/adicionar-hvi');
-        }
-
-        //Se receber todos os dados, será salvo o arquivo na pasta do servidor e adicionado no banco de dados;
         if($id_tender || $id_contract) {
-            move_uploaded_file($_FILES['hvi']['tmp_name'], $link.$new_name);
+                
             if($id_tender) {
                 $id_contract = '0';
             } else {
                 $id_tender = '0';
             }
             
-            ContractHelpers::addHviFile($name, $id_contract, $id_tender, $date, $new_name, $link);
+            for($i=0;$i<count($_FILES['hvi']['tmp_name']);$i++){
+
+                $new_name = md5($_FILES['hvi']['name'][$i].time()).'.pdf';
+                $name = $_FILES['hvi']['name'][$i];
+    
+                $permitido = 'application/pdf';
+                if($_FILES['hvi']['type'][$i] != $permitido) {
+                    $_SESSION['flash'] = 'O arquivo deve ser em formato PDF!!';
+                    $this->redirect('/system-config/adicionar-hvi');
+                }
+    
+                if($id_contract) {
+                    //Selecionando o nome da a pasta que tenha o mesmo valor que o id_contrato para guardar nela;
+                    $folder_name = ContractHelpers::nameById($id_contract);
+        
+                    $link = 'media/contracts/';
+                    move_uploaded_file($_FILES['hvi']['tmp_name'][$i], $link.$folder_name->name.'/'.$new_name);
+                } else {
+        
+                    $folder_name = TenderHelpers::nameById($id_tender);
+                    $link = 'media/tenders/';
+                    move_uploaded_file($_FILES['hvi']['tmp_name'][$i], $link.$folder_name->name.'/'.$new_name);
+                }
+                //Se receber todos os dados, será salvo o arquivo na pasta do servidor e adicionado no banco de dados;
+                ContractHelpers::addHviFile($name, $id_contract, $id_tender, $date, $new_name, $link);
+                
+            }
             $_SESSION['flash'] = 'HVI salvo com sucesso!';
             $this->redirect('/system-config/adicionar-hvi');
+
 
         } else {
 
             $_SESSION['flash'] = 'Preencha todos os campos!';
             $this->redirect('/system-config/adicionar-hvi');
         }
+
+        
+        
+        
+        
+        
+       
+        echo count($_FILES['hvi']['tmp_name']);exit;
+
+        
+        
     }
 
 
@@ -515,7 +535,7 @@ class ContractController extends Controller {
         }
     }
 
-    public function addNf() {
+    public function addPlanilha() {
         //Proteção contra o acesso de clientes;
         if($this->loggedUser->group == 'client') {
             $this->redirect('/my');
@@ -528,14 +548,14 @@ class ContractController extends Controller {
         }
         $cont = ContractHelpers::getAll($order = '');
 
-        $this->render('addNf', [
+        $this->render('addPlanilha', [
             'loggedUser' => $this->loggedUser,
             'cont' => $cont,
             'flash' => $flash
         ]);
     }
 
-    public function addNfAction() {
+    public function addPlanilhaAction() {
         //Recebendo os dados;
         $nf = $_FILES['nf'];
         $name = filter_input(INPUT_POST, 'name');
@@ -545,30 +565,30 @@ class ContractController extends Controller {
         //Selecionando o nome da a pasta(contrato) que tenha o mesmo valor que o id_contrato para guardar nela;
         $folder_name = ContractHelpers::nameById($id_contract);
 
-        $link = 'media/contracts/'.$folder_name->name.'/';
+        $link = 'media/contracts/';
         $new_name = md5($nf['name'].time()).'.pdf';
         $permitido = 'application/pdf';
 
         if($nf['type'] != $permitido) {
             $_SESSION['flash'] = 'O arquivo deve ser em formato PDF!!';
-            $this->redirect('/system-config/adicionar-nf');
+            $this->redirect('/system-config/adicionar-planilha');
         }
 
         //Se receber todos os dados, será salvo o arquivo na pasta do servidor e adicionado no banco de dados;
         if($name && $id_contract && $date && $link && $new_name) {
-            move_uploaded_file($_FILES['nf']['tmp_name'], $link.$new_name);
+            move_uploaded_file($_FILES['nf']['tmp_name'], $link.$folder_name->name.'/'.$new_name);
             ContractHelpers::addNfFile($name, $id_contract, $date, $new_name, $link);
             $_SESSION['flash'] = 'NF salva com sucesso!';
-            $this->redirect('/system-config/adicionar-nf');
+            $this->redirect('/system-config/adicionar-planilha');
 
         } else {
 
             $_SESSION['flash'] = 'Preencha todos os campos!';
-            $this->redirect('/system-config/adicionar-nf');
+            $this->redirect('/system-config/adicionar-planilha');
         }
     }
 
-    public function nfEdit($id) {
+    public function planilhaEdit($id) {
         $nf = ContractHelpers::nfById($id);
         $file = ContractHelpers::getOne($nf->id_contract);
 
@@ -578,7 +598,7 @@ class ContractController extends Controller {
             $_SESSION['flash'] = '';
         }
 
-        $this->render('editNf', [
+        $this->render('editPlanilha', [
             'loggedUser' => $this->loggedUser,
             'nf' => $nf,
             'flash' => $flash,
@@ -595,12 +615,12 @@ class ContractController extends Controller {
 
             ContractHelpers::nfEdit($id, $name, $date);
             $_SESSION['flash'] = 'Alterações salvas na NF!';
-            $this->redirect('/contratos/'.$id['id'].'/edit-nf');
+            $this->redirect('/contratos/'.$id['id'].'/edit-planilha');
 
         } else {
 
             $_SESSION['flash'] = 'Preencha todos os dados!';
-            $this->redirect('/contratos/'.$id['id'].'/edit-nf');
+            $this->redirect('/contratos/'.$id['id'].'/edit-planilha');
         }
     }
     

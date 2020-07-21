@@ -86,6 +86,14 @@ h1 {
 #sendPost .form-group{
 	width: 500px;
 }
+#sendPost .form-group input{
+	width: 100%;
+}
+
+
+#form-radar .form-control input{
+	width: 100%;
+}
 #city{
 	background-size: 100%;
 	background-repeat: no-repeat;

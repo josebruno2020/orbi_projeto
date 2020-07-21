@@ -18,8 +18,9 @@
 						<img src="<?=$base;?>/assets/images/fundo.jpg" class="w-100">
 					</div>
 					<div class="carousel-item">
-						<img src="<?=$base;?>/assets/images/slide4.png" class="w-100">
+						<img src="<?=$base;?>/assets/images/slide4.jpg" class="w-100">
 					</div>
+					
 					
 				</div>
 
@@ -73,7 +74,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<p>Apresetação</p>
+					<h3>Apresetação</h3> 
 					A ORBI está no mercado de algodão desde 1998, atuando na intermediações de negócios de algodão para o mercado interno brasileiro e para o mercado externo (exportação e importação). Seu diretor gerente, <strong>João Celso dos Santos*</strong>, atua no mercado algodoeiro desde 1981.
 
 					Apresentando a nossos clientes oportunidades de bons negócios, queremos contribuir para que a cadeia textil brasileira seja cada vez mais competitiva.

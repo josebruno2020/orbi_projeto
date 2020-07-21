@@ -24,7 +24,7 @@
             </div>
             
             <p class="text-center">
-                <h2>Editar NF '<?=$nf->name;?>'</h2>
+                <h2>Editar Planilha '<?=$nf->name;?>'</h2>
             </p>
         </div>
         
@@ -36,11 +36,11 @@
             <?php endif;?>
 
             <div>
-                <p style="color: red;">OBS: Apenas poderá ser editado o nome e a data da NF.</p>
+                <p style="color: red;">OBS: Apenas poderá ser editado o nome e a data da Planilha.</p>
             </div>
 
 
-            <form method="POST" action="<?=$base;?>/contratos/<?=$nf->id;?>/edit-nf">
+            <form method="POST" action="<?=$base;?>/contratos/<?=$nf->id;?>/edit-planilha">
 
                 <div  class="form-group">
                     <label for="city">Nome do Documento:</label>

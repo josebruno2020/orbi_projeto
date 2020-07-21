@@ -26,6 +26,12 @@ class TenderHelpers {
         }
     }
 
+    public static function idExistis($id) {
+        $data = Tender::select()->where('id', $id)->one();
+
+        return $data ? true : false;
+    }
+
     //Função pública que retorna o nome do 'tender' em forma de objeto;
     public static function nameById($id) {
         $data = Tender::select()->where('id', $id)->one();

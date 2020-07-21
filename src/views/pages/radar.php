@@ -27,7 +27,7 @@
                 <div class="alert alert-success"><?=$flash;?></div>
 			<?php endif; ?>
 			<div class="form-group">
-				<input type="email" name="email" id="" required class="form-control">
+				<input type="email" name="email" placeholder="E-mail" required class="form-control">
 				<input type="submit" value="Cadastre-se!" class="btn btn-success">
 			</div>
 			

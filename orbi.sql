@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Jul-2020 às 20:30
+-- Tempo de geração: 21-Jul-2020 às 20:37
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.4
 
@@ -41,10 +41,8 @@ CREATE TABLE `contractfiles` (
 --
 
 INSERT INTO `contractfiles` (`id`, `id_contract`, `name`, `name_server`, `link`, `date`) VALUES
-(9, 2, 'José Bruno', '4b1abcb6405c75a5cccb15d84b7e6760.pdf', 'http://localhost/orbi_projeto/public/media/contracts/2253-2020/4b1abcb6405c75a5cccb15d84b7e6760.pdf', '2020-05-15'),
 (15, 7, 'Contrato 19052020', 'c5d5cf97977e6df4cd08b470f53ef772.pdf', 'http://localhost/orbi_projeto/public/media/contracts/19052020/c5d5cf97977e6df4cd08b470f53ef772.pdf', '2020-05-20'),
-(19, 3, 'Documento para Testar 2', 'fe7de917d689ee4a6cbfa49922b96a67.pdf', 'http://localhost/orbi_projeto/public/media/contracts/15052020-20/fe7de917d689ee4a6cbfa49922b96a67.pdf', '2020-05-22'),
-(20, 9, 'Contrato 12312', 'e11c5ef6113c007f3a575502ecf9dba6.pdf', 'http://localhost/orbi_projeto/public/media/contracts/Contrato 12303/e11c5ef6113c007f3a575502ecf9dba6.pdf', '2020-07-13');
+(27, 12, '1170-20', 'b0569bcb054dbcbe1d4039c9e67ead6a.pdf', 'http://localhost/orbi_projeto/public/media/contracts/', '2020-07-21');
 
 -- --------------------------------------------------------
 
@@ -65,9 +63,23 @@ CREATE TABLE `contracts` (
 --
 
 INSERT INTO `contracts` (`id`, `id_user`, `email_user`, `name`, `date`) VALUES
-(3, 8, 'cliente@teste.com', '15052020-20', '2020-05-15'),
+(3, 8, 'cliente@teste.com', '15052020-21', '2020-05-15'),
 (4, 3, 'jose@teste.com', '12032020-2022', '2020-05-22'),
-(9, 13, 'clientemenor@teste.com', 'Contrato 12303', '2020-07-13');
+(9, 13, 'clientemenor@teste.com', 'Contrato 12303', '2020-07-13'),
+(12, 15, 'incofios@teste.com', '1170-20 Cooami', '2020-07-21');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `emails`
+--
+
+CREATE TABLE `emails` (
+  `id` int(11) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Erro ao ler dados para tabela orbi.emails: #1064 - Você tem um erro de sintaxe no seu SQL próximo a 'FROM `orbi`.`emails`' na linha 1
 
 -- --------------------------------------------------------
 
@@ -90,10 +102,8 @@ CREATE TABLE `hvifiles` (
 --
 
 INSERT INTO `hvifiles` (`id`, `id_contract`, `id_tender`, `name_server`, `name`, `link`, `date`) VALUES
-(3, 4, 0, 'fe7de917d689ee4a6cbfa49922b96a67.pdf', 'HVI 1', 'http://localhost/orbi_projeto/public/media/contracts/12032020-2020/fe7de917d689ee4a6cbfa49922b96a67.pdf', '2020-02-02'),
-(14, 0, 2, '4b2693e57b8aeb3ea254cbc969575310.pdf', 'Proposta 001', 'http://localhost/orbi_projeto/public/media/tenders/Proposta 001/4b2693e57b8aeb3ea254cbc969575310.pdf', '2020-05-22'),
-(15, 3, 0, '51f72c6f192fec4474e3c9c2c75633e3.pdf', 'Teste de HVI', 'http://localhost/orbi_projeto/public/media/contracts/15052020-20/51f72c6f192fec4474e3c9c2c75633e3.pdf', '2020-05-19'),
-(16, 0, 4, 'c175d3c3d72de65836e1e63fdddba0f9.pdf', 'HVI 001', 'http://localhost/orbi_projeto/public/media/tenders/Proposta 002/c175d3c3d72de65836e1e63fdddba0f9.pdf', '2020-05-25');
+(19, 0, 5, '135b1a4c88fd8422c231b4fcaef7fa84.pdf', 'Mesa', 'http://localhost/orbi_projeto/public/media/tenders/', '2020-07-21'),
+(20, 12, 0, '876d2455ff9fab9f00f642e1bae6dc69.pdf', 'HVI 1170-20', 'http://localhost/orbi_projeto/public/media/contracts/', '2020-07-21');
 
 -- --------------------------------------------------------
 
@@ -115,7 +125,7 @@ CREATE TABLE `nffiles` (
 --
 
 INSERT INTO `nffiles` (`id`, `id_contract`, `name_server`, `name`, `link`, `date`) VALUES
-(6, 3, 'db7b2b87e146c36ea91b6cda99982d8e.pdf', 'NF de teste', 'http://localhost/orbi_projeto/public/media/contracts/15052020-20/db7b2b87e146c36ea91b6cda99982d8e.pdf', '2020-05-15');
+(9, 12, 'a734f7497154cf2b1ad0cc453fc6b3af.pdf', 'Planilha de Teste', 'http://localhost/orbi_projeto/public/media/contracts/', '2020-07-21');
 
 -- --------------------------------------------------------
 
@@ -182,7 +192,8 @@ CREATE TABLE `tenders` (
 
 INSERT INTO `tenders` (`id`, `name`, `id_user`, `email_user`, `date`, `status`) VALUES
 (2, 'Proposta 001', 8, 'cliente@teste.com', '2020-05-21', 0),
-(4, 'Proposta 002', 8, 'cliente@teste.com', '1997-03-12', 0);
+(4, 'Proposta 002', 8, 'cliente@teste.com', '1997-03-12', 0),
+(5, 'Proposta Incofios Teste', 15, 'incofios@teste.com', '2020-07-21', 1);
 
 -- --------------------------------------------------------
 
@@ -418,7 +429,40 @@ INSERT INTO `times` (`id`, `email_user`, `type`, `date`, `time`, `ip`) VALUES
 (286, 'jose@teste.com', 'Entrada', '2020-07-13', '19:47:43', '::1'),
 (287, 'jose@teste.com', 'Saida', '2020-07-13', '20:16:20', '::1'),
 (288, 'jose@teste.com', 'Entrada', '2020-07-13', '20:19:38', '::1'),
-(289, 'jose@teste.com', 'Saida', '2020-07-13', '20:26:27', '::1');
+(289, 'jose@teste.com', 'Saida', '2020-07-13', '20:26:27', '::1'),
+(290, 'jose@teste.com', 'Entrada', '2020-07-13', '21:35:15', '::1'),
+(291, 'jose@teste.com', 'Saida', '2020-07-13', '21:35:38', '::1'),
+(292, 'jose@teste.com', 'Entrada', '2020-07-14', '16:30:20', '::1'),
+(293, 'jose@teste.com', 'Saida', '2020-07-14', '16:39:22', '::1'),
+(294, 'clientemenor@teste.com', 'Entrada', '2020-07-14', '16:39:29', '::1'),
+(295, 'clientemenor@teste.com', 'Saida', '2020-07-14', '16:44:38', '::1'),
+(296, 'jose@teste.com', 'Entrada', '2020-07-14', '16:44:47', '::1'),
+(297, 'jose@teste.com', 'Saida', '2020-07-14', '17:01:39', '::1'),
+(298, 'jose@teste.com', 'Entrada', '2020-07-15', '15:54:05', '::1'),
+(299, 'jose@teste.com', 'Saida', '2020-07-15', '16:42:35', '::1'),
+(300, 'clientemenor@teste.com', 'Entrada', '2020-07-15', '16:42:41', '::1'),
+(301, 'clientemenor@teste.com', 'Saida', '2020-07-15', '16:49:32', '::1'),
+(302, 'jose@teste.com', 'Entrada', '2020-07-16', '16:27:24', '::1'),
+(303, 'jose@teste.com', 'Entrada', '2020-07-21', '15:36:38', '::1'),
+(304, 'jose@teste.com', 'Saida', '2020-07-21', '15:38:53', '::1'),
+(305, 'jose@teste.com', 'Entrada', '2020-07-21', '15:54:21', '::1'),
+(306, 'jose@teste.com', 'Saida', '2020-07-21', '15:54:29', '::1'),
+(307, 'jose@teste.com', 'Entrada', '2020-07-21', '16:01:50', '::1'),
+(308, 'jose@teste.com', 'Saida', '2020-07-21', '16:18:17', '::1'),
+(309, 'cliente@teste.com', 'Entrada', '2020-07-21', '16:18:25', '::1'),
+(310, 'cliente@teste.com', 'Saida', '2020-07-21', '16:21:09', '::1'),
+(311, 'jose@teste.com', 'Entrada', '2020-07-21', '16:21:16', '::1'),
+(312, 'jose@teste.com', 'Saida', '2020-07-21', '16:29:36', '::1'),
+(313, 'incofios@teste.com', 'Entrada', '2020-07-21', '16:29:44', '::1'),
+(314, 'incofios@teste.com', 'Saida', '2020-07-21', '16:32:39', '::1'),
+(315, 'jose@teste.com', 'Entrada', '2020-07-21', '16:32:46', '::1'),
+(316, 'jose@teste.com', 'Saida', '2020-07-21', '16:46:51', '::1'),
+(317, 'jose@teste.com', 'Entrada', '2020-07-21', '16:53:37', '::1'),
+(318, 'jose@teste.com', 'Saida', '2020-07-21', '16:55:10', '::1'),
+(319, 'incofios@teste.com', 'Entrada', '2020-07-21', '16:55:21', '::1'),
+(320, 'incofios@teste.com', 'Saida', '2020-07-21', '16:59:13', '::1'),
+(321, 'jose@teste.com', 'Entrada', '2020-07-21', '16:59:20', '::1'),
+(322, 'jose@teste.com', 'Saida', '2020-07-21', '20:36:31', '::1');
 
 -- --------------------------------------------------------
 
@@ -445,10 +489,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `tel`, `city`, `state`, `avatar`, `token`, `group`, `created_by`) VALUES
-(3, 'José Bruno C.', 'jose@teste.com', '$2y$10$TRI2SIqX/rxpTotEukK8MuHgZB2eOU9L8IEnQqpWF.0upKoWNU2Pe', '(44) 98844-7123', 'Maringá', 'pr', '126ecfe3d5d19378e6e5af445a8379de.png', '5348d98613e5afb9b874e55bde174f94', 'admin', 0),
-(8, 'Cliente de Teste', 'cliente@teste.com', '$2y$10$G9Sh8KB76u.SZcywvT1BVeV1yObHDf6qI86GkYEml2tWO28P1qFKS', '', 'Maringá', 'pr', '36786b6239d94743b078651479904aab.jpg', 'a784ca984ea10396e7aa563474513c2a', 'client', 0),
+(3, 'José Bruno C.', 'jose@teste.com', '$2y$10$TRI2SIqX/rxpTotEukK8MuHgZB2eOU9L8IEnQqpWF.0upKoWNU2Pe', '(44) 98844-7123', 'Maringá', 'pr', '126ecfe3d5d19378e6e5af445a8379de.png', '2b7a8bea526ef6ccf2cebd6511b97504', 'admin', 0),
+(8, 'Cliente de Teste', 'cliente@teste.com', '$2y$10$G9Sh8KB76u.SZcywvT1BVeV1yObHDf6qI86GkYEml2tWO28P1qFKS', '', 'Maringá', 'pr', '36786b6239d94743b078651479904aab.jpg', '09a4afceafa4be61cdb9273d19c2e188', 'client', 0),
 (9, 'Funcionário de Teste', 'funcionario@teste.com', '$2y$10$gao5/f.jfD/fpmIsUmE.HufoJhX7BG5h/AKS33kZOCdNiGoj88fyW', '(54) 98877-5478', '', '', 'default.png', '3be8d6859d8d82ad1629528ffe40086d', 'employee', 0),
-(13, 'Cliente Menor Teste', 'clientemenor@teste.com', '$2y$10$IohVWehWf9kDGisc/2xzC.eT9KwpEUSJ8zQ0HqA9x5e1h4fsU5j.W', NULL, 'Maringá', 'pr', 'default.png', '2ac238fd06941a3a1425019348fbd8a1', 'client2', 0);
+(13, 'Cliente Menor Teste', 'clientemenor@teste.com', '$2y$10$IohVWehWf9kDGisc/2xzC.eT9KwpEUSJ8zQ0HqA9x5e1h4fsU5j.W', NULL, 'Maringá', 'pr', 'default.png', '258ccaa54c1b8a2da15ba201dec9a987', 'client2', 0),
+(15, 'Incofios', 'incofios@teste.com', '$2y$10$aVh44FT4vr9LA3IW6KkVputvtpZgNkXUcYah/5mkh1B.2sH6yrmLa', NULL, 'Indaiau', 'sc', 'default.png', 'a38e2c8ee7ddc5ad1a6e3d8f11f0eae6', 'client', 0);
 
 -- --------------------------------------------------------
 
@@ -718,7 +763,138 @@ INSERT INTO `views` (`id`, `ip`, `date`, `time`) VALUES
 (248, '::1', '2020-07-13', '20:17:00'),
 (249, '::1', '2020-07-13', '20:19:00'),
 (250, '::1', '2020-07-13', '20:19:00'),
-(251, '::1', '2020-07-13', '20:26:00');
+(251, '::1', '2020-07-13', '20:26:00'),
+(252, '::1', '2020-07-13', '20:39:00'),
+(253, '::1', '2020-07-13', '20:39:00'),
+(254, '::1', '2020-07-13', '20:39:00'),
+(255, '::1', '2020-07-13', '20:39:00'),
+(256, '::1', '2020-07-13', '20:40:00'),
+(257, '::1', '2020-07-13', '20:40:00'),
+(258, '::1', '2020-07-13', '20:40:00'),
+(259, '::1', '2020-07-13', '20:40:00'),
+(260, '::1', '2020-07-13', '20:41:00'),
+(261, '::1', '2020-07-13', '20:41:00'),
+(262, '::1', '2020-07-13', '20:41:00'),
+(263, '::1', '2020-07-13', '20:42:00'),
+(264, '::1', '2020-07-13', '20:43:00'),
+(265, '::1', '2020-07-13', '20:43:00'),
+(266, '::1', '2020-07-13', '20:43:00'),
+(267, '::1', '2020-07-13', '20:50:00'),
+(268, '::1', '2020-07-13', '21:29:00'),
+(269, '::1', '2020-07-13', '21:29:00'),
+(270, '::1', '2020-07-13', '21:34:00'),
+(271, '::1', '2020-07-13', '21:34:00'),
+(272, '::1', '2020-07-13', '21:34:00'),
+(273, '::1', '2020-07-13', '21:34:00'),
+(274, '::1', '2020-07-13', '21:35:00'),
+(275, '::1', '2020-07-13', '21:35:00'),
+(276, '::1', '2020-07-13', '21:51:00'),
+(277, '::1', '2020-07-13', '22:07:00'),
+(278, '::1', '2020-07-13', '22:08:00'),
+(279, '::1', '2020-07-13', '22:08:00'),
+(280, '::1', '2020-07-13', '22:09:00'),
+(281, '::1', '2020-07-13', '22:09:00'),
+(282, '::1', '2020-07-13', '22:09:00'),
+(283, '::1', '2020-07-13', '22:10:00'),
+(284, '::1', '2020-07-13', '22:10:00'),
+(285, '::1', '2020-07-13', '22:10:00'),
+(286, '::1', '2020-07-14', '01:01:00'),
+(287, '::1', '2020-07-14', '01:34:00'),
+(288, '::1', '2020-07-14', '16:20:00'),
+(289, '::1', '2020-07-14', '16:23:00'),
+(290, '::1', '2020-07-14', '16:23:00'),
+(291, '::1', '2020-07-14', '16:23:00'),
+(292, '::1', '2020-07-14', '16:24:00'),
+(293, '::1', '2020-07-14', '16:39:00'),
+(294, '::1', '2020-07-14', '16:44:00'),
+(295, '::1', '2020-07-14', '17:01:00'),
+(296, '::1', '2020-07-14', '17:02:00'),
+(297, '::1', '2020-07-14', '17:02:00'),
+(298, '::1', '2020-07-14', '17:02:00'),
+(299, '::1', '2020-07-14', '17:02:00'),
+(300, '::1', '2020-07-14', '17:02:00'),
+(301, '::1', '2020-07-14', '17:02:00'),
+(302, '::1', '2020-07-14', '17:08:00'),
+(303, '::1', '2020-07-14', '18:23:00'),
+(304, '::1', '2020-07-14', '18:24:00'),
+(305, '::1', '2020-07-14', '18:25:00'),
+(306, '::1', '2020-07-14', '18:26:00'),
+(307, '::1', '2020-07-14', '18:26:00'),
+(308, '::1', '2020-07-14', '18:27:00'),
+(309, '::1', '2020-07-14', '18:27:00'),
+(310, '::1', '2020-07-14', '18:27:00'),
+(311, '::1', '2020-07-14', '18:27:00'),
+(312, '::1', '2020-07-14', '18:28:00'),
+(313, '::1', '2020-07-14', '18:28:00'),
+(314, '::1', '2020-07-14', '18:28:00'),
+(315, '::1', '2020-07-14', '18:29:00'),
+(316, '::1', '2020-07-14', '18:30:00'),
+(317, '::1', '2020-07-14', '18:30:00'),
+(318, '::1', '2020-07-14', '18:31:00'),
+(319, '::1', '2020-07-14', '18:53:00'),
+(320, '::1', '2020-07-14', '18:53:00'),
+(321, '::1', '2020-07-14', '18:54:00'),
+(322, '::1', '2020-07-14', '19:01:00'),
+(323, '::1', '2020-07-14', '21:19:00'),
+(324, '::1', '2020-07-15', '15:47:00'),
+(325, '::1', '2020-07-15', '16:42:00'),
+(326, '::1', '2020-07-15', '16:49:00'),
+(327, '::1', '2020-07-15', '21:33:00'),
+(328, '::1', '2020-07-15', '21:33:00'),
+(329, '::1', '2020-07-15', '21:34:00'),
+(330, '::1', '2020-07-15', '21:34:00'),
+(331, '::1', '2020-07-15', '21:34:00'),
+(332, '::1', '2020-07-15', '21:36:00'),
+(333, '::1', '2020-07-15', '21:39:00'),
+(334, '::1', '2020-07-15', '21:39:00'),
+(335, '::1', '2020-07-15', '21:39:00'),
+(336, '::1', '2020-07-15', '21:39:00'),
+(337, '::1', '2020-07-15', '21:45:00'),
+(338, '::1', '2020-07-15', '21:45:00'),
+(339, '::1', '2020-07-15', '21:45:00'),
+(340, '::1', '2020-07-15', '21:45:00'),
+(341, '::1', '2020-07-15', '21:47:00'),
+(342, '::1', '2020-07-15', '21:57:00'),
+(343, '::1', '2020-07-15', '21:57:00'),
+(344, '::1', '2020-07-15', '21:58:00'),
+(345, '::1', '2020-07-15', '22:06:00'),
+(346, '::1', '2020-07-15', '22:09:00'),
+(347, '::1', '2020-07-15', '22:09:00'),
+(348, '::1', '2020-07-15', '22:09:00'),
+(349, '::1', '2020-07-15', '22:09:00'),
+(350, '::1', '2020-07-15', '22:09:00'),
+(351, '::1', '2020-07-15', '22:09:00'),
+(352, '::1', '2020-07-15', '22:09:00'),
+(353, '::1', '2020-07-16', '16:24:00'),
+(354, '::1', '2020-07-16', '16:24:00'),
+(355, '::1', '2020-07-16', '16:24:00'),
+(356, '::1', '2020-07-16', '16:24:00'),
+(357, '::1', '2020-07-19', '02:24:00'),
+(358, '::1', '2020-07-19', '02:24:00'),
+(359, '::1', '2020-07-19', '02:25:00'),
+(360, '::1', '2020-07-21', '15:12:00'),
+(361, '::1', '2020-07-21', '15:12:00'),
+(362, '::1', '2020-07-21', '15:38:00'),
+(363, '::1', '2020-07-21', '15:51:00'),
+(364, '::1', '2020-07-21', '15:52:00'),
+(365, '::1', '2020-07-21', '15:53:00'),
+(366, '::1', '2020-07-21', '15:54:00'),
+(367, '::1', '2020-07-21', '15:54:00'),
+(368, '::1', '2020-07-21', '16:18:00'),
+(369, '::1', '2020-07-21', '16:21:00'),
+(370, '::1', '2020-07-21', '16:29:00'),
+(371, '::1', '2020-07-21', '16:32:00'),
+(372, '::1', '2020-07-21', '16:46:00'),
+(373, '::1', '2020-07-21', '16:49:00'),
+(374, '::1', '2020-07-21', '16:49:00'),
+(375, '::1', '2020-07-21', '16:50:00'),
+(376, '::1', '2020-07-21', '16:50:00'),
+(377, '::1', '2020-07-21', '16:53:00'),
+(378, '::1', '2020-07-21', '16:53:00'),
+(379, '::1', '2020-07-21', '16:55:00'),
+(380, '::1', '2020-07-21', '16:59:00'),
+(381, '::1', '2020-07-21', '20:36:00'),
+(382, '::1', '2020-07-21', '20:37:00');
 
 --
 -- Índices para tabelas despejadas
@@ -734,6 +910,12 @@ ALTER TABLE `contractfiles`
 -- Índices para tabela `contracts`
 --
 ALTER TABLE `contracts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `emails`
+--
+ALTER TABLE `emails`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -792,25 +974,31 @@ ALTER TABLE `views`
 -- AUTO_INCREMENT de tabela `contractfiles`
 --
 ALTER TABLE `contractfiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de tabela `contracts`
 --
 ALTER TABLE `contracts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de tabela `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `hvifiles`
 --
 ALTER TABLE `hvifiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de tabela `nffiles`
 --
 ALTER TABLE `nffiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `posts`
@@ -828,25 +1016,25 @@ ALTER TABLE `radarfiles`
 -- AUTO_INCREMENT de tabela `tenders`
 --
 ALTER TABLE `tenders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `times`
 --
 ALTER TABLE `times`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=290;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=323;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `views`
 --
 ALTER TABLE `views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=383;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

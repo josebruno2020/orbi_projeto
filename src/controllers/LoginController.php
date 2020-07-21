@@ -5,7 +5,7 @@ use \core\Controller;
 use \src\helpers\UserHelpers;
 use \src\helpers\HistoricHelpers;
 define("BASE_URL", "http://localhost/orbi_projeto/public/");
-//define("BASE_URL", "");
+//define("BASE_URL", "https://www.testesite.orbibrasil.com.br/public/");
 
 class LoginController extends Controller {
 

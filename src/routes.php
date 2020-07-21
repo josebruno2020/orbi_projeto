@@ -22,7 +22,12 @@ $router->get('/esqueci-senha', 'LoginController@password');
 $router->post('/esqueci-senha', 'LoginController@passwordAction');
 $router->get('/nova-senha/{token}', 'LoginController@newPassword');
 $router->post('/nova-senha/{token}', 'LoginController@newPasswordAction');
+
+
+
 $router->get('/my', 'SystemController@index');
+
+
 $router->get('/contratos', 'ContractController@index');
 //Rota para entrar na pasta de cada contrato, de acordo com o seu id;
 $router->get('/contratos/{id}', 'ContractController@contractsId');
@@ -34,8 +39,8 @@ $router->get('/contratos/{id}/edit-document', 'ContractController@documentEdit')
 $router->post('/contratos/{id}/edit-document', 'ContractController@documentEditAction');
 $router->get('/contratos/{id}/edit-hvi', 'ContractController@hviEdit');
 $router->post('/contratos/{id}/edit-hvi', 'ContractController@hviEditAction');
-$router->get('/contratos/{id}/edit-nf', 'ContractController@nfEdit');
-$router->post('/contratos/{id}/edit-nf', 'ContractController@nfEditAction');
+$router->get('/contratos/{id}/edit-planilha', 'ContractController@planilhaEdit');
+$router->post('/contratos/{id}/edit-planilha', 'ContractController@nfEditAction');
 $router->post('/propostas/{id}/editar', 'ContractController@tenderEditAction');
 $router->get('/contratos/{id}/del-hvi-tender', 'ContractController@delHviTender');
 $router->get('/contratos/{id}/excluir', 'ContractController@delContract');
@@ -46,9 +51,10 @@ $router->get('/contratos/{id}/prodel', 'ContractController@delTender');
 //Rota de busca;
 $router->get('/contratos/pesquisar', 'ContractController@search');
 
+
+
 $router->get('/config', 'SystemController@config');
 $router->post('/config', 'SystemController@configAction');
-
 $router->get('/system-config', 'SystemController@adminConfig');
 $router->get('/system-config/cadastrar', 'SystemController@signup');
 $router->post('/system-config/cadastrar', 'SystemController@signupAction');
@@ -61,10 +67,11 @@ $router->get('/system-config/radar','SystemController@radar');
 $router->post('/system-config/radarAction', 'SystemController@radarAction');
 //Rota para excluir um histórico;
 $router->get('/system-config/historic/{id}/excluir', 'SystemController@dellHistoric');
-
 $router->get('/system-config/historic', 'SystemController@historic');
+
 //Rota AJAX para o filtro de histórico;
 $router->get('/ajax/filtro', 'AjaxController@filtro');
+
 
 //Rota para cadastrar um novo contrato;
 $router->get('/system-config/adicionar-contrato', 'ContractController@addContract');
@@ -77,8 +84,8 @@ $router->get('/system-config/adicionar-hvi', 'ContractController@addHviFile');
 $router->post('/system-config/adicionar-hvi', 'ContractController@addHviFileAction');
 
 //Rota para adicionar uma Nota Fiscal em um contrato;
-$router->get('/system-config/adicionar-nf', 'ContractController@addNf');
-$router->post('/system-config/adicionar-nf', 'ContractController@addNfAction');
+$router->get('/system-config/adicionar-planilha', 'ContractController@addPlanilha');
+$router->post('/system-config/adicionar-planilha', 'ContractController@addPlanilhaAction');
 $router->get('/system-config/adicionar-proposta', 'ContractController@addTender');
 $router->post('/system-config/adicionar-proposta', 'ContractController@addTenderAction');
 //Rota para a análise de HVI(apneas admin);

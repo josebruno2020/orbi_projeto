@@ -87,7 +87,7 @@
                 </thead>
                 <tbody>
                     <?php foreach($tenders as $item): ?>
-                        <?php if($contract['id_user'] == $loggedUser->id 
+                        <?php if($item['id_user'] == $loggedUser->id 
                         || $loggedUser->group == 'admin' 
                         || $loggedUser->group == 'employee'):?>
                             

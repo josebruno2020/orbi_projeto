@@ -2,6 +2,7 @@
 namespace src;
 
 class Config {
+    
     const BASE_DIR = '/orbi_projeto/public';
 
     const DB_DRIVER = 'mysql';
@@ -12,6 +13,19 @@ class Config {
 
     const ERROR_CONTROLLER = 'ErrorController';
     const DEFAULT_ACTION = 'index';
+    
+    /*
+    const BASE_DIR = '/public';
+
+    const DB_DRIVER = 'mysql';
+    const DB_HOST = 'localhost';
+    const DB_DATABASE = 'autoil56_orbi';
+    CONST DB_USER = 'autoil56_orbi';
+    const DB_PASS = 'campanholi500';
+
+    const ERROR_CONTROLLER = 'ErrorController';
+    const DEFAULT_ACTION = 'index';
+    */
 }
 //password: campanholi500
 /*

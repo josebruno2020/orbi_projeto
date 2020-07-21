@@ -48,8 +48,8 @@
                         <?php if($item['id_contract'] === $id['id']): ?>
                             <tr>
                                 <td><?=date('d/m/Y', strtotime($item['date']));?></td>
-                                <td >
-                                    <a href="<?=$item['link'];?>" target="_blank"><?=$item['name'];?>
+                                <td>
+                                    <a href="<?=$item['link'].$new->getOne($item['id_contract'])->name.'/'.$item['name_server'];?>" target="_blank"><?=$item['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>
@@ -87,7 +87,7 @@
                             <tr>
                                 <td  width="25%"><?=date('d/m/Y', strtotime($file['date']));?></td>
                                 <td width="50%">
-                                    <a href="<?=$file['link'];?>" target="_blank"><?=$file['name'];?>
+                                    <a href="<?=$file['link'].$new->getOne($file['id_contract'])->name.'/'.$file['name_server'];?>" target="_blank"><?=$file['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>
@@ -107,12 +107,12 @@
             </table>
         </div>
         <div class="row">
-            <h2>NFs</h2>
+            <h2>Planilhas</h2>
             <table class="table table-dark table-striped table-bordered table-responsive-lg">
                 <thead>
                     <tr>
                         <th scope="col" width="25%">Data</th>
-                        <th scope="col" width="50%">NF</th>
+                        <th scope="col" width="50%">Planilha</th>
                         <?php if($loggedUser->group == 'admin'): ?>
                             <th scope="col" width="25%">Ações</th>
                         <?php endif;?>
@@ -124,12 +124,12 @@
                             <tr>
                                 <td  width="25%"><?=date('d/m/Y', strtotime($nf['date']));?></td>
                                 <td width="50%">
-                                    <a href="<?=$nf['link'];?>" target="_blank"><?=$nf['name'];?>
+                                    <a href="<?=$nf['link'].$new->getOne($nf['id_contract'])->name.'/'.$nf['name_server'];?>" target="_blank"><?=$nf['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>
                                     <td width="25%">
-                                        <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/edit-nf" >
+                                        <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/edit-planilha" >
                                             <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
                                         </a>
                                         <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/del-nf" onclick=" return confirm('Tem certeza que deseja excluir?')"  >

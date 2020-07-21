@@ -9,7 +9,7 @@ use \src\models\NfFile;
 use \src\models\Tender;
 
 define("BASE_URL", "http://localhost/orbi_projeto/public/");
-//define("BASE_URL", "");
+//define("BASE_URL", "https://www.testesite.orbibrasil.com.br/public/");
 
 class ContractHelpers {
 
@@ -73,7 +73,7 @@ class ContractHelpers {
     }
 
     public static function addContractFile($name, $id_contract, $date, $new_name, $link) {
-        $link = BASE_URL.$link.$new_name;
+        $link = BASE_URL.$link;
 
         ContractFile::insert([
             'name' => $name,
@@ -184,7 +184,7 @@ class ContractHelpers {
     }
 
     public static function addHviFile($name, $id_contract, $id_tender, $date, $new_name, $link) {
-        $link = BASE_URL.$link.$new_name;
+        $link = BASE_URL.$link;
 
         HviFile::insert([
             'name' => $name,
@@ -207,7 +207,7 @@ class ContractHelpers {
     }
 
     public static function addNfFile($name, $id_contract, $date, $new_name, $link) {
-        $link = BASE_URL.$link.$new_name;
+        $link = BASE_URL.$link;
 
         NfFile::insert([
             'name' => $name,

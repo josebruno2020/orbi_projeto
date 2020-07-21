@@ -24,6 +24,7 @@
             <form method="POST" action="<?=$base;?>/system-config/adicionar-contrato" enctype="multipart/form-data">
 
                 <div  class="form-group">
+                    <div class="alert alert-danger">Atenção! Não usar '/'!</div><br>
                     <label for="city">Nome da Pasta:</label>
                     <input type="text" class="form-control" name="name"></input>
                 </div>

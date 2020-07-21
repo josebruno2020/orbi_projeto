@@ -67,10 +67,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="<?=$base;?>/system-config/adicionar-nf">Adicionar NF para contrato</a>
+                            <a href="<?=$base;?>/system-config/adicionar-planilha">Adicionar Planilha para contrato</a>
                         </td>
                         <td>
-                            Aqui é adicionado uma Nota Fiscal para um contrato.
+                            Aqui é adicionado uma Planilha para um contrato.
                         </td>
                     </tr>
                     <?php if($loggedUser->group == 'admin'): ?>

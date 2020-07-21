@@ -20,17 +20,12 @@
                 <div class="alert alert-danger"><?=$flash;?></div>
             <?php endif;?>
 
-
+            <div class="alert alert-danger">Podem ser adicionados vários arquivos, mas todos irão para a MESMA PASTA!</div>
             <form method="POST" action="<?=$base;?>/system-config/adicionar-hvi" enctype="multipart/form-data">
 
                 <div  class="form-group">
                     <label for="avatar">HVI:</label></br>
-                    <input id="avatar" type="file" name="hvi" required class="form-control-file" >
-                </div>
-
-                <div  class="form-group">
-                    <label for="city">Nome do HVI:</label>
-                    <input type="text" class="form-control" name="name" placeholder="O nome que aparecerá para o cliente"></input>
+                    <input id="avatar" type="file" name="hvi[]" required multiple class="form-control-file" >
                 </div>
 
                 <div  class="form-group">
