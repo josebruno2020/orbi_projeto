@@ -86,18 +86,34 @@ class ContractController extends Controller {
 
     //Função pública para deletar pastas de contrato;
     public function delFolder($id) {
+        //Antes de simplesmente apagar a pasta, temos que apagar todos os arquivos existentes nela.
         $folder = ContractHelpers::nameById($id);
-
-        rmdir('media/contracts/'.$folder->name);
-        ContractHelpers::delFolder($id);
+        if(is_dir('media/contracts/'.$folder->name)){
+            $pasta = dir('media/contracts/'.$folder->name);
+            while($file = $pasta->read()){
+                if(($file != '.') &&($file != '..') ){
+                    unlink('media/contracts/'.$folder->name.'/'.$file);
+                }
+            }
+            rmdir('media/contracts/'.$folder->name);
+            ContractHelpers::delFolder($id);
+        }
         $this->redirect('/contratos');
     }
 
     public function delTender($id) {
+        //Antes de simplesmente apagar a pasta, temos que apagar todos os arquivos existentes nela.
         $folder = TenderHelpers::nameById($id);
-
-        rmdir('media/tenders/'.$folder->name);
-        TenderHelpers::delFolder($id);
+        if(is_dir('media/tenders/'.$folder->name)){
+            $pasta = dir('media/tenders/'.$folder->name);
+            while($file = $pasta->read()){
+                if(($file != '.') &&($file != '..') ){
+                    unlink('media/tenders/'.$folder->name.'/'.$file);
+                }
+            }
+            rmdir('media/tenders/'.$folder->name);
+            TenderHelpers::delFolder($id);
+        }
         $this->redirect('/contratos');
     }
 

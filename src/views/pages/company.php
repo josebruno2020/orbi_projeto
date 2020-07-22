@@ -33,7 +33,7 @@
 		
         <br>
         <?php if(!empty($flash)): ?>
-            <div class="alert alert-danger"><?=$flash;?></div>
+            <div class="alert alert-info"><?=$flash;?></div>
         <?php  endif; ?>
         <button id="btn-contato" class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#contato">Não deixe de nos mandar uma Mensagem!</button>
         

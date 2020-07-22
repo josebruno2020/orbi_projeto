@@ -15,7 +15,7 @@ class RadarHelpers {
         ->execute();
     }
 
-    public function getLast(){
+    public static function getLast(){
         $data = RadarFile::select()->orderBy('id', 'desc')->one();
 
         if(count($data) > 0){

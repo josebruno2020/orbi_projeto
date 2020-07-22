@@ -116,10 +116,10 @@
 			</div>	
 		</section>
 		
-
+		
         <br><br>
         <?php if(!empty($flash)): ?>
-            <div class="alert alert-danger"><?=$flash;?></div>
+            <div class="alert alert-info"><?=$flash;?></div>
         <?php  endif; ?>
 		<button id="btn-contato" class="btn btn-outline-primary btn-block">Entre em contato conosco!</button>
 		

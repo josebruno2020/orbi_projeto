@@ -33,7 +33,7 @@ class HomeController extends Controller {
             
             PostHelpers::sendPost($name, $email, $tel, $body);
             //E-mail enviado para o admin com a mensagem
-            $to = 'josebrunocampanholi@gmail.com';
+            $to = 'orbibrasil@orbibrasil.com.br';
             $subject = 'Fale conosco!';
             $message = $body;
             $headers = 'From: '.$email.'\r\n'.
@@ -114,10 +114,9 @@ class HomeController extends Controller {
             
             PostHelpers::sendPost($name, $email, $tel, $body);
             //E-mail enviado para o admin com a mensagem
-            $to = 'josebrunocampanholi@gmail.com';
-            $subject = 'Nova Mensagem na Orbi';
-            $message = 'Mensagem enviada.'.'\r\n'.
-                        $body;
+            $to = 'orbibrasil@orbibrasil.com.br';
+            $subject = 'Fale conosco!';
+            $message = $body;
             $headers = 'From: '.$email.'\r\n'.
                         'Reply-To: '.$email.'\r\n'.
                         'X-Mailer: PHP/'.phpversion();

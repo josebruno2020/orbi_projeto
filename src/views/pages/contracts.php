@@ -52,7 +52,7 @@
                                         <a href="<?=$base;?>/contratos/<?=$contract['id'];?>/editar" >
                                             <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
                                         </a>
-                                        <a href="<?=$base;?>/contratos/<?=$contract['id'];?>/del" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                        <a href="<?=$base;?>/contratos/<?=$contract['id'];?>/del" onclick=" return confirm('Tem certeza que deseja excluir a pasta com TODOS os arquivos!?')"  >
                                             <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
                                         </a>
                                     </td>
@@ -105,7 +105,7 @@
                                         <a href="<?=$base;?>/propostas/<?=$item['id'];?>/editar" >
                                             <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
                                         </a>
-                                        <a href="<?=$base;?>/contratos/<?=$item['id'];?>/prodel" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                        <a href="<?=$base;?>/contratos/<?=$item['id'];?>/prodel" onclick=" return confirm('Tem certeza que deseja excluir a pasta com TODOS os arquivos!?')"  >
                                             <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
                                         </a>
                                     </td>
