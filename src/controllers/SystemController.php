@@ -168,13 +168,13 @@ class SystemController extends Controller {
         //Verificando se as duas senhas foram corretas;
         if($password1 != $password2) {
             $_SESSOIN['flash'] = 'Confirmação de Senha incorreta!';
-            $this->redirect('/cadastro');
+            $this->redirect('/system-config/cadastrar');
         }
 
         if(UserHelpers::emailExistis($email) == false) {
 
             if($name && $email && $password1 && $city && $state && $group) {
-                UserHelpers::addUser( $name, $email, $password1, $city, $state, $group);
+                UserHelpers::addUser($name, $email, $password1, $city, $state, $group);
                 //Após adicionar o usuário, ele é armazenado na sessão, com o seu token;
                 $this->redirect('/system-config/user-list');
 

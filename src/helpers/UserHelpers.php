@@ -144,7 +144,8 @@ class UserHelpers {
             'password' => $hash,
             'city' => $city,
             'state' => $state,
-            'group' => $group
+            'group' => $group,
+            'token' => $token
         ])
         ->execute();
 

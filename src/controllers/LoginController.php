@@ -5,7 +5,7 @@ use \core\Controller;
 use \src\helpers\UserHelpers;
 use \src\helpers\HistoricHelpers;
 define("BASE_URL", "http://localhost/orbi_projeto/public/");
-//define("BASE_URL", "https://www.testesite.orbibrasil.com.br/public/");
+//define("BASE_URL", "https://www.orbibrasil.com.br/public/");
 
 class LoginController extends Controller {
 
@@ -77,8 +77,7 @@ class LoginController extends Controller {
                 $subject = 'Esqueci Minha Senha';
                 $message = 'Requerimento para a recuperação de senha.'.'\r\n'.
                             'Por favor, acesse o link para redefinir a sua senha: '.$link;
-                $headers = 'From: josebrunocampanholi@gmail.com'.'\r\n'.
-                            'X-Mailer: PHP/'.phpversion();
+                $headers = 'From: orbibrasil@orbibrasil.com.br';
                 
                 mail($email, $subject, $message, $headers);
                 $_SESSION['flash'] = 'Foi enviado um E-mail informando o link para redefinir uma nova senha!';

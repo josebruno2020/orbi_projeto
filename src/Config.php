@@ -19,8 +19,8 @@ class Config {
 
     const DB_DRIVER = 'mysql';
     const DB_HOST = 'localhost';
-    const DB_DATABASE = 'autoil56_orbi';
-    CONST DB_USER = 'autoil56_orbi';
+    const DB_DATABASE = 'orbibras_orbi';
+    CONST DB_USER = 'orbibras_orbi';
     const DB_PASS = 'campanholi500';
 
     const ERROR_CONTROLLER = 'ErrorController';

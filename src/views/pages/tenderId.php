@@ -46,7 +46,11 @@
                             <tr>
                                 <td  width="25%"><?=date('d/m/Y', strtotime($file['date']));?></td>
                                 <td width="50%">
-                                    <a href="<?=$file['link'].$new->nameById($file['id_tender'])->name.'/'.$file['name_server'];?>" target="_blank"><?=$file['name'];?>
+                                    <a 
+                                        href="<?=$base.'/media/tenders/'
+                                        .$new->nameById($file['id_tender'])->name
+                                        .'/'.$file['name_server'];?>" target="_blank">
+                                        <?=$file['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>

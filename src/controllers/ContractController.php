@@ -202,7 +202,6 @@ class ContractController extends Controller {
             $this->redirect('/system-config/adicionar-contrato');
 
         } else {
-
             $_SESSION['flash'] = 'Insira todos os dados!';
             $this->redirect('/system-config/adicionar-contrato');
         }
@@ -498,17 +497,7 @@ class ContractController extends Controller {
             $_SESSION['flash'] = 'Preencha todos os campos!';
             $this->redirect('/system-config/adicionar-hvi');
         }
-
-        
-        
-        
-        
-        
-       
         echo count($_FILES['hvi']['tmp_name']);exit;
-
-        
-        
     }
 
 

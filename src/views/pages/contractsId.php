@@ -49,7 +49,11 @@
                             <tr>
                                 <td><?=date('d/m/Y', strtotime($item['date']));?></td>
                                 <td>
-                                    <a href="<?=$item['link'].$new->getOne($item['id_contract'])->name.'/'.$item['name_server'];?>" target="_blank"><?=$item['name'];?>
+                                    <a 
+                                        href="<?=$base.'/media/contracts/'
+                                        .$new->getOne($item['id_contract'])->name
+                                        .'/'.$item['name_server'];?>" target="_blank">
+                                        <?=$item['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>
@@ -87,7 +91,11 @@
                             <tr>
                                 <td  width="25%"><?=date('d/m/Y', strtotime($file['date']));?></td>
                                 <td width="50%">
-                                    <a href="<?=$file['link'].$new->getOne($file['id_contract'])->name.'/'.$file['name_server'];?>" target="_blank"><?=$file['name'];?>
+                                    <a 
+                                        href="<?=$base.'/media/contracts/'
+                                        .$new->getOne($file['id_contract'])->name
+                                        .'/'.$file['name_server'];?>" target="_blank">
+                                        <?=$file['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>
@@ -124,7 +132,11 @@
                             <tr>
                                 <td  width="25%"><?=date('d/m/Y', strtotime($nf['date']));?></td>
                                 <td width="50%">
-                                    <a href="<?=$nf['link'].$new->getOne($nf['id_contract'])->name.'/'.$nf['name_server'];?>" target="_blank"><?=$nf['name'];?>
+                                    <a 
+                                        href="<?=$base.'/media/contracts/'
+                                        .$new->getOne($nf['id_contract'])->name
+                                        .'/'.$nf['name_server'];?>" target="_blank">
+                                        <?=$nf['name'];?>
                                     </a>
                                 </td>
                                 <?php if($loggedUser->group == 'admin'): ?>

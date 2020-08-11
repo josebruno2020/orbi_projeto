@@ -37,8 +37,7 @@ class HomeController extends Controller {
             $subject = 'Fale conosco!';
             $message = $body;
             $headers = 'From: '.$email.'\r\n'.
-                        'Reply-To: '.$email.'\r\n'.
-                        'X-Mailer: PHP/'.phpversion();
+                        'Reply-To: '.$email.'\r\n';
             
             mail($to, $subject, $message, $headers);
 
@@ -78,8 +77,7 @@ class HomeController extends Controller {
             $subject = 'Nova solicitação para o Radar';
             $message = 'Nova solicitação para o Radar!'.'\r\n';
             $headers = 'From: '.$email.'\r\n'.
-                        'Reply-To: '.$email.'\r\n'.
-                        'X-Mailer: PHP/'.phpversion();
+                        'Reply-To: '.$email.'\r\n';
             
             mail($to, $subject, $message, $headers);
 

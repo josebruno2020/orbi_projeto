@@ -51,19 +51,19 @@
 								</div>
 								<div class="modal-body">
 									<h6>Algodão Nova Iorque (contrato Cotton#2)</h6>
-									<font style="font-size: 15px;"><a href="http://www.barchart.com/commodityfutures/Cotton_2_Futures/CT" target="_blank">http://www.barchart.com/commodityfutures/Cotton_2_Futures/CTr</a></font>
+									<font style="font-size: 15px;"><a href="https://www.barchart.com/commodityfutures/Cotton_2_Futures/CT" target="_blank">https://www.barchart.com/commodityfutures/Cotton_2_Futures/CTr</a></font>
 
 									<h6>Bolsa de Cereais e Mercadorias de Maringá</h6>
-									<font style="font-size: 15px;"><a href="http://www.bcmm.com.br" target="_blank">http://www.bcmm.com.br</a></font>
+									<font style="font-size: 15px;"><a href="https://www.bcmm.com.br" target="_blank">https://www.bcmm.com.br</a></font>
 
 									<h6>ANEA</h6>
-									<font style="font-size: 15px;"><a href="http://www.aneacotton.com.br/" target="_blank">http://www.aneacotton.com.br/</a></font>
+									<font style="font-size: 15px;"><a href="https://www.aneacotton.com.br/" target="_blank">https://www.aneacotton.com.br/</a></font>
 
 									<h6>ABRAPA</h6>
-									<font style="font-size: 15px;"><a href="http://www.abrapa.com.br/" target="_blank">http://www.abrapa.com.br/</a></font>
+									<font style="font-size: 15px;"><a href="https://www.abrapa.com.br/" target="_blank">https://www.abrapa.com.br/</a></font>
 
 									<h6>Notícias Agrícolas</h6>
-									<font style="font-size: 15px;"><a href="http://www.noticiasagricolas.com.br/" target="_blank">http://www.noticiasagricolas.com.br/</a></font>
+									<font style="font-size: 15px;"><a href="https://www.noticiasagricolas.com.br/" target="_blank">https://www.noticiasagricolas.com.br/</a></font>
 								</div>
 								<div class="modal-footer">
 									<button class="btn btn-danger" data-dismiss="modal">Fechar</button>
@@ -97,19 +97,19 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-sm">
-					<a href="<?=$base;?>/assets/images/cottons.png" target="_blank">
-						<img src="<?=$base;?>/assets/images/cottons.png" class="img-fluid direita img-thumbnail">
-					</a>
+					
+					<img src="<?=$base;?>/assets/images/cottons.png" class="img-fluid direita img-thumbnail">
+					
 				</div>
 				<div class="col-sm">
-					<a href="<?=$base;?>/assets/images/cottons2.png" target="_blank">
-						<img src="<?=$base;?>/assets/images/cottons2.png" class="img-fluid direita img-thumbnail">
-					</a>
+					
+					<img src="<?=$base;?>/assets/images/cottons2.png" class="img-fluid direita img-thumbnail">
+					
 				</div>
 				<div class="col-sm">
-					<a href="<?=$base;?>/assets/images/tecelagem.png" target="_blank">
-						<img src="<?=$base;?>/assets/images/tecelagem.png" class="img-fluid direita img-thumbnail">
-					</a>
+					
+					<img src="<?=$base;?>/assets/images/tecelagem.png" class="img-fluid direita img-thumbnail">
+					
 				</div>
 
 				

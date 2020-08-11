@@ -1,7 +1,7 @@
 // Passando o mouse por cima, o botão cresce de tamanho!
 const BASE_URL = 'http://localhost/orbi_projeto/public/';
 //BASE_URL para projeto publicado;
-//const BASE_URL = 'https://www.testesite.orbibrasil.com.br/public/';
+//const BASE_URL = 'https://www.orbibrasil.com.br/public/';
 $(document).ready(function(){
 
     /*

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Jul-2020 às 20:37
+-- Tempo de geração: 22-Jul-2020 às 14:48
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.4
 
@@ -42,7 +42,8 @@ CREATE TABLE `contractfiles` (
 
 INSERT INTO `contractfiles` (`id`, `id_contract`, `name`, `name_server`, `link`, `date`) VALUES
 (15, 7, 'Contrato 19052020', 'c5d5cf97977e6df4cd08b470f53ef772.pdf', 'http://localhost/orbi_projeto/public/media/contracts/19052020/c5d5cf97977e6df4cd08b470f53ef772.pdf', '2020-05-20'),
-(27, 12, '1170-20', 'b0569bcb054dbcbe1d4039c9e67ead6a.pdf', 'http://localhost/orbi_projeto/public/media/contracts/', '2020-07-21');
+(27, 12, '1170-20', 'b0569bcb054dbcbe1d4039c9e67ead6a.pdf', 'http://localhost/orbi_projeto/public/media/contracts/', '2020-07-21'),
+(28, 3, 'Documento Teste', 'fe7de917d689ee4a6cbfa49922b96a67.pdf', 'http://localhost/orbi_projeto/public/media/contracts/', '2020-07-22');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,6 @@ CREATE TABLE `contracts` (
 --
 
 INSERT INTO `contracts` (`id`, `id_user`, `email_user`, `name`, `date`) VALUES
-(3, 8, 'cliente@teste.com', '15052020-21', '2020-05-15'),
 (4, 3, 'jose@teste.com', '12032020-2022', '2020-05-22'),
 (9, 13, 'clientemenor@teste.com', 'Contrato 12303', '2020-07-13'),
 (12, 15, 'incofios@teste.com', '1170-20 Cooami', '2020-07-21');
@@ -79,7 +79,16 @@ CREATE TABLE `emails` (
   `email` varchar(150) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
--- Erro ao ler dados para tabela orbi.emails: #1064 - Você tem um erro de sintaxe no seu SQL próximo a 'FROM `orbi`.`emails`' na linha 1
+
+--
+-- Extraindo dados da tabela `emails`
+--
+
+INSERT INTO `emails` (`id`, `email`, `date`) VALUES
+(1, 'jose@teste.com', '2020-07-14'),
+(2, 'jose@teste.com', '2020-07-14'),
+(3, 'jose@teste.com', '2020-07-14'),
+(4, 'jose@teste.com', '2020-07-14');
 
 -- --------------------------------------------------------
 
@@ -103,7 +112,10 @@ CREATE TABLE `hvifiles` (
 
 INSERT INTO `hvifiles` (`id`, `id_contract`, `id_tender`, `name_server`, `name`, `link`, `date`) VALUES
 (19, 0, 5, '135b1a4c88fd8422c231b4fcaef7fa84.pdf', 'Mesa', 'http://localhost/orbi_projeto/public/media/tenders/', '2020-07-21'),
-(20, 12, 0, '876d2455ff9fab9f00f642e1bae6dc69.pdf', 'HVI 1170-20', 'http://localhost/orbi_projeto/public/media/contracts/', '2020-07-21');
+(20, 12, 0, '876d2455ff9fab9f00f642e1bae6dc69.pdf', 'HVI 1170-20', 'http://localhost/orbi_projeto/public/media/contracts/', '2020-07-21'),
+(32, 0, 2, '4962d21286bd952b50abbff3d191e528.pdf', 'LGPD curso.pdf', 'http://localhost/orbi_projeto/public/media/tenders/', '2020-07-21'),
+(33, 0, 6, 'c0d20296a6dd87a101ff2feccf552a5e.pdf', 'LGPD legal.pdf', 'http://localhost/orbi_projeto/public/media/tenders/', '2020-07-22'),
+(34, 0, 7, '1ded272ca34dc47b27a645dc86a20ba7.pdf', 'LGPD curso.pdf', 'http://localhost/orbi_projeto/public/media/tenders/', '2020-07-21');
 
 -- --------------------------------------------------------
 
@@ -191,7 +203,6 @@ CREATE TABLE `tenders` (
 --
 
 INSERT INTO `tenders` (`id`, `name`, `id_user`, `email_user`, `date`, `status`) VALUES
-(2, 'Proposta 001', 8, 'cliente@teste.com', '2020-05-21', 0),
 (4, 'Proposta 002', 8, 'cliente@teste.com', '1997-03-12', 0),
 (5, 'Proposta Incofios Teste', 15, 'incofios@teste.com', '2020-07-21', 1);
 
@@ -462,7 +473,8 @@ INSERT INTO `times` (`id`, `email_user`, `type`, `date`, `time`, `ip`) VALUES
 (319, 'incofios@teste.com', 'Entrada', '2020-07-21', '16:55:21', '::1'),
 (320, 'incofios@teste.com', 'Saida', '2020-07-21', '16:59:13', '::1'),
 (321, 'jose@teste.com', 'Entrada', '2020-07-21', '16:59:20', '::1'),
-(322, 'jose@teste.com', 'Saida', '2020-07-21', '20:36:31', '::1');
+(322, 'jose@teste.com', 'Saida', '2020-07-21', '20:36:31', '::1'),
+(323, 'jose@teste.com', 'Entrada', '2020-07-22', '14:17:02', '::1');
 
 -- --------------------------------------------------------
 
@@ -489,7 +501,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `tel`, `city`, `state`, `avatar`, `token`, `group`, `created_by`) VALUES
-(3, 'José Bruno C.', 'jose@teste.com', '$2y$10$TRI2SIqX/rxpTotEukK8MuHgZB2eOU9L8IEnQqpWF.0upKoWNU2Pe', '(44) 98844-7123', 'Maringá', 'pr', '126ecfe3d5d19378e6e5af445a8379de.png', '2b7a8bea526ef6ccf2cebd6511b97504', 'admin', 0),
+(3, 'José Bruno C.', 'jose@teste.com', '$2y$10$TRI2SIqX/rxpTotEukK8MuHgZB2eOU9L8IEnQqpWF.0upKoWNU2Pe', '(44) 98844-7123', 'Maringá', 'pr', '126ecfe3d5d19378e6e5af445a8379de.png', 'ee0926b930d69b8947890947a6835cc6', 'admin', 0),
 (8, 'Cliente de Teste', 'cliente@teste.com', '$2y$10$G9Sh8KB76u.SZcywvT1BVeV1yObHDf6qI86GkYEml2tWO28P1qFKS', '', 'Maringá', 'pr', '36786b6239d94743b078651479904aab.jpg', '09a4afceafa4be61cdb9273d19c2e188', 'client', 0),
 (9, 'Funcionário de Teste', 'funcionario@teste.com', '$2y$10$gao5/f.jfD/fpmIsUmE.HufoJhX7BG5h/AKS33kZOCdNiGoj88fyW', '(54) 98877-5478', '', '', 'default.png', '3be8d6859d8d82ad1629528ffe40086d', 'employee', 0),
 (13, 'Cliente Menor Teste', 'clientemenor@teste.com', '$2y$10$IohVWehWf9kDGisc/2xzC.eT9KwpEUSJ8zQ0HqA9x5e1h4fsU5j.W', NULL, 'Maringá', 'pr', 'default.png', '258ccaa54c1b8a2da15ba201dec9a987', 'client2', 0),
@@ -894,7 +906,27 @@ INSERT INTO `views` (`id`, `ip`, `date`, `time`) VALUES
 (379, '::1', '2020-07-21', '16:55:00'),
 (380, '::1', '2020-07-21', '16:59:00'),
 (381, '::1', '2020-07-21', '20:36:00'),
-(382, '::1', '2020-07-21', '20:37:00');
+(382, '::1', '2020-07-21', '20:37:00'),
+(383, '::1', '2020-07-21', '20:53:00'),
+(384, '::1', '2020-07-21', '20:54:00'),
+(385, '::1', '2020-07-21', '20:55:00'),
+(386, '::1', '2020-07-21', '20:55:00'),
+(387, '::1', '2020-07-21', '20:56:00'),
+(388, '::1', '2020-07-21', '20:56:00'),
+(389, '::1', '2020-07-21', '20:57:00'),
+(390, '::1', '2020-07-21', '21:10:00'),
+(391, '::1', '2020-07-21', '21:51:00'),
+(392, '::1', '2020-07-21', '21:59:00'),
+(393, '::1', '2020-07-21', '23:06:00'),
+(394, '::1', '2020-07-21', '23:06:00'),
+(395, '::1', '2020-07-22', '14:13:00'),
+(396, '::1', '2020-07-22', '14:15:00'),
+(397, '::1', '2020-07-22', '14:15:00'),
+(398, '::1', '2020-07-22', '14:15:00'),
+(399, '::1', '2020-07-22', '14:15:00'),
+(400, '::1', '2020-07-22', '14:15:00'),
+(401, '::1', '2020-07-22', '14:15:00'),
+(402, '::1', '2020-07-22', '14:15:00');
 
 --
 -- Índices para tabelas despejadas
@@ -974,7 +1006,7 @@ ALTER TABLE `views`
 -- AUTO_INCREMENT de tabela `contractfiles`
 --
 ALTER TABLE `contractfiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `contracts`
@@ -992,7 +1024,7 @@ ALTER TABLE `emails`
 -- AUTO_INCREMENT de tabela `hvifiles`
 --
 ALTER TABLE `hvifiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `nffiles`
@@ -1016,13 +1048,13 @@ ALTER TABLE `radarfiles`
 -- AUTO_INCREMENT de tabela `tenders`
 --
 ALTER TABLE `tenders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `times`
 --
 ALTER TABLE `times`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=323;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=324;
 
 --
 -- AUTO_INCREMENT de tabela `users`
@@ -1034,7 +1066,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `views`
 --
 ALTER TABLE `views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=383;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=403;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
