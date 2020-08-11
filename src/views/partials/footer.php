@@ -9,7 +9,7 @@
 
 <footer>
 	<p class="text-center" id="acess">
-    	Desenvolvido por <a href="">ORBI-Assess</a>
+    	Desenvolvido por ORBI-Assess
     </p>
 </footer>
 </html>

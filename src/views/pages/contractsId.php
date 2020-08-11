@@ -127,31 +127,35 @@
                     </tr>                        
                 </thead>
                 <tbody>
-                    <?php foreach($nfs as $nf): ?>
-                        <?php if($nf['id_contract'] === $id['id']): ?>
-                            <tr>
-                                <td  width="25%"><?=date('d/m/Y', strtotime($nf['date']));?></td>
-                                <td width="50%">
-                                    <a 
-                                        href="<?=$base.'/media/contracts/'
-                                        .$new->getOne($nf['id_contract'])->name
-                                        .'/'.$nf['name_server'];?>" target="_blank">
-                                        <?=$nf['name'];?>
-                                    </a>
-                                </td>
-                                <?php if($loggedUser->group == 'admin'): ?>
-                                    <td width="25%">
-                                        <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/edit-planilha" >
-                                            <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
-                                        </a>
-                                        <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/del-nf" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
-                                            <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
+                    <?php if($nfs == null):?>
+                    Nenhum registro!
+                    <?php else:?>
+                        <?php foreach($nfs as $nf): ?>
+                            <?php if($nf['id_contract'] === $id['id']): ?>
+                                <tr>
+                                    <td  width="25%"><?=date('d/m/Y', strtotime($nf['date']));?></td>
+                                    <td width="50%">
+                                        <a 
+                                            href="<?=$base.'/media/contracts/'
+                                            .$new->getOne($nf['id_contract'])->name
+                                            .'/'.$nf['name_server'];?>" target="_blank">
+                                            <?=$nf['name'];?>
                                         </a>
                                     </td>
-                                <?php endif;?>
-                            </tr>
-                        <?php endif;?>
-                    <?php endforeach;?>    
+                                    <?php if($loggedUser->group == 'admin'): ?>
+                                        <td width="25%">
+                                            <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/edit-planilha" >
+                                                <img src="<?=$base;?>/assets/images/edit.png" class="img-fluid" width="30" height="30" title="Editar">
+                                            </a>
+                                            <a href="<?=$base;?>/contratos/<?=$nf['id'];?>/del-nf" onclick=" return confirm('Tem certeza que deseja excluir?')"  >
+                                                <img src="<?=$base;?>/assets/images/del.png" class="img-fluid"  width="30" height="30" style="margin-left: 20px;" title="Excluir">
+                                            </a>
+                                        </td>
+                                    <?php endif;?>
+                                </tr>
+                            <?php endif;?>
+                        <?php endforeach;?>
+                    <?php endif;?>    
                 </tbody>
             </table>
 
