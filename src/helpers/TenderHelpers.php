@@ -26,10 +26,35 @@ class TenderHelpers {
         }
     }
 
+    public static function getTotalPagina($p, $por_pagina) 
+    {
+        $offset = ($p - 1) * $por_pagina;
+        $data = Tender::select()
+            ->orderBy('id', 'asc')
+            ->limit($por_pagina)
+            ->offset($offset)
+            ->get();
+
+        if(count($data) > 0){
+            return $data;
+        }
+    }
+
     public static function idExistis($id) {
         $data = Tender::select()->where('id', $id)->one();
 
         return $data ? true : false;
+    }
+
+    public function getByFilter($filtro)
+    {
+        $data = Tender::select()
+            ->where('name', 'like', '%'.$filtro.'%')
+            ->get();
+        
+        if(count($data) > 0){
+            return $data;
+        }
     }
 
     //Função pública que retorna o nome do 'tender' em forma de objeto;
@@ -59,6 +84,34 @@ class TenderHelpers {
         }
         
 
+    }
+
+    public function getOneByIdUser($id)
+    {
+        
+        $data = Tender::select()
+            ->where('id_user', $id)
+            ->one();
+            
+        if(count($data) > 0) {
+            $tender = new Tender();
+            $tender->id = $data['id'];
+            $tender->name = $data['name'];
+        }
+
+        return $tender;
+    }
+
+    public function getByIdUser($id)
+    {
+        
+        $data = Tender::select()
+            ->where('id_user', $id)
+            ->get();
+            
+        if(count($data) > 0) {
+            return $data;
+        }
     }
     
     public static function addTender($name, $date, $idUser, $email) {

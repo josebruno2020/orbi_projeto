@@ -9,7 +9,7 @@ class Config {
     const DB_HOST = 'localhost';
     const DB_DATABASE = 'orbi';
     CONST DB_USER = 'root';
-    const DB_PASS = '';
+    const DB_PASS = 'root';
 
     const ERROR_CONTROLLER = 'ErrorController';
     const DEFAULT_ACTION = 'index';

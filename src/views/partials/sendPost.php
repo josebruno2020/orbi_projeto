@@ -7,7 +7,7 @@
         </div>
         <div  class="form-group">
             <label for="email">E-mail:</label>
-            <input id="email"type="email" name="email" class="form-control" placeholder="email@exemplo.com" required>
+            <input id="email"type="email" name="email" class="form-control" placeholder="email@exemplo.com" required width="100%">
         </div>
         <div  class="form-group">
             <label for="tel">Telefone para contato:</label>

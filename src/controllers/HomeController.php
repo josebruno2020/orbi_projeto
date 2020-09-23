@@ -6,20 +6,17 @@ use \src\helpers\PostHelpers;
 use \src\helpers\HistoricHelpers;
 use \src\helpers\RadarHelpers;
 use \src\helpers\EmailHelpers;
+use src\services\EmailTrait;
+use src\services\FlashMessageTrait;
 
 class HomeController extends Controller {
+    use EmailTrait;
+    use FlashMessageTrait;
 
     public function index() {
-        $flash = '';
-        if(!empty($_SESSION['flash'])) {
-            $flash = $_SESSION['flash'];
-            $_SESSION['flash'] = '';
-        }
         HistoricHelpers::entry();
 
-        $this->render('home', [
-            'flash' => $flash
-        ]);
+        $this->render('home/home');
     }
 
     public function postAction() {
@@ -32,37 +29,28 @@ class HomeController extends Controller {
         if($name && $email && $tel && $body) {
             
             PostHelpers::sendPost($name, $email, $tel, $body);
-            //E-mail enviado para o admin com a mensagem
-            $to = 'orbibrasil@orbibrasil.com.br';
-            $subject = 'Fale conosco!';
-            $message = $body;
-            $headers = 'From: '.$email.'\r\n'.
-                        'Reply-To: '.$email.'\r\n';
-            
-            mail($to, $subject, $message, $headers);
 
-            $_SESSION['flash'] = 'Mensagem Enviada com sucesso! Em breve responderemos!';
+            $this->postEmail($email, $body);
+
+            $this->flashMessage(
+                'success',
+                'Mensagem Enviada com sucesso! Em breve responderemos!'
+            );
         } else {
-
-            $_SESSION['flash'] = 'Digite todos os campos abaixo para enviar sua Mensagem!';
-
+            $this->flashMessage(
+                'danger',
+                'Digite todos os campos abaixo para enviar sua Mensagem!'
+            );
             $this->redirect('/');
         }
 
-        $this->redirect('/');
     }
 
     public function radar() {
-        $flash = '';
-        if(!empty($_SESSION['flash'])) {
-            $flash = $_SESSION['flash'];
-            $_SESSION['flash'] = '';
-        }
         $radar = RadarHelpers::getLast();
         
-        $this->render('radar', [
+        $this->render('home/radar', [
             'radar' => $radar,
-            'flash' => $flash
         ]);
     }
     //Função para receber os novos inscritos no radar;
@@ -72,33 +60,20 @@ class HomeController extends Controller {
 
         if(isset($email)){
             EmailHelpers::newEmail($email);
-            //E-mail enviado para o radar com o e-mail de quem quer fazer a inscrição
-            $to = 'radar@orbibrasil.com.br';
-            $subject = 'Nova solicitação para o Radar';
-            $message = 'Nova solicitação para o Radar!'.'\r\n';
-            $headers = 'From: '.$email.'\r\n'.
-                        'Reply-To: '.$email.'\r\n';
             
-            mail($to, $subject, $message, $headers);
+            $this->radarEmail($email);
+            
+            $this->flashMessage(
+                'success',
+                'Solicitação enviada com sucesso!'
+            );
+            $this->redirect('/radar');
 
-            $_SESSION['flash'] = 'Solicitação enviada com sucesso!';
-            $this->redirect('/radar');
-            } else{
-            $_SESSION['flash'] = 'Preencha seu e-mail';
-            $this->redirect('/radar');
         }
     }
 
     public function company() {
-        $flash = '';
-        if(!empty($_SESSION['flash'])) {
-            $flash = $_SESSION['flash'];
-            $_SESSION['flash'] = '';
-        }
-
-        $this->render('company', [
-            'flash' => $flash
-        ]);
+        $this->render('home/company');
     }
 
     public function companyAction() {
@@ -111,21 +86,17 @@ class HomeController extends Controller {
         if($name && $email && $tel && $body) {
             
             PostHelpers::sendPost($name, $email, $tel, $body);
-            //E-mail enviado para o admin com a mensagem
-            $to = 'orbibrasil@orbibrasil.com.br';
-            $subject = 'Fale conosco!';
-            $message = $body;
-            $headers = 'From: '.$email.'\r\n'.
-                        'Reply-To: '.$email.'\r\n'.
-                        'X-Mailer: PHP/'.phpversion();
-            mail($to, $subject, $message, $headers);
-            $_SESSION['flash'] = 'Mensagem Enviada com sucesso! Em breve responderemos!';
+            $this->postEmail($email, $body);
             
-
+            $this->flashMessage(
+                'success',
+                'Mensagem Enviada com sucesso! Em breve responderemos!'
+            );
         } else {
-
-            $_SESSION['flash'] = 'Digite todos os campos abaixo para enviar sua Mensagem!';
-
+            $this->flashMessage(
+                'danger',
+                'Digite todos os campos abaixo para enviar sua Mensagem!'
+            );
             $this->redirect('/empresa');
         }
 
@@ -133,7 +104,7 @@ class HomeController extends Controller {
     }
 
     public function city() {
-        $this->render('city');
+        $this->render('home/city');
     }
 
     

@@ -4,21 +4,17 @@ namespace src\controllers;
 use \core\Controller;
 use \src\helpers\UserHelpers;
 use \src\helpers\HistoricHelpers;
+use src\services\FlashMessageTrait;
+
 define("BASE_URL", "http://localhost/orbi_projeto/public/");
 //define("BASE_URL", "https://www.orbibrasil.com.br/public/");
 
 class LoginController extends Controller {
+    use FlashMessageTrait;
 
     public function index() {
-        $flash = '';
-        if(!empty($_SESSION['flash'])) {
-            $flash = $_SESSION['flash'];
-            $_SESSION['flash'] = '';
-        }
-
-        $this->render('signin', [
-            'flash' => $flash
-        ]);
+        
+        $this->render('login/signin');
     }
 
     public function signinAction() {
@@ -37,31 +33,31 @@ class LoginController extends Controller {
                 $this->redirect('/my');
             } else {
 
-                $_SESSION['flash'] = 'E-mail e/ou Senha não conferem ';
+                $this->flashMessage(
+                    'danger', 
+                    'E-mail e/ou Senha não conferem'
+                );
+                //$_SESSION['flash'] = 'E-mail e/ou Senha não conferem ';
                 $this->redirect('/login');
             }
 
-            
-
         } else {
-            $_SESSION['flash'] = 'Digite os campos de email e/ou senha novamente.';
+
+            $this->flashMessage(
+                'danger', 
+                'Digite os campos de email e/ou senha novamente.'
+                );
+
             $this->redirect('/login');
         }
     }
-    public function password() {
-
-        $flash = '';
-        if(!empty($_SESSION['flash'])) {
-            $flash = $_SESSION['flash'];
-            $_SESSION['flash'] = '';
-        }
-
-        $this->render('password', [
-            'flash' => $flash
-        ]);
+    public function password() 
+    {
+        $this->render('login/password');
     }
-    //Ação de rercuperar a senha
-    public function passwordAction() {
+
+    public function passwordAction() 
+    {
         //Recebendo os dados do usuário;
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $email2 = filter_input(INPUT_POST, 'email2', FILTER_VALIDATE_EMAIL);
@@ -80,17 +76,30 @@ class LoginController extends Controller {
                 $headers = 'From: orbibrasil@orbibrasil.com.br';
                 
                 mail($email, $subject, $message, $headers);
-                $_SESSION['flash'] = 'Foi enviado um E-mail informando o link para redefinir uma nova senha!';
+
+                $this->flashMessage(
+                    'success',
+                    'Foi enviado um E-mail informando o link para redefinir uma nova senha!'
+                );
+
                 $this->redirect('/login');
                 
             } else {
+                $this->flashMessage(
+                    'danger',
+                    'O e-mail informado não está cadastrado!'
+                );
 
-                $_SESSION['flash'] = 'O E-mail informado não está cadastrado!';
                 $this->redirect('/esqueci-senha');
             }
 
         } else {
-            $_SESSION['flash'] = 'Os E-mails informados devem ser iguais!';
+
+            $this->flashMessage(
+                'danger',
+                'Os e-mails informados devem ser iguais!'
+            );
+            
             $this->redirect('/esqueci-senha');
 
         }
@@ -100,23 +109,19 @@ class LoginController extends Controller {
 
         if(UserHelpers::tokenExistis($token) == true) {
 
-            $flash = '';
-            if(!empty($_SESSION['flash'])) {
-            $flash = $_SESSION['flash'];
-            $_SESSION['flash'] = '';
-            }
-
             $user = UserHelpers::getByToken($token);
 
-            $this->render('newPassword', [
-                'flash' => $flash,
+            $this->render('login/new-password', [
                 'user' => $user,
                 'token' => $token
             ]);
 
         } else {
 
-            $_SESSION['flash'] = 'Token inválido!';
+            $this->flashMessage(
+                'danger',
+                'Token inválido!'
+            );
             $this->redirect('/esqueci-senha');
         }
         
@@ -130,13 +135,21 @@ class LoginController extends Controller {
             
             $user = UserHelpers::getByToken($token['token']);
             UserHelpers::updatePassword($user->id, $pass);
-            $_SESSION['flash'] = 'Senha redefinida com sucesso!';
+            $this->flashMessage(
+                'success',
+                'Senha redefinida com sucesso!'
+            );
+
             $this->redirect('/login');
             
             
         } else {
 
-            $_SESSION['flash'] = 'As duas senhas devem ser iguais!';
+            $this->flashMessage(
+                'danger',
+                'As duas senhas devem ser iguais!'
+            );
+            
             $this->redirect('/nova-senha/'.$token['token']);
         }
     }

@@ -84,16 +84,15 @@ h1 {
 	backdrop-filter: blur(5px);
 }
 #sendPost .form-group{
-	width: 500px;
-}
-#sendPost .form-group input{
-	width: 100%;
+	width: 90vw;
+	max-width: 500px;
 }
 
-
-#form-radar .form-control input{
-	width: 100%;
+.form-control input{
+	width: 90vw;
+	margin:0;
 }
+
 #city{
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -106,7 +105,8 @@ h1 {
 }
 
 #form-radar input[type=email]{
-	width: 350px;
+	width: 70vw;
+	max-width: 350px;
 	margin:5px;	
 }
 
@@ -130,11 +130,27 @@ h1 {
 	box-shadow: 0 0 10px #000;
 }
 footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin-top: auto;
 	padding:10px;
 	font-size: 15px;
 	border: 1px solid #eee;
 	background-color: #ccc;
 }
+
+footer p{
+	margin:0;
+}
+
+@media (max-width: 550px){
+	#contato{
+		background-size: auto;
+	}
+
+	
+}
+
 
 		

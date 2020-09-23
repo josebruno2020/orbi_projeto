@@ -1,7 +1,6 @@
 <?php
 namespace src\helpers;
 
-use \core\Controller;
 use \src\models\RadarFile;
 
 class RadarHelpers {
@@ -29,6 +28,13 @@ class RadarHelpers {
         } else{
             return false;
         }
+    }
+
+    public static function deleteRadar($id)
+    {
+        RadarFile::delete()
+            ->where('id', $id)
+            ->execute();
     }
     
 }

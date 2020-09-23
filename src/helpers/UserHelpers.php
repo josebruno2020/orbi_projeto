@@ -92,6 +92,18 @@ class UserHelpers {
         return $name;
     }
 
+    public function getClientMaster()
+    {
+        $data = User::select()
+            ->where('group', 'client')
+            ->get();
+        
+        if(count($data) > 0){
+            return $data;
+        }
+        
+    }
+
     public static function verifyLogin($email, $password) {
         //Verificamos se existe no banco de dados com o email enviado;
         $user = User::select()->where('email', $email)->one();
@@ -133,10 +145,10 @@ class UserHelpers {
         return $user;
     }
 
-    public static function addUser($name, $email, $password1, $city, $state, $group) {
+    public static function addUser($name, $email, $password1, $city, $state, $group) :void
+    {
         $hash = password_hash($password1, PASSWORD_DEFAULT);
         $token =  md5(time().rand(0,9999).time());
-        //Inserindo um novo usuário no Banco de Dados;
 
         User::insert([
             'name' => $name,
@@ -148,12 +160,11 @@ class UserHelpers {
             'token' => $token
         ])
         ->execute();
-
-        
     }
-
-    public static function getPassword($email) {
-        
+    
+    public static function getPassword($email) :User
+    {
+                
         $data = User::select()->where('email', $email)->one();
 
         $user = new User();
@@ -161,17 +172,16 @@ class UserHelpers {
         $user->token = $data['token'];
 
         return $user;
-
         
     }
 
-    
-    
-    public static function updateUser($id, $name, $tel, $password1, $city, $state, $group) {
+    public static function updateUser($id, $name, $email,  $tel, $password1, $city, $state, $group) :void
+    {
         $hash = password_hash($password1, PASSWORD_DEFAULT);
         
         User::update()
             ->set('name', $name)
+            ->set('email', $email)
             ->set('tel', $tel)
             ->set('city', $city)
             ->set('state', $state)

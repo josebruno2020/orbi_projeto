@@ -2,11 +2,23 @@
 const BASE_URL = 'http://localhost/orbi_projeto/public/';
 //BASE_URL para projeto publicado;
 //const BASE_URL = 'https://www.orbibrasil.com.br/public/';
-$(document).ready(function(){
 
-    /*
-    * Função para colocar a imagem do tamanho correspondente;
-    */
+/**
+ * Função para mostrar a senha no login;
+ */
+$('#mostrar_senha').on('click', function(){
+
+    if($('#mostrar_senha').is(':checked')){
+        $('#input_senha').attr('type', 'text');
+    } else{
+        $('#input_senha').attr('type', 'password');
+    }
+});
+
+$(document).ready(function(){
+    /**
+     * Função para colocar a imagem do tamanho correspondente;
+     */
     var larguraTela = $(window).width();
     if(larguraTela>710){
         alturaFoto = 350;
@@ -58,6 +70,57 @@ $(document).ready(function(){
     }, function(){
         $(this).find('#dropdown-menu').slideToggle('fast');
     });
+    
+    /**
+     * Filtro de Ajax para pasta de contratos;
+     */
+    $('#contratos_search').keyup(function(){
+        $('#form_contratos_search').submit(function(e){
+            e.preventDefault();
+            var txt = $(this).serialize();
+            
+            $.ajax({
+                url:BASE_URL+'ajax/contratos_filtro',
+                type:'post',
+                data:txt,
+                success:function(data){
+                    $('#resultado-contratos').empty().html(data);
+                },
+                
+            });
+            
+            return false;
+
+        });
+        $('#form_contratos_search').trigger('submit');
+
+    });
+
+    /**
+     * Filtro Ajax para buscar tenders;
+    */
+
+    $('#tenders_search').keyup(function(){
+        
+        $('#form_tenders_search').submit(function(e){
+            e.preventDefault();
+            var txt = $(this).serialize();
+            $.ajax({
+                url:BASE_URL+'ajax/tenders_filtro',
+                type:'post',
+                data:txt,
+                success:function(data){
+                    $('#resultado-tenders').empty().html(data);
+                },
+                
+            });
+            
+            return false;
+
+        });
+        $('#form_tenders_search').trigger('submit');
+
+    });
 
     //Filter para o historico;
     $('#filter-historic').keyup(function(){
@@ -80,6 +143,21 @@ $(document).ready(function(){
 
         });
         $('#form-historic').trigger('submit');
+
+    });
+
+    /**
+     * Ajax para mandar e-mail de notificação
+     */
+    $('.email_button').bind('click',function(){
+        var id = $(this).attr('data-id');
+        
+        $.ajax({
+            url:BASE_URL+'ajax/email-planilha/'+id,
+            type:'get',
+            
+        });
+        location.reload();
 
     });
    
